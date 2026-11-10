@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kho File Tele</title>
+<title>Electro Cat · Giới thiệu</title>
 <meta name="description" content="Kho file tele theo từng vùng: chọn vùng, tải file .zip, nhập vào app.">
 <meta property="og:title" content="Kho File Tele">
 <meta property="og:description" content="Điểm tele từng vùng, tải một lần là xong.">
@@ -981,7 +981,7 @@ function post(sl){const g=GUIDES.find(x=>x.slug===sl),bc=t=>crumb("<a href=\"#/\
  const back='<div class="pn"><a class="gh" href="#/guide">← '+tr("x_back_guides")+'</a></div>';
  fetch(RAW+gpath(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
   const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g));
-  document.title=g.title+" · Kho File Tele";
+  document.title=(SITE.server||"Electro Cat")+" · "+g.title;
   $("main").innerHTML=bc(g.title)+`<h1>${esc(g.title)}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a></div>`:""}`+back+foot()})
  .catch(()=>{if(route().s===sl)$("main").innerHTML=bc(g.title)+`<h1>${esc(g.title)}</h1><p class="none">${tr("x_post_fail")}</p>`+back+foot()});
  return bc(g.title)+`<h1>${esc(g.title)}</h1><p class="lead">${tr("x_loading")}</p>`}
@@ -1134,7 +1134,7 @@ function theme(id){const H=document.documentElement,st=H.style,p=RP[id],c=p?p.c:
  H.dataset.rp="on"}
 function render(){const R=route();theme(!q&&R.p==="r"?ALL[R.i][0]:"");document.body.dataset.p=q?"search":R.p;rp(R);
  const lb=R.p==="r"?ALL[R.i][1]:pgl(R.p),hm=R.p==="r"?"#/files":(PG[R.p]||[])[1];
- $("mbl").textContent=q?tr("search"):lb;document.title=(q?tr("search")+" “"+q+"” · ":R.p==="intro"?"":lb+" · ")+"Kho File Tele";
+ $("mbl").textContent=q?tr("search"):lb;document.title=(SITE.server||"Electro Cat")+" · "+(q?tr("search")+" “"+q+"”":(R.p==="intro"?tr("intro"):lb));
  document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm||(!!R.sec&&a.getAttribute("href")==="#/community/"+R.sec)));
  mgSet(R.p==="community"?true:null);
  if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,community,app:appPage,updates,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);if(R.p==="community"&&!q)commInit();syncBar();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
