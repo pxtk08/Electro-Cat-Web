@@ -26,7 +26,7 @@
 <link rel="canonical" href="https://pxtk08.github.io/Electro-Cat-Web/">
 <style>
 :root{--bg:#18121f;--panel:#1f1729;--card:#261c33;--line:#3a2d4d;--text:#fff;--mute:#d2c8e2;--pink:#ff8fbf;--pink2:#c39bff;--on:#2a1633;--chip:#3a2b52}
-*{box-sizing:border-box;margin:0}html{color-scheme:dark}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}html{color-scheme:dark}
 :focus-visible{outline:2px solid var(--pink);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (prefers-contrast:more){:root{--line:#7a6a9a;--mute:#ede8f8}:focus-visible{outline-width:3px}}
@@ -382,6 +382,40 @@ body:before,body:after{opacity:.2}
 .hero .ifact{font-size:16px;font-weight:500;opacity:.8}
 .intro{padding-top:16px;gap:56px}
 @media(max-width:700px){.sbox{flex:1}.tin{padding:12px 16px}.hero{padding:40px 0 24px}}
+@media(max-width:640px){
+  .tin{gap:8px;padding:10px 14px}
+  .mb{width:42px;height:42px;min-height:42px;padding:0;justify-content:center;border-radius:50%;flex-shrink:0}
+  #mbl{display:none}
+  .sbox{flex:1;min-height:42px;padding:0 12px;margin:0}
+  .sbox input{font-size:14px}
+  .ul-btn{width:42px;height:42px;min-height:42px;padding:0;justify-content:center;border-radius:50%;flex-shrink:0}
+  .ul-btn span,.ul-btn .ul-arr{display:none}
+  .ul-btn .ul-ic{width:18px;height:18px;margin:0}
+  .hero{padding:28px 0 16px}
+  .hero h1{font-size:clamp(28px,7.5vw,36px);line-height:1.2;margin:0 auto}
+  .hsub{font-size:15px;line-height:1.6;margin-top:14px}
+  .hero .iact{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:340px;margin:22px auto 14px}
+  .hero .go{grid-column:1/-1;min-height:48px;font-size:16px;padding:0 20px;border-radius:14px;justify-content:center}
+  .hero .gh{min-height:44px;font-size:14.5px;padding:0 14px;border-radius:12px;justify-content:center}
+  .hero .ifact{font-size:13px;line-height:1.5;margin-top:8px}
+  .ics{padding-top:20px}
+  .ic{padding:16px 16px 14px;border-radius:16px;gap:4px}
+  .ic-i{width:38px;height:38px;border-radius:11px;margin-bottom:4px}
+  .ic-i svg{width:19px;height:19px}
+  .ic h3{font-size:17px}
+  .ic p{font-size:14px;line-height:1.5}
+  .ic-go{font-size:13px;padding-top:6px}
+  .card{min-height:56px;padding:0 16px;font-size:16px;border-radius:14px}
+  .row{padding:12px 14px;border-radius:14px;gap:10px}
+  .row h3{font-size:15px}
+  .row p{font-size:13.5px}
+  .meta i{font-size:11.5px;padding:3px 7px}
+  .act{display:flex;gap:8px;width:100%}
+  .act .dl,.act .cp{min-height:40px;font-size:14px;border-radius:10px;padding:0 14px;justify-content:center}
+  .cmf{padding:14px;border-radius:14px}
+  .cmf input,.cmf select,.cmf textarea{font-size:15px;min-height:42px;padding:8px 10px}
+  .cmc{padding:16px 14px;border-radius:16px}
+}
 body{background-attachment:scroll}
 body:before,body:after{animation:none;filter:blur(70px)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
