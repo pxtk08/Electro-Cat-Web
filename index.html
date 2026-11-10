@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Electro Cat · Giới thiệu</title>
-<meta name="description" content="Kho file tele theo từng vùng: chọn vùng, tải file .zip, nhập vào app.">
-<meta property="og:title" content="Kho File Tele">
-<meta property="og:description" content="Điểm tele từng vùng, tải một lần là xong.">
+<meta name="description" content="Electro Cat Archive - Kho file tele theo từng vùng: chọn vùng, tải file .zip, nhập vào app.">
+<meta property="og:title" content="Electro Cat Archive">
+<meta property="og:description" content="File tele theo từng vùng cho tool Unicore (Genshin Impact). Chọn vùng, tải file .zip, nhập vào app.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pxtk08.github.io/Electro-Cat-Web/">
 <meta property="og:image" content="https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png">
 <meta property="og:image:width" content="1164">
 <meta property="og:image:height" content="750">
-<meta property="og:image:alt" content="Kho File Tele - Electro Cat App">
+<meta property="og:image:alt" content="Electro Cat Archive">
 <meta name="robots" content="index, follow">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kho File Tele - Electro Cat">
-<meta name="twitter:description" content="Điểm tele từng vùng, tải một lần là xong.">
+<meta name="twitter:title" content="Electro Cat Archive">
+<meta name="twitter:description" content="File tele theo từng vùng cho tool Unicore (Genshin Impact). Chọn vùng, tải file .zip, nhập vào app.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png">
-<meta name="twitter:image:alt" content="Kho File Tele - Electro Cat App">
+<meta name="twitter:image:alt" content="Electro Cat Archive">
 <meta name="theme-color" id="tc" content="#18121f">
 <meta name="color-scheme" content="dark">
 <!-- CSP: nếu file tải nằm ở domain khác, thêm domain đó vào connect-src -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://*.supabase.co; object-src 'none'; base-uri 'none'">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kho File Tele","description":"Kho file tele theo từng vùng cho tool Unicore (Genshin Impact). Chọn vùng, tải file .zip, nhập vào app.","author":{"@type":"Person","name":"pxtk.08"},"inLanguage":["vi","en","ru","pt"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Electro Cat Archive","description":"Kho file tele theo từng vùng cho tool Unicore (Genshin Impact). Chọn vùng, tải file .zip, nhập vào app.","author":{"@type":"Person","name":"pxtk.08"},"inLanguage":["vi","en","ru","pt"]}</script>
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/pxtk08/Electro-Cat-Web/main/icon.ico">
 <!-- canonical: thay URL bên dưới bằng URL deploy thực tế -->
 <link rel="canonical" href="https://pxtk08.github.io/Electro-Cat-Web/">
@@ -291,7 +291,7 @@ footer{border-top-color:#ffffff14}
 body:before,body:after{opacity:.2}
 .tin{justify-content:space-between;padding:14px 24px}
 .mb{height:42px;min-height:42px;background:#ffffff08;box-shadow:none}
-.sbox{flex:0 1 300px;margin:0 0 0 auto;min-height:42px;padding:0 16px;background:#ffffff08;box-shadow:none}
+.sbox{flex:1;max-width:440px;margin:0;min-height:42px;padding:0 16px;background:#ffffff08;box-shadow:none}
 .hero{padding:72px 0 40px}
 .hero h1{max-width:15em;font-size:clamp(30px,5vw,50px);line-height:1.18}
 .hsub{font-size:17px;margin-top:16px;max-width:30em}
@@ -381,23 +381,28 @@ body:before,body:after{opacity:.2}
 .hero .go,.hero .gh{min-height:58px;padding:0 34px;font-size:18px;border-radius:16px}
 .hero .ifact{font-size:16px;font-weight:500;opacity:.8}
 .intro{padding-top:16px;gap:56px}
-@media(max-width:700px){.sbox{flex:1}.tin{padding:12px 16px}.hero{padding:40px 0 24px}}
-@media(max-width:640px){
-  .tin{gap:8px;padding:10px 14px}
-  .mb{width:42px;height:42px;min-height:42px;padding:0;justify-content:center;border-radius:50%;flex-shrink:0}
-  #mbl{display:none}
-  .sbox{flex:1;min-height:42px;padding:0 12px;margin:0}
-  .sbox input{font-size:14px}
-  .ul-btn{width:42px;height:42px;min-height:42px;padding:0;justify-content:center;border-radius:50%;flex-shrink:0}
-  .ul-btn span,.ul-btn .ul-arr{display:none}
-  .ul-btn .ul-ic{width:18px;height:18px;margin:0}
+@media(max-width:768px){
+  /* Header bar hoàn toàn cân đối, không bị dồn sang phải */
+  .tin{gap:10px!important;padding:8px 12px!important;display:flex!important;align-items:center!important;justify-content:space-between!important}
+  .mb{width:42px!important;height:42px!important;min-height:42px!important;padding:0!important;display:grid!important;place-items:center!important;border-radius:12px!important;flex-shrink:0!important;margin:0!important}
+  #mbl{display:none!important}
+  .sbox{flex:1!important;min-width:0!important;margin:0!important;max-width:none!important;height:42px!important;min-height:42px!important;padding:0 12px!important}
+  .sbox input{font-size:14px!important;width:100%!important;min-width:0!important}
+  .top .ul-wrap{flex-shrink:0!important}
+  .ul-btn{width:42px!important;height:42px!important;min-height:42px!important;padding:0!important;display:grid!important;place-items:center!important;border-radius:12px!important;flex-shrink:0!important}
+  .ul-btn span,.ul-btn .ul-arr{display:none!important}
+  .ul-btn .ul-ic{width:18px!important;height:18px!important;margin:0!important}
+
+  /* Banner đầu trang & Cụm nút bấm chuẩn công thái học */
   .hero{padding:28px 0 16px}
-  .hero h1{font-size:clamp(28px,7.5vw,36px);line-height:1.2;margin:0 auto}
+  .hero h1{font-size:clamp(26px,7.5vw,34px);line-height:1.2;margin:0 auto}
   .hsub{font-size:15px;line-height:1.6;margin-top:14px}
-  .hero .iact{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:340px;margin:22px auto 14px}
-  .hero .go{grid-column:1/-1;min-height:48px;font-size:16px;padding:0 20px;border-radius:14px;justify-content:center}
-  .hero .gh{min-height:44px;font-size:14.5px;padding:0 14px;border-radius:12px;justify-content:center}
+  .hero .iact{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;width:100%!important;max-width:340px!important;margin:22px auto 14px!important}
+  .hero .go{grid-column:1/-1!important;min-height:48px!important;font-size:16px!important;padding:0 20px!important;border-radius:14px!important;justify-content:center!important}
+  .hero .gh{min-height:44px!important;font-size:14.5px!important;padding:0 14px!important;border-radius:12px!important;justify-content:center!important}
   .hero .ifact{font-size:13px;line-height:1.5;margin-top:8px}
+
+  /* Mục "Trang này có gì?" */
   .ics{padding-top:20px}
   .ic{padding:16px 16px 14px;border-radius:16px;gap:4px}
   .ic-i{width:38px;height:38px;border-radius:11px;margin-bottom:4px}
@@ -405,16 +410,37 @@ body:before,body:after{opacity:.2}
   .ic h3{font-size:17px}
   .ic p{font-size:14px;line-height:1.5}
   .ic-go{font-size:13px;padding-top:6px}
+
+  /* Danh sách vùng đất và từng hàng file */
   .card{min-height:56px;padding:0 16px;font-size:16px;border-radius:14px}
-  .row{padding:12px 14px;border-radius:14px;gap:10px}
-  .row h3{font-size:15px}
-  .row p{font-size:13.5px}
-  .meta i{font-size:11.5px;padding:3px 7px}
-  .act{display:flex;gap:8px;width:100%}
-  .act .dl,.act .cp{min-height:40px;font-size:14px;border-radius:10px;padding:0 14px;justify-content:center}
+  .row{padding:14px 16px!important;border-radius:14px!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+  .pl{display:flex!important;gap:12px!important;align-items:flex-start!important;width:100%!important}
+  .pl>div{flex:1!important;min-width:0!important}
+  .row h3{font-size:15.5px!important;line-height:1.4!important;word-break:break-word!important}
+  .row p{font-size:13.5px!important;margin-top:4px!important}
+  .row .meta{margin-top:8px!important;gap:6px!important}
+  .meta i{font-size:12px!important;padding:3px 8px!important;border-radius:6px!important}
+  .row .act{display:flex!important;flex-direction:row!important;gap:8px!important;width:100%!important;margin-top:2px!important}
+  .row .act .dl{flex:1.4!important;min-height:44px!important;padding:0 12px!important;font-size:14px!important;justify-content:center!important;border-radius:12px!important}
+  .row .act .cp{flex:1!important;min-height:44px!important;padding:0 10px!important;font-size:13.5px!important;justify-content:center!important;border-radius:12px!important}
+
+  /* Form đăng bài cộng đồng */
   .cmf{padding:14px;border-radius:14px}
   .cmf input,.cmf select,.cmf textarea{font-size:15px;min-height:42px;padding:8px 10px}
   .cmc{padding:16px 14px;border-radius:16px}
+
+  /* Tab cuộn ngang ảnh giao diện app */
+  .gt-row{-webkit-overflow-scrolling:touch;padding:4px 4px 12px!important;gap:8px!important}
+  .gt{min-height:42px!important;padding:0 14px!important;font-size:13.5px!important}
+
+  /* Lightbox xem ảnh toàn màn hình tối ưu cho màn hình cảm ứng & tai thỏ */
+  .lb{padding:calc(env(safe-area-inset-top,16px) + 36px) 10px calc(env(safe-area-inset-bottom,16px) + 50px)!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important}
+  .lb img{width:100%!important;max-width:calc(100vw - 20px)!important;max-height:68vh!important;object-fit:contain!important;border-radius:12px!important}
+  .lb .lbx{top:calc(env(safe-area-inset-top,14px) + 10px)!important;right:16px!important;width:44px!important;height:44px!important;background:rgba(255,255,255,.2)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;z-index:105!important}
+  .lb .ga{width:42px!important;height:42px!important;background:rgba(18,12,27,.85)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;border-radius:50%!important;border-color:rgba(255,255,255,.25)!important;z-index:104!important}
+  .lb .ga.p{left:8px!important}
+  .lb .ga.n{right:8px!important}
+  .lb-c{bottom:calc(env(safe-area-inset-bottom,14px) + 12px)!important;font-size:13.5px!important;font-weight:700!important;color:#fff!important;padding:6px 16px!important;background:rgba(0,0,0,.6)!important;backdrop-filter:blur(8px)!important;border-radius:999px!important;width:fit-content!important;margin:0 auto!important}
 }
 body{background-attachment:scroll}
 body:before,body:after{animation:none;filter:blur(70px)}
