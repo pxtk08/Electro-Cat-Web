@@ -517,6 +517,64 @@ html[data-rp=on] .hero h1{color:var(--text)}
 .cmh{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
 .cmh small,.cmm{color:var(--mute);font-size:13px}.cmm{margin-bottom:10px}
 </style>
+<style>
+/* ===== Bài đăng cộng đồng: card nổi bật + file tile ===== */
+.cmc{position:relative;overflow:hidden;margin-bottom:16px;padding:22px 24px 20px;border-radius:20px;border:1px solid #ffffff1a;background:linear-gradient(145deg,color-mix(in srgb,var(--pink2) 14%,var(--card)),color-mix(in srgb,var(--pink) 6%,var(--panel)) 60%);box-shadow:inset 0 1px 1px #ffffff24,0 14px 36px #0006,0 0 0 1px color-mix(in srgb,var(--pink) 8%,transparent);transition:transform .22s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .2s;animation:rowin .38s cubic-bezier(.16,1,.3,1) both}
+.cmc:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad)}
+.cmc:after{content:"";position:absolute;right:-90px;top:-110px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pink) 22%,transparent),transparent 70%);pointer-events:none}
+.cmc:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--pink) 45%,transparent);box-shadow:inset 0 1px 1px #ffffff2e,0 20px 44px #0007,0 0 28px color-mix(in srgb,var(--pink) 16%,transparent)}
+.cmc>*{position:relative;z-index:1}
+.cmc .cmh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.cmr{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--grad);color:var(--on);box-shadow:var(--glow)}
+.cmr:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--on);opacity:.7}
+.cmc time{font-size:13px;font-weight:600;color:var(--mute)}
+.cmc h3{font-size:clamp(20px,3.2vw,25px);font-weight:800;letter-spacing:-.015em;line-height:1.25;color:#fff;word-break:break-word}
+.cmc p{margin:8px 0 0;font-size:16px;color:var(--mute);white-space:pre-wrap;word-break:break-word}
+.cmc .cmm{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.cmm i{display:inline-flex;align-items:center;gap:6px;font-style:normal;font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:8px;background:var(--chip);color:var(--mute)}
+.cmm i svg{width:13px;height:13px;color:var(--pink)}
+.cmfile{display:flex;align-items:center;gap:14px;margin-top:18px;padding:12px 14px;border-radius:16px;text-decoration:none;color:#fff;background:#0000002e;border:1px solid #ffffff1c;transition:background .18s,border-color .18s,transform .16s,box-shadow .18s}
+.cmfile:hover{background:color-mix(in srgb,var(--pink) 10%,#0000002e);border-color:var(--pink);box-shadow:var(--glow)}
+.cmfile:active{transform:scale(.985)}
+.cmi{position:relative;flex-shrink:0;width:46px;height:54px;display:grid;place-items:center;color:var(--pink2)}
+.cmi svg{position:absolute;inset:0;width:100%;height:100%;padding:3px;filter:drop-shadow(0 4px 10px color-mix(in srgb,var(--pink2) 35%,transparent))}
+.cmi b{position:relative;margin-top:14px;font-size:9px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--pink2);color:var(--on);padding:1px 5px;border-radius:4px}
+.cmn{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.cmn strong{font-size:16px;font-weight:700;color:var(--pink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .16s}
+.cmfile:hover .cmn strong{color:var(--pink)}
+.cmn small{font-size:13px;color:var(--mute)}
+.cmd{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--grad);color:var(--on);box-shadow:var(--glow);transition:transform .16s,box-shadow .16s}
+.cmd svg{width:22px;height:22px}
+.cmfile:hover .cmd{transform:translateY(-1px);box-shadow:0 8px 24px color-mix(in srgb,var(--pink) 40%,transparent)}
+.cmfile:hover .cmd svg{animation:cmbounce .7s ease infinite}
+@keyframes cmbounce{50%{transform:translateY(3px)}}
+@media(max-width:560px){.cmc{padding:18px 16px}.cmd{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.cmc,.cmfile:hover .cmd svg{animation:none}.cmc:hover{transform:none}}
+</style>
+<style>
+/* ===== Menu: mục con của Kho File Cộng Đồng ===== */
+.menu .mgr{position:relative;display:flex;align-items:stretch}
+.menu .mgr>a{flex:1;padding-right:52px}
+.menu .mgb{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:10px;border:0;background:none;color:var(--mute);cursor:pointer;display:grid;place-items:center;z-index:2;transition:background .16s,color .16s}
+.menu .mgb:hover{background:#ffffff14;color:#fff}
+.menu .mgb svg{width:18px;height:18px;transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.menu .mg.open .mgb{color:var(--pink)}
+.menu .mg.open .mgb svg{transform:rotate(180deg)}
+.menu .msub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .26s cubic-bezier(.16,1,.3,1)}
+.menu .mg.open .msub{grid-template-rows:1fr}
+.menu .msub>div{overflow:hidden;min-height:0;margin-left:22px;padding-left:10px;border-left:1px solid #ffffff1f;visibility:hidden;transition:visibility 0s .26s}
+.menu .mg.open .msub>div{visibility:visible;transition-delay:0s}
+.menu .msub a{justify-content:flex-start;gap:10px;min-height:40px;padding:8px 12px;margin-top:4px;font-size:14px;font-weight:600}
+.menu .msub a:first-child{margin-top:6px}.menu .msub a:last-child{margin-bottom:6px}
+.menu .msub a svg{width:16px;height:16px;color:var(--pink);flex-shrink:0}
+.menu .msub a:hover:before,.menu .msub a.on:before{display:none}
+.menu .msub a.on{color:var(--pink);background:color-mix(in srgb,var(--pink) 12%,transparent)}
+#cm-up,#cm-dl{scroll-margin-top:90px}
+@media(prefers-reduced-motion:reduce){.menu .msub,.menu .mgb svg{transition:none}}
+</style>
+<style>.cmtabs{margin:18px 0 4px}.cmtabs .seg{display:inline-flex;align-items:center;text-decoration:none}.cmtabs .seg.on{box-shadow:var(--glow)}#cm-up,#cm-dl{margin-top:28px}</style>
+<style>.cmc{--grad:linear-gradient(135deg,color-mix(in srgb,var(--pink) 78%,#fff),var(--pink) 55%,var(--pink2));--glow:0 6px 22px color-mix(in srgb,var(--pink) 28%,transparent);--chip:color-mix(in srgb,var(--pink) 18%,var(--panel))}</style>
+<style>.cmi{color:var(--pink)}.cmi svg{filter:drop-shadow(0 4px 10px color-mix(in srgb,var(--pink) 35%,transparent))}.cmi b{background:var(--pink)}.cmn strong{color:var(--pink)}.cmfile:hover .cmn strong{color:#fff}</style>
 </head>
 <body>
 <a href="#main" class="skip-link sr">Chuyển đến nội dung chính</a>
@@ -535,7 +593,7 @@ html[data-rp=on] .hero h1{color:var(--text)}
   <select class="ulsel" id="ul" aria-hidden="true"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="ru">Русский</option><option value="pt">Português</option></select>
  </div>
  </div></header>
-<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><a href="#/community">Kho File Cộng Đồng</a><a href="#/updates">Cập nhật</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a><a id="gb" href="#" target="_blank" rel="noopener">GitBook <small>↗</small></a></nav>
+<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><div class="mg" id="mg"><div class="mgr"><a href="#/community">Kho File Cộng Đồng</a><button type="button" class="mgb" id="mgb" aria-expanded="false" aria-controls="msub" aria-label="Mở rộng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div><div class="msub" id="msub"><div><a href="#/community/dl" data-t="cm_sdl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span>Tải file</span></a><a href="#/community/up" data-t="cm_sup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 20h14"/></svg><span>Đăng file</span></a></div></div></div><a href="#/updates">Cập nhật</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a><a id="gb" href="#" target="_blank" rel="noopener">GitBook <small>↗</small></a></nav>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
 <div class="sr" id="live" aria-live="polite"></div>
 <div class="rp" id="rp" hidden></div>
@@ -585,6 +643,9 @@ cm_load:[`Đang tải bài…`,`Loading posts…`],
 cm_err:[`Không tải được danh sách bài. Thử lại sau nhé.`,`Could not load posts. Please try again later.`],
 cm_nocfg:[`Tính năng đăng bài chưa được bật.`,`Posting is not enabled yet.`],
 cm_dl:[`Tải`,`Download`],
+cm_sdl:[`Tải file`,`Download files`],
+cm_sup:[`Đăng file`,`Upload a file`],
+cm_exp:[`Mở rộng`,`Expand`],
 cm_ok:[`Đã gửi! Bài sẽ hiện sau khi được duyệt.`,`Sent! Your post will appear after review.`],
 cm_bad:[`Gửi thất bại, thử lại sau nhé.`,`Failed to send, please try again.`],
 cm_needname:[`Nhập tên bài.`,`Enter a title.`],
@@ -969,10 +1030,14 @@ const CM={rows:null,err:false},CM_EXT=["zip","json"],CM_MAX=10*1048576;
 const cmOn=()=>/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(SITE.sbUrl||"")&&!!SITE.sbKey;
 const cmHd=()=>({apikey:SITE.sbKey});
 const cmSize=n=>n>=1048576?(n/1048576).toFixed(1)+" MB":Math.max(1,Math.round(n/1024))+" KB";
+function rcol(id){const p=RP[id],c=p?p.c:RC[id];if(!c)return"";const n=parseInt(c.slice(1),16),r=(n>>16)/255,g=(n>>8&255)/255,b=(n&255)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn,lum=.2126*r+.7152*g+.0722*b;let h=0,sa=0;if(d){sa=d/(1-Math.abs(2*l-1));h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h=(h*60+360)%360}
+ const c2=p?p.c2:`hsl(${(h+315)%360} ${Math.min(sa*100,90)}% ${Math.max(l*100,62)}%)`;return `--pink:${c};--pink2:${c2};--on:${lum>.45?"#2a1633":"#fff"}`}
 function cmList(){if(!cmOn())return `<p class="none">${tr("cm_nocfg")}</p>`;if(CM.err)return `<p class="none">${tr("cm_err")}</p>`;if(CM.rows===null)return `<p class="lead">${tr("cm_load")}</p>`;if(!CM.rows.length)return `<p class="none">${tr("cm_none")}</p>`;
  return CM.rows.filter(r=>/^[\w.-]+$/.test(r.file_path||"")).map(r=>{const dl=SITE.sbUrl+"/storage/v1/object/public/community-files/"+r.file_path+"?download="+encodeURIComponent(r.file_name||r.file_path),d=String(r.created_at||"").slice(0,10);
-  const m=[r.region,r.lang&&String(r.lang).toUpperCase(),r.author,r.file_size?cmSize(r.file_size):""].filter(Boolean).map(esc).join(" · ");
-  return `<div class="cmc"><div class="cmh"><h3>${esc(r.name)}</h3><small>${esc(fd(d))}</small></div>${r.description?`<p>${esc(r.description)}</p>`:""}<div class="cmm">${m}</div><a class="go" href="${esc(dl)}" rel="noopener">${tr("cm_dl")}</a></div>`}).join("")}
+  const ex=((r.file_name||r.file_path).split(".").pop()||"file").slice(0,4).toUpperCase(),fn=r.file_name||r.file_path;
+  const chips=[r.lang&&`<i>${esc(String(r.lang).toUpperCase())}</i>`,r.author&&`<i class="au"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>${esc(r.author)}</i>`].filter(Boolean).join("");
+  const rn=(ALL.find(a=>a[0]===r.region)||[])[1]||r.region,rs=rcol(r.region);
+  return `<article class="cmc"${rs?` style="${rs}"`:""}><div class="cmh">${r.region?`<span class="cmr">${esc(rn)}</span>`:"<span></span>"}<time>${esc(fd(d))}</time></div><h3>${esc(r.name)}</h3>${r.description?`<p>${esc(r.description)}</p>`:""}${chips?`<div class="cmm">${chips}</div>`:""}<a class="cmfile" href="${esc(dl)}" rel="noopener" aria-label="${esc(tr("cm_dl"))}: ${esc(fn)}"><span class="cmi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M11 11h2M11 14h2M11 17h2" stroke-width="2.6"/></svg><b>${esc(ex)}</b></span><span class="cmn"><strong>${esc(fn)}</strong>${r.file_size?`<small>${esc(cmSize(r.file_size))}</small>`:""}</span><span class="cmd" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span></a></article>`}).join("")}
 async function cmLoad(){if(!cmOn()||CM.rows)return;try{const r=await fetch(SITE.sbUrl+"/rest/v1/community_posts?select=id,created_at,name,description,region,lang,author,file_path,file_name,file_size&approved=eq.true&order=created_at.desc&limit=100",{headers:cmHd()});if(!r.ok)throw 0;CM.rows=await r.json();CM.err=false}catch(e){CM.err=true;CM.rows=[]}const el=$("cm-list");if(el)el.innerHTML=cmList()}
 async function cmSend(f){const msg=$("cm-msg"),say=(t,e)=>{msg.textContent=t;msg.style.color=e?"#ff9db0":""},btn=f.querySelector("button");
  if(f.website.value)return;const name=f.cname.value.trim(),file=f.cfile.files[0];
@@ -987,10 +1052,11 @@ async function cmSend(f){const msg=$("cm-msg"),say=(t,e)=>{msg.textContent=t;msg
   try{localStorage.setItem("cmlast",String(Date.now()))}catch(e){}f.reset();say(tr("cm_ok"))}catch(e){say(tr("cm_bad"),1)}btn.disabled=false}
 function commInit(){const f=$("cm-form");if(f)f.onsubmit=e=>{e.preventDefault();cmSend(f)};cmLoad()}
 function community(){const ro=ALL.map(([id,n])=>`<option value="${esc(id)}">${esc(n)}</option>`).join("")+`<option value="">${tr("cm_other")}</option>`,lo=["vi","en","ru","pt"].map(l=>`<option value="${l}">${l.toUpperCase()}</option>`).join("")+`<option value="">${tr("cm_other")}</option>`;
- return crumb("<a href=\"#/\">Kho File Tele</a>",esc(tr("community")))+`<h1>${tr("community")}</h1><p class="lead">${tr("x_comm_lead")}</p><div class="note">${tr("x_comm_note")}</div>`+(cmOn()?`<h2 class="ih2">${tr("cm_new")}</h2><form class="cmf" id="cm-form" autocomplete="off"><label>${tr("cm_name")}<input name="cname" maxlength="80" required></label><label>${tr("cm_desc")}<textarea name="cdesc" maxlength="1000"></textarea></label><div class="cm2"><label>${tr("cm_region")}<select name="cregion">${ro}</select></label><label>${tr("cm_lang")}<select name="clang">${lo}</select></label></div><label>${tr("cm_author")}<input name="cauthor" maxlength="40"></label><label>${tr("cm_file")}<input name="cfile" type="file" accept=".zip,.json"></label><input class="hp" name="website" tabindex="-1" aria-hidden="true"><button class="go" type="submit">${tr("cm_send")}</button><div id="cm-msg" role="status"></div></form>`:"")+`<h2 class="ih2">${tr("cm_list")}</h2><div id="cm-list">${cmList()}</div>`+foot()}
+ const sec=route().sec==="up"?"up":"dl",tabs=`<div class="lg cmtabs" role="navigation">${[["dl","cm_sdl"],["up","cm_sup"]].map(([k,t])=>`<a class="seg${sec===k?" on":""}"${sec===k?' aria-current="page"':""} href="#/community/${k}">${tr(t)}</a>`).join("")}</div>`;
+ return crumb("<a href=\"#/\">Kho File Tele</a>",esc(tr("community")))+`<h1>${tr("community")}</h1><p class="lead">${tr("x_comm_lead")}</p>`+tabs+`<div class="note">${tr("x_comm_note")}</div>`+(sec==="up"?(cmOn()?`<h2 class="ih2" id="cm-up">${tr("cm_new")}</h2><form class="cmf" id="cm-form" autocomplete="off"><label>${tr("cm_name")}<input name="cname" maxlength="80" required></label><label>${tr("cm_desc")}<textarea name="cdesc" maxlength="1000"></textarea></label><div class="cm2"><label>${tr("cm_region")}<select name="cregion">${ro}</select></label><label>${tr("cm_lang")}<select name="clang">${lo}</select></label></div><label>${tr("cm_author")}<input name="cauthor" maxlength="40"></label><label>${tr("cm_file")}<input name="cfile" type="file" accept=".zip,.json"></label><input class="hp" name="website" tabindex="-1" aria-hidden="true"><button class="go" type="submit">${tr("cm_send")}</button><div id="cm-msg" role="status"></div></form>`:`<p class="none">${tr("cm_nocfg")}</p>`):`<h2 class="ih2" id="cm-dl">${tr("cm_list")}</h2><div id="cm-list">${cmList()}</div>`)+foot()}
 function nf(){return `<h1>${tr("x_nf_t")}</h1><p class="lead">${tr("x_nf_p")}</p><div class="hl"><a class="go" href="#/files">${tr("enter")}</a><a class="gh" href="#/">${tr("x_nf_back")}</a></div>`+foot()}
 function route(){const h=CUR,P={faq:"faq",app:"app",files:"home",community:"community",updates:"updates",guide:"guide",report:"report",about:"about"};
- if(h.startsWith("edit/guide/")){let t=h.slice(11);try{t=decodeURIComponent(t)}catch(e){}return{p:"edit",s:t}}if(h.startsWith("guide/")){let t=h.slice(6);try{t=decodeURIComponent(t)}catch(e){}return{p:"post",s:t}}if(P[h])return{p:P[h]};if(h===""||h==="/")return{p:"intro"};
+ if(h.startsWith("edit/guide/")){let t=h.slice(11);try{t=decodeURIComponent(t)}catch(e){}return{p:"edit",s:t}}if(h.startsWith("guide/")){let t=h.slice(6);try{t=decodeURIComponent(t)}catch(e){}return{p:"post",s:t}}if(h==="community/dl"||h==="community/up")return{p:"community",sec:h.slice(10)};if(h==="community")return{p:"community",sec:"dl"};if(P[h])return{p:P[h]};if(h===""||h==="/")return{p:"intro"};
  if(h.startsWith("r/")){let t=h.slice(2);try{t=decodeURIComponent(t)}catch(e){}const i=ALL.findIndex(x=>x[0]===t.split("/")[0]);if(i>=0)return{p:"r",i,k:t.includes("/")?t:""}}return{p:"nf"}}
 function home(){return crumb("<a href=\"#/\">Kho File Tele</a>")+`<h1>${FOLDER}${tr("files")}</h1><p class="lead">${esc(tr("home_lead",{s:SITE.server}))}</p>
  <div class="grid">${ALL.map(([id,n],i)=>cnt(id)?`<a class="card" href="#/r/${id}"><span>${i+1}. ${esc(n)}</span><em>${tr("nfiles",{n:cnt(id)})}</em>${CHEV}</a>`:`<div class="card soon"><span>${i+1}. ${esc(n)}</span><em class="z">${tr("soon")}</em></div>`).join("")}</div><div class="hl"><button class="gh" id="da" type="button" style="cursor:pointer;font-family:inherit">${tr("dlall",{n:FILES.length})}</button></div>`+foot()}
@@ -1099,7 +1165,8 @@ function theme(id){const H=document.documentElement,st=H.style,p=RP[id],c=p?p.c:
 function render(){const R=route();theme(!q&&R.p==="r"?ALL[R.i][0]:"");document.body.dataset.p=q?"search":R.p;rp(R);
  const lb=R.p==="r"?ALL[R.i][1]:pgl(R.p),hm=R.p==="r"?"#/files":(PG[R.p]||[])[1];
  $("mbl").textContent=q?tr("search"):lb;document.title=(q?tr("search")+" “"+q+"” · ":R.p==="intro"?"":lb+" · ")+"Kho File Tele";
- document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm));
+ document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm||(!!R.sec&&a.getAttribute("href")==="#/community/"+R.sec)));
+ mgSet(R.p==="community"?true:null);
  if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,community,app:appPage,updates,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);if(R.p==="community"&&!q)commInit();syncBar();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
 function syncBar(){const n=SEL.size;$("bar").hidden=!n;$("bn").textContent=tr("sel",{n});$("bz").textContent=n>1?tr("dln",{n}):tr("dl1");
  document.querySelectorAll(".blk").forEach(b=>{const a=b.querySelector(".sa");if(a)a.textContent=[...b.querySelectorAll("input[data-k]")].every(x=>x.checked)?tr("unselall"):tr("selall")})}
@@ -1158,11 +1225,14 @@ document.addEventListener("click",e=>{const t=e.target;
 $("gb").href=SITE.gitbook;$("gb").hidden=!ok(SITE.gitbook);const sq=$("sq"),sqClr=$("sq-clr");sq.oninput=()=>{q=sq.value.trim();if(sqClr)sqClr.hidden=!sq.value;render();if(q)scrollTo(0,0)};
 if(sqClr)sqClr.onclick=()=>{sq.value="";q="";sqClr.hidden=true;render();sq.focus()};
 const mb=$("mb"),mn=$("menu"),tg=o=>{mn.classList.toggle("on",o);mb.setAttribute("aria-expanded",o);const m=$("main");if(m)m.inert=!!o;if(o)mn.querySelector("a").focus()};
+function mgSet(o){const g=$("mg"),b=$("mgb");if(!g||o===null)return;g.classList.toggle("open",o);b.setAttribute("aria-expanded",o)}
+if($("mgb"))$("mgb").onclick=e=>{e.stopPropagation();mgSet(!$("mg").classList.contains("open"))};
 mb.onclick=e=>{e.stopPropagation();tg(!mn.classList.contains("on"))};
 mn.onclick=e=>{if(e.target.closest("a"))tg(false)};
 document.addEventListener("click",e=>{if(!mn.contains(e.target)&&e.target!==mb&&!mb.contains(e.target))tg(false)});
 function applyStatic(){document.documentElement.lang=UL;ALL.forEach(a=>{if(!a[2])a[2]=a[1];a[1]=I18N["rn_"+a[0]]?tr("rn_"+a[0]):a[2]});const M={"#/":"intro","#/files":"files","#/community":"community","#/app":"app","#/updates":"updates","#/guide":"guide","#/faq":"faq","#/report":"report","#/about":"about"};
  document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>{const k=M[a.getAttribute("href")];if(k)a.textContent=tr(k)});
+ document.querySelectorAll("#menu [data-t]").forEach(a=>{const sp=a.querySelector("span");if(sp)sp.textContent=tr(a.dataset.t)});const gb2=$("mgb");if(gb2)gb2.setAttribute("aria-label",tr("cm_exp"));
  mn.setAttribute("aria-label",tr("toc"));mn.querySelector(".mh").textContent=tr("toc");mb.setAttribute("aria-label",tr("toc"));
  sq.placeholder=tr("sph");sq.setAttribute("aria-label",tr("sl"));$("bx").textContent=tr("unsel");
  document.querySelector('meta[name=description]').content=tr("desc");const og=document.querySelector('meta[property="og:description"]');if(og)og.content=tr("ogd");
