@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kho File Tele</title>
+<meta name="description" content="Kho file tele theo từng vùng: chọn vùng, tải file .zip, nhập vào app.">
+<meta property="og:title" content="Kho File Tele">
+<meta property="og:description" content="Điểm tele từng vùng, tải một lần là xong.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png">
+<meta property="og:image:width" content="1164">
+<meta property="og:image:height" content="750">
+<meta property="og:image:alt" content="Kho File Tele - Electro Cat App">
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kho File Tele - Electro Cat">
+<meta name="twitter:description" content="Điểm tele từng vùng, tải một lần là xong.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png">
+<meta name="twitter:image:alt" content="Kho File Tele - Electro Cat App">
+<meta name="theme-color" id="tc" content="#18121f">
+<meta name="color-scheme" content="dark">
+<!-- CSP: nếu file tải nằm ở domain khác, thêm domain đó vào connect-src -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://*.supabase.co; object-src 'none'; base-uri 'none'">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kho File Tele","description":"Kho file tele theo từng vùng cho tool Unicore (Genshin Impact). Chọn vùng, tải file .zip, nhập vào app.","author":{"@type":"Person","name":"pxtk.08"},"inLanguage":["vi","en","ru","pt"]}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ff8fbf'/%3E%3Cpath d='M16 7v13M10 15l6 6 6-6M9 25h14' fill='none' stroke='%232a1633' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<!-- canonical: thay URL bên dưới bằng URL deploy thực tế -->
+<link rel="canonical" href="https://pxtk08.github.io/Electro-Cat-Web/">
+<style>
+:root{--bg:#18121f;--panel:#1f1729;--card:#261c33;--line:#3a2d4d;--text:#fff;--mute:#d2c8e2;--pink:#ff8fbf;--pink2:#c39bff;--on:#2a1633;--chip:#3a2b52}
+*{box-sizing:border-box;margin:0}html{color-scheme:dark}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-contrast:more){:root{--line:#7a6a9a;--mute:#ede8f8}:focus-visible{outline-width:3px}}
+@media print{body:before,body:after,.rp,.bar,.top,.top-btn,#spb{display:none!important}body{background:#fff;color:#000}a{color:#000;text-decoration:underline}}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter",system-ui,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}
+svg{display:block}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#4a3a63;border-radius:10px;border:2px solid transparent;background-clip:padding-box}::-webkit-scrollbar-thumb:hover{background:var(--pink)}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.tin{max-width:1240px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px;position:relative}
+.sbox{flex:1;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 14px;min-height:44px}
+.sbox:focus-within{border-color:var(--pink)}.sbox svg{width:18px;height:18px;color:var(--mute);flex-shrink:0}
+.sbox input{flex:1;min-width:0;background:none;border:0;color:#fff;font:inherit;font-size:15px;outline:0}
+.mb{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--mute);cursor:pointer;display:grid;place-items:center;flex-shrink:0;margin-left:auto}
+.mb:hover,.mb[aria-expanded=true]{color:#fff;border-color:var(--pink)}.mb svg{width:22px;height:22px}
+.menu{position:absolute;right:24px;top:62px;width:220px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px;display:none;box-shadow:0 12px 32px #0007}.menu.on{display:block}
+.menu a{min-height:44px;display:flex;justify-content:space-between;align-items:center;color:var(--mute);text-decoration:none;font-weight:600;font-size:15px;padding:12px 14px;border-radius:10px}
+.menu a:hover{background:var(--chip);color:#fff}.menu a small{color:var(--pink);font-size:12px}
+.shell{max-width:1240px;margin:0 auto;padding:0 24px;display:block}
+main{padding:32px 0 80px;min-width:0}
+.crumb{font-size:13px;font-weight:600;color:var(--pink2);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.crumb a{color:inherit;text-decoration:none}.crumb a:hover{color:var(--pink)}.crumb span{color:var(--mute)}
+h1{font-size:clamp(30px,5vw,42px);font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:14px;line-height:1.15}
+h1 svg{width:40px;height:40px;color:var(--pink);flex-shrink:0}
+.lead{color:var(--mute);margin:12px 0 28px;max-width:38em}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:68px;padding:0 22px;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:#fff;text-decoration:none;font-size:18px;font-weight:600;transition:border-color .2s,background .2s}
+.card:hover{border-color:var(--pink);background:var(--card)}
+.card span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card em{font-style:normal;margin-left:auto;font-size:13px;font-weight:600;color:var(--pink2);flex-shrink:0}.card em.z{color:var(--mute);opacity:.7}
+.card svg{width:18px;height:18px;color:var(--mute);flex-shrink:0}
+.kd{font-size:14px;color:var(--mute);font-weight:600;margin:26px 0 10px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:8px;transition:border-color .2s}
+.row:hover{border-color:var(--pink)}.row h3{font-size:16px;font-weight:600;word-break:break-word}.row p{font-size:15px;color:var(--mute);margin-top:2px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.meta i{font-style:normal;font-size:13px;font-weight:600;padding:4px 9px;border-radius:8px;background:var(--chip);color:var(--mute)}.meta i.l{background:var(--pink2);color:var(--on)}
+.act{display:flex;gap:8px}
+.dl{min-height:44px;display:grid;place-items:center;text-decoration:none;background:var(--pink);color:var(--on);font-weight:700;font-size:15px;padding:0 22px;border-radius:12px;transition:filter .15s}.dl:hover{filter:brightness(1.08)}
+.cp{background:none;border:1px solid var(--line);color:var(--mute);border-radius:12px;min-height:44px;padding:0 16px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer}.cp:hover{color:#fff;border-color:var(--pink)}
+@media(max-width:640px){.row{grid-template-columns:1fr}.act .dl{flex:1}}
+[hidden]{display:none!important}
+.lg{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 8px}.lg em{font-style:normal;font-size:13px;font-weight:600;color:var(--mute);margin-right:4px}
+.seg{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--mute);font-weight:600;font-size:14px;font-family:inherit;cursor:pointer}
+.seg:hover{color:#fff;border-color:var(--pink)}.seg.on{background:var(--pink2);border-color:var(--pink2);color:var(--on)}
+.blk{margin-top:36px}.bh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.bh h2{font-size:22px;font-weight:800}.bh p{color:var(--mute);font-size:14px;margin-top:2px}
+.sa{background:none;border:0;color:var(--pink);font-weight:600;font-size:14px;font-family:inherit;cursor:pointer;min-height:44px;padding:0 4px;flex-shrink:0}.sa:hover{text-decoration:underline}
+.pk{grid-template-columns:minmax(0,1fr) auto}.pk:has(input:checked){border-color:var(--pink);background:color-mix(in srgb,var(--pink) 7%,var(--panel))}
+.pl{display:flex;gap:14px;align-items:flex-start;cursor:pointer;min-width:0}.pl input{position:absolute;opacity:0;width:1px;height:1px}
+.bx{width:24px;height:24px;border-radius:7px;border:2px solid var(--line);background:var(--card);flex-shrink:0;margin-top:1px;display:grid;place-items:center;transition:background .15s,border-color .15s}
+.pl:hover .bx{border-color:var(--pink)}.pl input:checked+.bx{background:var(--pink);border-color:var(--pink)}
+.pl input:checked+.bx:after{content:"";width:6px;height:11px;border:solid var(--on);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.pl input:focus-visible+.bx{outline:2px solid var(--pink);outline-offset:2px}
+.act .dl{padding:0 20px}
+.bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(600px,calc(100% - 32px));z-index:30;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--pink);border-radius:16px;padding:10px 10px 10px 20px;box-shadow:0 12px 32px #000a}
+.bar span{flex:1;font-weight:600;font-size:15px;min-width:0}.bar .dl{padding:0 18px}.bar button.dl{border:0;font-family:inherit;cursor:pointer}.bar button:disabled{opacity:.6;cursor:wait}
+@media(max-width:560px){.bar{flex-wrap:wrap;padding:12px}.bar span{flex-basis:100%}.bar .dl,.bar .cp{flex:1}}
+.none{color:var(--mute);padding:36px 0}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:10px}.faq details[open]{border-color:var(--pink)}
+.faq summary{cursor:pointer;min-height:44px;font-weight:600;font-size:16px;padding:16px 20px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";color:var(--pink);font-size:20px;line-height:1}.faq details[open] summary:after{content:"–"}
+.faq details p{padding:0 20px 18px;color:var(--mute);font-size:16px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(max-width:560px){.tin{gap:10px;padding:12px 16px}.shell{padding:0 16px}.menu{right:16px}}
+</style>
+<style>
+/* ===== Nâng cấp giao diện: gradient, glow, nút (lấy phong cách từ app Electro Cat) ===== */
+:root{--grad:linear-gradient(135deg,color-mix(in srgb,var(--pink) 78%,#fff),var(--pink) 55%,var(--pink2));--glow:0 6px 22px color-mix(in srgb,var(--pink) 28%,transparent);--r:16px}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(255,255,255,0.065) 1px,transparent 1px),radial-gradient(900px 520px at 85% -10%,#3a1f5a55,transparent 60%),radial-gradient(700px 500px at -10% 110%,#5a1f4a40,transparent 60%);background-size:26px 26px,100% 100%,100% 100%;background-attachment:fixed,fixed,fixed;transition:background-color .8s cubic-bezier(.16,1,.3,1)}
+body:before,body:after{content:"";position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(90px);opacity:.42;animation:drift 22s ease-in-out infinite alternate;transition:background .8s cubic-bezier(.16,1,.3,1),opacity .8s ease}
+body:before{width:520px;height:520px;right:-120px;top:-140px;background:var(--pink2)}
+body:after{width:460px;height:460px;left:200px;bottom:-200px;background:var(--pink);animation-duration:28s}
+@keyframes drift{to{transform:translate(-80px,60px) scale(1.15)}}
+::-webkit-scrollbar-thumb{transition:background .2s,box-shadow .2s}
+::-webkit-scrollbar-thumb:hover{background:var(--pink)!important;box-shadow:0 0 14px var(--pink)}
+.shell{position:relative;z-index:1}
+.top{background:#1f172999;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:#ffffff12}
+
+/* header */
+.sbox{background:color-mix(in srgb,var(--panel) 80%,transparent);border-color:#ffffff14;border-radius:999px;padding:0 18px;transition:border-color .16s,box-shadow .16s}
+.sbox:focus-within{box-shadow:0 0 0 3px color-mix(in srgb,var(--pink) 18%,transparent),var(--glow)}
+.mb,.menu{background:color-mix(in srgb,var(--panel) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.mb{border-radius:14px;transition:box-shadow .16s,transform .16s,border-color .16s,color .16s}
+.mb:hover{transform:translateY(-1px);box-shadow:var(--glow)}
+.menu{border-color:#ffffff1a;border-radius:18px}
+
+
+/* tiêu đề */
+h1{width:fit-content;max-width:100%;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px color-mix(in srgb,var(--pink) 33%,transparent))}
+h1 svg{width:44px;height:44px;padding:10px;border-radius:14px;background:var(--grad);color:var(--on);box-shadow:var(--glow)}
+.bh{border-bottom-color:#ffffff14}
+.bh h2{letter-spacing:-.01em}
+
+/* Spotlight cursor & viền kính vát kim cương (Apple & Vercel style) */
+.card, .row, .hn-c {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 0 rgba(0,0,0,0.35), 0 8px 24px #0005;
+}
+.card::after, .row::after, .hn-c::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(320px circle at var(--mx, -500px) var(--my, -500px), color-mix(in srgb, var(--pink) 16%, transparent), transparent 75%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+}
+.card:hover::after, .row:hover::after, .hn-c:hover::after {
+  opacity: 1;
+}
+.card > *, .row > *, .hn-c > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* thẻ vùng đất (trang chủ) */
+.card{background:linear-gradient(135deg,#2c2140cc,#1f1729cc);border-color:#ffffff16;border-radius:var(--r);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .2s,background .2s}
+.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--pink) 45%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--pink) 14%,var(--card)),color-mix(in srgb,var(--pink) 6%,var(--panel)));box-shadow:inset 0 1px 1px 0 rgba(255,255,255,0.2),0 14px 36px #0008,0 0 30px color-mix(in srgb,var(--pink) 18%,transparent)}
+.card em{padding:3px 11px;border-radius:999px;background:#ffffff10;transition:background .16s,color .16s}
+.card em.z{background:none;padding:3px 0}
+.card:hover em:not(.z){background:var(--pink);color:var(--on)}
+.card svg{transition:transform .2s cubic-bezier(.16,1,.3,1),color .2s}
+.card:hover svg{transform:translateX(4px);color:var(--pink)}
+
+/* hàng file & hoạt ảnh so le mượt mà */
+@keyframes rowin{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
+.row{border-radius:var(--r);border-color:#ffffff14;background:linear-gradient(135deg,#2c2140cc,#1f1729cc);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:rowin .38s cubic-bezier(.16,1,.3,1) both;transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .2s,background .2s}
+.row:before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--grad);opacity:0;transition:opacity .16s;z-index:3}
+.row:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--pink) 40%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--pink) 14%,var(--card)),color-mix(in srgb,var(--pink) 7%,var(--panel)));box-shadow:inset 0 1px 1px 0 rgba(255,255,255,0.2),0 14px 38px #0008,0 0 30px color-mix(in srgb,var(--pink) 16%,transparent)}
+.row:hover:before,.pk:has(input:checked):before{opacity:1}
+.pk:has(input:checked){background:linear-gradient(135deg,color-mix(in srgb,var(--pink) 15%,var(--card)),color-mix(in srgb,var(--pink) 8%,var(--panel)))}
+.row:nth-of-type(1){animation-delay:.02s}
+.row:nth-of-type(2){animation-delay:.05s}
+.row:nth-of-type(3){animation-delay:.08s}
+.row:nth-of-type(4){animation-delay:.11s}
+.row:nth-of-type(5){animation-delay:.14s}
+.row:nth-of-type(6){animation-delay:.17s}
+.row:nth-of-type(7){animation-delay:.20s}
+.row:nth-of-type(8){animation-delay:.23s}
+.row:nth-of-type(9){animation-delay:.26s}
+.row:nth-of-type(n+10){animation-delay:.29s}
+.meta i{border-radius:8px;font-size:12px;padding:4px 8px}
+.meta i.l{background:var(--grad);box-shadow:0 2px 10px color-mix(in srgb,var(--pink) 25%,transparent)}
+.bx{border-radius:8px}
+.pl input:checked+.bx{background:var(--grad);border-color:transparent;box-shadow:var(--glow)}
+
+/* nút & hiệu ứng vệt sáng định kỳ (Shimmer Sweep) */
+@keyframes shimmerSweep{0%,70%{left:-80%;opacity:0}71%{opacity:.8}100%{left:140%;opacity:.8}}
+.go,.dl,.app-dl{position:relative;overflow:hidden}
+.go::after,.dl::after,.app-dl::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shimmerSweep 4.5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none}
+.dl{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--grad);border:0;box-shadow:var(--glow);transition:transform .16s,box-shadow .16s,filter .16s}
+.dl:before{content:"";width:16px;height:16px;flex-shrink:0;background:currentColor;-webkit-mask:var(--dli) center/contain no-repeat;mask:var(--dli) center/contain no-repeat;--dli:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v11M7 11l5 5 5-5M5 20h14'/%3E%3C/svg%3E")}
+.dl:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 8px 24px color-mix(in srgb,var(--pink) 38%,transparent)}
+.dl:active{transform:scale(.97)}
+.cp{background:#ffffff08;border-color:#ffffff1c;transition:background .16s,border-color .16s,color .16s,transform .16s}
+.cp:hover{background:#ffffff14;transform:translateY(-1px)}
+.cp:active{transform:scale(.97)}
+.seg{background:#ffffff08;border-color:#ffffff1c;transition:background .16s,border-color .16s,color .16s,transform .16s}
+.seg:hover{transform:translateY(-1px)}
+.seg.on{background:var(--grad);border-color:transparent;box-shadow:var(--glow)}
+.sa:hover{text-decoration:none;text-shadow:0 0 14px color-mix(in srgb,var(--pink) 60%,transparent)}
+
+/* thanh chọn nhiều file + FAQ */
+.bar{background:color-mix(in srgb,var(--card) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:color-mix(in srgb,var(--pink) 45%,transparent);border-radius:18px;box-shadow:0 14px 36px #000a,var(--glow);animation:rowin .2s ease}
+.faq details{background:linear-gradient(135deg,#2c2140cc,#1f1729cc);border-color:#ffffff12;border-radius:var(--r);transition:border-color .16s,box-shadow .16s}
+.faq details:hover{border-color:color-mix(in srgb,var(--pink) 35%,transparent)}
+.faq details[open]{box-shadow:0 0 28px color-mix(in srgb,var(--pink) 12%,transparent)}
+footer{border-top-color:#ffffff14}
+
+/* Bảng chọn vùng nổi bên phải: nhỏ gọn, rê chuột vào thì nở to (chỉ máy tính) */
+.rp{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:25;display:flex;width:60px;max-height:60px;padding:8px;overflow:hidden;border:1px solid #ffffff1a;border-radius:20px;background:linear-gradient(180deg,color-mix(in srgb,var(--card) 92%,transparent),color-mix(in srgb,var(--panel) 92%,transparent));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 #ffffff0f,0 12px 36px #0008,var(--glow);transition:width .32s cubic-bezier(.2,.8,.2,1),max-height .32s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .2s}
+.rp:not(:hover):not(:focus-within){transition-delay:.12s}
+.rp:hover,.rp:focus-within{width:358px;max-height:min(600px,calc(100vh - 120px));border-color:color-mix(in srgb,var(--pink) 40%,transparent);box-shadow:inset 0 1px 0 #ffffff0f,0 20px 60px #000a,0 0 36px color-mix(in srgb,var(--pink) 18%,transparent)}
+.rpin{display:flex;flex-direction:column;gap:8px;width:340px;min-height:0;flex-shrink:0}
+.rph{display:flex;align-items:center;gap:12px;height:44px;flex-shrink:0;border-radius:14px;cursor:default;outline-offset:3px}
+.rpt{position:relative;display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:14px;background:var(--grad);color:var(--on);box-shadow:var(--glow)}
+.rpt svg{width:22px;height:22px}
+.rpt b{position:absolute;right:-6px;top:-6px;min-width:20px;height:20px;padding:0 5px;display:grid;place-items:center;border-radius:999px;background:#fff;color:var(--on);font-size:11px;font-weight:800;box-shadow:0 2px 8px #0006;transition:opacity .15s}
+.rp:hover .rpt b,.rp:focus-within .rpt b{opacity:0}
+.rpx{display:flex;flex-direction:column;line-height:1.25;min-width:0;opacity:0;transition:opacity .2s}
+.rp:hover .rpx,.rp:focus-within .rpx{opacity:1;transition-delay:.1s}
+.rpx b{font-size:15px;font-weight:800}.rpx small{font-size:12px;font-weight:600;color:var(--pink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rpl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;overflow:auto;min-height:0;padding:8px 2px 2px;border-top:1px solid #ffffff14;opacity:0;transition:opacity .2s}
+.rp:hover .rpl,.rp:focus-within .rpl{opacity:1;transition-delay:.1s}
+.rpi{position:relative;min-width:0;display:flex;align-items:center;gap:8px;min-height:42px;padding:8px 10px;border-radius:12px;color:var(--mute);text-decoration:none;font-size:14px;font-weight:600;transition:background .16s,color .16s,transform .16s}
+.rpi.all{grid-column:1/-1;color:#fff}
+.rpi i{font-style:normal;flex-shrink:0;min-width:22px;height:22px;display:grid;place-items:center;border-radius:7px;background:#ffffff10;font-size:12px;font-weight:700}
+.rpi span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rpi em{font-style:normal;flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--mute)}
+.rpi.z{opacity:.55}
+.rpi:hover{color:#fff;opacity:1;transform:translateX(-2px);background:linear-gradient(90deg,color-mix(in srgb,var(--pink) 15%,transparent),#33264a 60%)}
+.rpi.on{color:#fff;opacity:1;background:linear-gradient(90deg,color-mix(in srgb,var(--pink) 18%,transparent),#33264a 70%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pink) 30%,transparent)}
+.rpi.on i,.rpi:hover i{background:var(--grad);color:var(--on)}
+.rpi.on em{background:var(--pink);color:var(--on)}
+@media(min-width:701px) and (max-width:1420px){body[data-p="r"] .shell{padding-right:88px}}
+@media(max-width:700px){.rp{display:none!important}}
+.rpt{animation:rpp 1.8s ease-out 3 .6s}
+@keyframes rpp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pink) 55%,transparent)}100%{box-shadow:0 0 0 18px transparent}}
+.rp:hover .rpt,.rp:focus-within .rpt{animation:none}
+@media(prefers-reduced-motion:reduce){.rp,.rpx,.rpl{transition:none!important}.rpi:hover{transform:none}.rpt{animation:none}}
+
+/* header gọn: chỉ một viên thuốc Mục lục ở giữa */
+.top{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:0}
+.tin{justify-content:center;padding:14px 24px}
+.mb{width:auto;height:44px;padding:0 20px 0 16px;display:inline-flex;align-items:center;gap:10px;border-radius:999px;margin:0;color:#fff;font-weight:600;font-size:15px;font-family:inherit;border-color:#ffffff1c;background:color-mix(in srgb,var(--panel) 70%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 #ffffff0f,0 6px 18px #0004}
+.mb svg{width:20px;height:20px;color:var(--pink)}
+.mb:hover,.mb[aria-expanded=true]{border-color:color-mix(in srgb,var(--pink) 55%,transparent);box-shadow:inset 0 1px 0 #ffffff0f,var(--glow)}
+.menu a.on{color:#fff;background:linear-gradient(90deg,color-mix(in srgb,var(--pink) 15%,transparent),#33264a 60%)}
+.menu a.on:before{content:"";position:absolute;left:4px;top:10px;bottom:10px;width:4px;border-radius:2px;background:var(--grad);box-shadow:0 0 12px var(--pink)}
+/* Trang Giới thiệu: banner nền ảnh, chữ căn giữa */
+.hero{text-align:center;padding:28px 0 40px}
+.hin{max-width:760px;margin:0 auto}
+.hero h1{display:block;width:auto;max-width:14em;margin:0 auto;background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff;filter:none;font-size:clamp(36px,6vw,68px);line-height:1.1;letter-spacing:-.025em}
+.hsub{font-size:18px;line-height:1.6;color:var(--mute);margin:18px auto 0;max-width:32em}
+.hero .iact{justify-content:center;margin:30px 0 16px}
+.hero .ifact{color:var(--mute);font-size:14px;opacity:.85}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:72px;align-items:start;padding-top:48px}
+.intro .ih2{margin-top:0}
+.iact{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 16px}
+.go,.gh{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:14px;font-size:16px;text-decoration:none;transition:transform .16s,box-shadow .16s,background .16s,border-color .16s}
+.go{background:var(--grad);color:var(--on);font-weight:700;box-shadow:var(--glow)}
+.go:hover{transform:translateY(-1px);box-shadow:0 8px 24px color-mix(in srgb,var(--pink) 38%,transparent)}
+.gh{border:1px solid #ffffff22;background:#ffffff08;color:var(--text);font-weight:600}
+.gh:hover{background:#ffffff14;border-color:color-mix(in srgb,var(--pink) 50%,transparent)}
+.go:active,.gh:active{transform:scale(.97)}
+.ifact{color:var(--mute);font-size:14px}
+.ih2{font-size:22px;font-weight:800;margin:64px 0 8px}
+.how{list-style:none;padding:0;margin:0;counter-reset:st}
+.how li{counter-increment:st;display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:16px;padding:22px 0;border-top:1px solid #ffffff14}
+.how li:before{content:counter(st);grid-row:1/3;font-size:30px;font-weight:800;line-height:1.1;color:var(--pink)}
+.how h3{font-size:18px;font-weight:700}
+.how p{color:var(--mute);max-width:36em;margin-top:4px}
+.how a{color:var(--pink)}
+.route{position:sticky;top:96px;padding-top:10px}
+.route h2{font-size:15px;font-weight:700;color:var(--mute);margin-bottom:12px}
+.route ol{list-style:none;padding:0;position:relative}
+.route ol:before{content:"";position:absolute;left:5px;top:14px;bottom:14px;width:2px;background:linear-gradient(var(--pink),color-mix(in srgb,var(--pink2) 25%,transparent))}
+.route a{position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0 10px 30px;color:#fff;text-decoration:none;font-weight:600}
+.route a:before{content:"";position:absolute;left:0;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--bg);border:2px solid var(--pink);transition:background .16s,box-shadow .16s}
+.route a:hover:before{background:var(--pink);box-shadow:0 0 0 5px color-mix(in srgb,var(--pink) 20%,transparent)}
+.route a:hover span{color:var(--pink)}
+.route em{font-style:normal;color:var(--mute);font-size:13px;font-weight:500;white-space:nowrap}
+.rmore{margin:6px 0 0 30px;color:var(--mute);font-size:14px}
+@media(max-width:860px){.intro{grid-template-columns:1fr;gap:40px}.route{position:static}}
+@media(prefers-reduced-motion:reduce){.go:hover,.gh:hover{transform:none}}
+
+/* header đảo vị trí: nút Mục lục bên trái, "Kho File Tele" bên phải */
+.mb{order:-1;margin-left:0}
+/* Mục lục: panel trượt ra từ bên trái với Glassmorphism cao cấp */
+.menu{display:block;position:fixed;top:0;bottom:0;left:0;right:auto;width:min(300px,86vw);z-index:40;padding:22px 16px;border:0;border-right:1px solid rgba(255,255,255,0.14);border-radius:0 24px 24px 0;background:linear-gradient(180deg,color-mix(in srgb,var(--panel) 90%,transparent),color-mix(in srgb,var(--bg) 92%,transparent));backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);box-shadow:inset -1px 0 1px 0 rgba(255,255,255,0.12),24px 0 60px #000c;transform:translateX(-105%);visibility:hidden;transition:transform .32s cubic-bezier(.16,1,.3,1),visibility 0s .32s}
+.menu.on{transform:none;visibility:visible;transition-delay:0s}
+.menu .mh{font-weight:800;font-size:20px;letter-spacing:-.01em;padding:6px 14px 16px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.12);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
+.menu a{border-radius:12px;position:relative;transition:background .18s,color .18s,transform .18s cubic-bezier(.16,1,.3,1)}
+.menu a:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--pink) 15%,transparent),#33264a 60%);transform:translateX(5px)}
+.menu a:hover:before{content:"";position:absolute;left:4px;top:10px;bottom:10px;width:4px;border-radius:2px;background:var(--grad);box-shadow:0 0 12px var(--pink)}
+.scrim{position:fixed;inset:0;z-index:39;background:#000a;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .28s ease}
+.menu.on+.scrim{opacity:1;pointer-events:auto}
+
+/* Thanh tiến trình cuộn trang Neon */
+#spb{position:fixed;top:0;left:0;height:2.5px;width:0%;background:linear-gradient(90deg,var(--pink2),var(--pink));box-shadow:0 0 10px var(--pink),0 0 4px #fff;z-index:100;pointer-events:none;transition:width .08s ease-out}
+
+@media(prefers-reduced-motion:reduce){body:before,body:after,.row,.bar{animation:none}.dl:after{display:none}.row:hover,.card:hover,.dl:hover,.cp:hover,.seg:hover{transform:none}}
+/* ===== Bản sửa: tìm kiếm, trang mới, hiệu năng ===== */
+.top{pointer-events:none}.top .mb,.top .sbox,.top .ul-wrap{pointer-events:auto}
+.tin{gap:12px}.sbox{margin:0;flex:0 1 420px}
+.row,.card{backdrop-filter:none;-webkit-backdrop-filter:none}
+.rpi.z{opacity:.75}
+.bar{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.menu{overflow-y:auto}
+.none{text-align:center}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:36px;flex-wrap:wrap}
+.ul{list-style:none;padding:0}.ul li{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid #ffffff14}
+.ul .t{color:#fff;text-decoration:none;font-weight:600;flex:1;min-width:12em}.ul a.t:hover{color:var(--pink)}.ul small{color:var(--mute);font-size:13px}
+.ul .t{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ul .rgn{flex:none;font-size:12px;font-weight:700;letter-spacing:.2px;padding:5px 10px;border-radius:8px;background:var(--pink2);color:var(--on);border:1px solid color-mix(in srgb,var(--pink) 45%,transparent);white-space:nowrap}
+.ul .fnm{color:#fff;font-weight:600;min-width:0}
+.ul .dl{min-height:36px;font-size:14px;padding:0 14px}
+.log{border-top:1px solid #ffffff14;padding:20px 0}.log h3{font-size:17px;font-weight:700}.log time{color:var(--pink);font-size:13px;font-weight:600}.log ul{margin:8px 0 0 20px;color:var(--mute)}
+.note{background:#ffffff08;border:1px solid #ffffff1c;border-radius:14px;padding:14px 18px;color:var(--mute);font-size:15px;margin:16px 0}
+.pre{white-space:pre-wrap;font:14px/1.6 ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--mute);margin:12px 0}
+.fl{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px}.fl a{color:var(--pink2);text-decoration:none;font-weight:600}.fl a:hover{color:var(--pink)}
+.hl{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+@media(max-width:700px){body:before,body:after{display:none}.tin{padding:12px 16px}.sbox{flex:1}}
+.ul .gt{color:var(--pink);font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}.ul .gt:hover{text-decoration:underline}
+.row.hit{border-color:var(--pink);box-shadow:0 0 0 2px color-mix(in srgb,var(--pink) 55%,transparent),var(--glow);animation:hit 2.4s ease 1}
+@keyframes hit{from{background:color-mix(in srgb,var(--pink) 32%,var(--panel))}}
+@media(prefers-reduced-motion:reduce){.row.hit{animation:none}}
+/* ===== Gọn đầu trang ===== */
+body:before,body:after{opacity:.2}
+.tin{justify-content:space-between;padding:14px 24px}
+.mb{height:42px;min-height:42px;background:#ffffff08;box-shadow:none}
+.sbox{flex:0 1 300px;margin:0 0 0 auto;min-height:42px;padding:0 16px;background:#ffffff08;box-shadow:none}
+.hero{padding:72px 0 40px}
+.hero h1{max-width:15em;font-size:clamp(30px,5vw,50px);line-height:1.18}
+.hsub{font-size:17px;margin-top:16px;max-width:30em}
+.hero .iact{margin:28px 0 14px}
+.hero{padding:96px 0 56px}
+.hin{max-width:900px}
+.hero h1{max-width:20em;font-size:clamp(34px,5.6vw,66px);line-height:1.14}
+.hsub{font-size:clamp(17px,2vw,22px);margin-top:22px;max-width:34em}
+.hn{position:relative;margin:0 0 64px;padding:38px 36px 34px;border-radius:26px;border:1px solid color-mix(in srgb,var(--pink) 24%,var(--line));background:radial-gradient(120% 90% at 0% 0%,color-mix(in srgb,var(--pink) 15%,transparent),transparent 60%),radial-gradient(90% 80% at 100% 100%,color-mix(in srgb,var(--pink2) 13%,transparent),transparent 60%),var(--panel);box-shadow:0 18px 50px #0006,inset 0 1px 0 #ffffff14;overflow:hidden}
+.hn:before{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pink) 22%,transparent),transparent 70%);pointer-events:none}
+.hn>*{position:relative}
+.hn-eye{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--pink);background:color-mix(in srgb,var(--pink) 12%,transparent);border:1px solid color-mix(in srgb,var(--pink) 30%,transparent)}
+.hn-eye:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 10px var(--pink)}
+.hn-hi{font-size:clamp(30px,4.4vw,44px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin:18px 0 0;width:fit-content;max-width:100%;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hn-lead{font-size:clamp(17px,2vw,20px);font-weight:500;line-height:1.7;color:var(--mute);margin-top:12px;max-width:34em}
+.hn-k{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
+.hn-c{padding:22px;border-radius:18px;background:#ffffff08;border:1px solid #ffffff14;transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+.hn-c:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--pink) 45%,transparent);background:color-mix(in srgb,var(--pink) 7%,transparent);box-shadow:0 14px 34px #0005}
+.hn-ic{width:46px;height:46px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:var(--grad);color:var(--on);box-shadow:var(--glow)}
+.hn-ic svg{width:23px;height:23px}
+.hn-c .hn-ic{margin-bottom:16px}
+.hn-c b{display:block;color:#fff;font-size:18px;font-weight:700;line-height:1.35}
+.hn-c span{display:block;color:var(--mute);font-size:15.5px;line-height:1.7;margin-top:6px}
+.hn-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:16px;padding:20px 22px;border-radius:18px;border:1px dashed color-mix(in srgb,var(--pink) 50%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--pink) 11%,transparent),color-mix(in srgb,var(--pink2) 8%,transparent))}
+.hn-cta .hn-tx{flex:1;min-width:220px}
+.hn-cta b{display:block;color:#fff;font-size:18px;font-weight:700}
+.hn-cta span{display:block;color:var(--mute);font-size:15.5px;line-height:1.65;margin-top:3px}
+.hn-app{margin:0;min-height:48px;padding:0 24px;font-size:16px;white-space:nowrap}
+.app-hero{position:relative;margin:8px 0 8px;padding:40px 36px 30px;border-radius:26px;border:1px solid color-mix(in srgb,var(--pink) 24%,var(--line));background:radial-gradient(120% 90% at 0% 0%,color-mix(in srgb,var(--pink) 15%,transparent),transparent 60%),radial-gradient(90% 80% at 100% 100%,color-mix(in srgb,var(--pink2) 13%,transparent),transparent 60%),var(--panel);box-shadow:0 18px 50px #0006,inset 0 1px 0 #ffffff14}
+.app-hero h1{margin-top:16px}
+.app-hero .lead{max-width:36em}
+.app-hero .iact{margin:26px 0 14px}
+.app-k{grid-template-columns:repeat(2,minmax(0,1fr))}
+.app-dl small{font-size:13px}
+.shots{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 18px;-webkit-overflow-scrolling:touch}
+.shot{flex:0 0 min(86%,640px);scroll-snap-align:center;border-radius:16px;overflow:hidden;border:1px solid color-mix(in srgb,var(--pink) 28%,var(--line));background:var(--card);box-shadow:0 16px 40px #0007;transition:transform .18s,border-color .18s}
+.shot:hover{transform:translateY(-3px);border-color:var(--pink)}
+.shot-bar{display:flex;gap:6px;padding:10px 14px;background:#00000040;border-bottom:1px solid #ffffff12}
+.shot-bar i{width:10px;height:10px;border-radius:50%;background:#ffffff30}
+.shot img{display:block;width:100%;height:auto}
+/* Thư viện ảnh giao diện app */
+.gal{--ac:#ff8fbf;margin-bottom:8px}
+.gt-row{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 16px;scrollbar-width:none}.gt-row::-webkit-scrollbar{display:none}
+.gt{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--mute);font:inherit;font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s,background .2s,box-shadow .2s}
+.gt-n{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--ac);font-variant-numeric:tabular-nums}
+.gt:hover{color:#fff;border-color:var(--ac)}
+.gt.on{color:#fff;border-color:var(--ac);background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 22%,var(--panel)),var(--panel));box-shadow:0 8px 24px color-mix(in srgb,var(--ac) 18%,transparent)}
+.gs{position:relative;padding:14px;border-radius:24px;border:1px solid color-mix(in srgb,var(--ac) 38%,var(--line));background:radial-gradient(90% 70% at 50% 0%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 70%),var(--panel);box-shadow:0 30px 80px color-mix(in srgb,var(--ac) 16%,#000a),inset 0 1px 0 #ffffff14;transition:border-color .45s,box-shadow .45s}
+.gv{position:relative;display:grid;width:100%;padding:0;border:0;border-radius:14px;overflow:hidden;background:#000;cursor:zoom-in;aspect-ratio:1164/750;box-shadow:0 14px 40px #000a}
+.gv img{grid-area:1/1;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transition:opacity .45s,transform .7s}
+.gv img.on{opacity:1;transform:none}
+.gv::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px #ffffff1f;pointer-events:none}
+.gz{position:absolute;right:12px;bottom:12px;width:36px;height:36px;border-radius:10px;background:#120c1bcc;border:1px solid #ffffff2a;color:#fff;display:grid;place-items:center;opacity:0;transition:opacity .2s;pointer-events:none;z-index:1}
+.gv:hover .gz,.gv:focus-visible .gz{opacity:1}
+.ga{position:absolute;top:50%;translate:0 -50%;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid #ffffff30;background:#120c1bcc;backdrop-filter:blur(8px);color:#fff;cursor:pointer;display:grid;place-items:center;transition:border-color .2s,transform .2s}
+.ga:hover{border-color:var(--ac);transform:scale(1.06)}
+.ga.p{left:28px}.ga.n{right:28px}
+.ga svg,.gz svg{width:20px;height:20px}
+.gcap{display:flex;gap:20px;align-items:flex-start;padding:24px 6px 4px}
+.gcn{flex:0 0 auto;font-size:44px;font-weight:800;line-height:1;color:var(--ac);font-variant-numeric:tabular-nums}
+.gcn small{font-size:15px;font-weight:600;color:var(--mute);margin-left:4px}
+.gcb{display:none}.gcb.on{display:block;animation:gfade .45s}
+.gcb b{display:block;color:#fff;font-size:20px;font-weight:700}
+.gcb span{display:block;color:var(--mute);font-size:15.5px;line-height:1.7;margin-top:4px;max-width:46em}
+@keyframes gfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.gst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.gsc{padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.gsc strong{display:block;font-size:34px;font-weight:800;line-height:1.1;background:linear-gradient(135deg,var(--pink),var(--pink2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gsc b{display:block;color:#fff;font-size:15px;font-weight:700;margin-top:6px}
+.gsc small{display:block;color:var(--mute);font-size:13px;margin-top:2px}
+.lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:56px 20px 24px;background:#08050df0;backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+.lb.on{opacity:1;visibility:visible}
+.lb img{max-width:min(96vw,1400px);max-height:82vh;width:auto;height:auto;border-radius:14px;border:1px solid color-mix(in srgb,var(--ac,#fff) 40%,#ffffff20);box-shadow:0 30px 90px #000c,0 0 80px color-mix(in srgb,var(--ac,#fff) 22%,transparent)}
+.lb .lbx{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid #ffffff30;background:#ffffff12;color:#fff;cursor:pointer;display:grid;place-items:center}
+.lb .lbx:hover{border-color:var(--pink)}
+.lb .ga.p{left:16px}.lb .ga.n{right:16px}
+.lb-c{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:var(--mute);font-size:14px;font-weight:600}
+@media(max-width:700px){.gs{padding:8px;border-radius:18px}.gv{border-radius:10px}.ga{width:36px;height:36px}.ga.p{left:14px}.ga.n{right:14px}.gcap{flex-direction:column;gap:8px}.gcn{font-size:32px}.gsc{padding:14px}.gsc strong{font-size:26px}.gsc b{font-size:13px}.gsc small{font-size:12px}.gt{padding:0 14px}}
+@media(prefers-reduced-motion:reduce){.gv img,.gcb.on{animation:none!important;transition:none!important}}
+.app-end{margin-top:40px}
+@media(max-width:700px){.app-hero{padding:26px 20px 22px;border-radius:22px}.app-k{grid-template-columns:1fr}}
+@media(max-width:700px){.hn{padding:26px 20px 22px;border-radius:22px}.hn-k{grid-template-columns:1fr}.hn-app{width:100%;justify-content:center}}
+.hero .iact{margin:38px 0 20px;gap:16px}
+.hero .go,.hero .gh{min-height:58px;padding:0 34px;font-size:18px;border-radius:16px}
+.hero .ifact{font-size:16px;font-weight:500;opacity:.8}
+.intro{padding-top:16px;gap:56px}
+@media(max-width:700px){.sbox{flex:1}.tin{padding:12px 16px}.hero{padding:40px 0 24px}}
+/* ===== Bản sửa v2: hiệu năng, chọn vùng mobile, a11y ===== */
+body{background-attachment:scroll}
+body:before,body:after{animation:none;filter:blur(70px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1:focus{outline:0}
+.meta i.nw{background:#fff;color:var(--on)}
+.card.soon{opacity:.6;cursor:default}
+.card.soon:hover{transform:none;border-color:#ffffff12;background:linear-gradient(135deg,#2c2140cc,#1f1729cc);box-shadow:inset 0 1px 0 #ffffff0f,0 6px 18px #0004}
+.rs{display:none;align-items:center;gap:10px;margin:0 0 16px}
+.rs span{font-size:13px;font-weight:600;color:var(--mute)}
+.rs select{flex:1;min-height:44px;background:var(--panel);color:#fff;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;font-size:15px}
+@media(max-width:700px),(hover:none){.rs{display:flex}.rp{display:none!important}}
+@media(hover:none) and (min-width:701px){body[data-p="r"] .shell{padding-right:24px}}
+.gp{color:inherit;text-decoration:none}.gp svg{width:18px;height:18px;color:var(--mute);transition:transform .16s,color .16s}.gp:hover svg{color:var(--pink);transform:translateX(3px)}
+.post{max-width:46em}.post h2{font-size:24px;font-weight:800;margin:36px 0 10px}.post h3{font-size:19px;font-weight:700;margin:28px 0 8px}.post h4,.post h5{font-size:16px;font-weight:700;margin:22px 0 6px}
+.post p,.post li,.post blockquote{color:var(--mute);font-size:16px;line-height:1.7}.post p{margin:0 0 14px}.post strong{color:#fff}.post a{color:var(--pink)}
+.post ul,.post ol{margin:0 0 16px 22px}.post li{margin:4px 0}
+.post code{font:14px ui-monospace,Consolas,monospace;background:var(--chip);border-radius:6px;padding:2px 6px;color:#fff}
+.post pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 16px;overflow-x:auto}.post pre code{background:none;padding:0;color:var(--mute)}
+.post blockquote{border-left:3px solid var(--pink);background:#ffffff08;border-radius:0 12px 12px 0;padding:10px 16px;margin:0 0 16px}
+.post img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:6px 0 16px}.post hr{border:0;border-top:1px solid #ffffff14;margin:28px 0}
+.ad{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:start}@media(max-width:860px){.ad{grid-template-columns:1fr}}
+.apl{display:flex;flex-direction:column;gap:6px}.apl .seg{text-align:left;border-radius:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fi{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:#fff;font:inherit;font-size:15px;padding:10px 14px;min-height:44px}.fi:focus{outline:0;border-color:var(--pink)}
+.fg{display:grid;grid-template-columns:160px 100px minmax(0,1fr) auto;gap:10px;margin:10px 0 16px;align-items:center}@media(max-width:700px){.fg{grid-template-columns:1fr 1fr}}
+.fl2{display:inline-flex;align-items:center;gap:8px;color:var(--mute);font-size:14px;font-weight:600}
+.tb{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}.tb .cp{min-height:38px;padding:0 12px}
+textarea.fi{min-height:440px;font:14px/1.65 ui-monospace,Consolas,monospace;resize:vertical}
+.lk{margin-left:12px;background:none;border:0;color:var(--mute);opacity:.25;cursor:pointer;vertical-align:middle;padding:4px}.lk:hover,.lk:focus-visible{opacity:.9}.lk svg{display:inline-block;width:14px;height:14px}
+.apill{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--pink);border-radius:999px;padding:6px 8px 6px 16px;font-size:13px;font-weight:600;box-shadow:var(--glow)}
+dialog{background:var(--panel);color:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;width:min(560px,calc(100% - 32px));margin:auto}dialog::backdrop{background:#000a}dialog h2{font-size:20px;font-weight:800;margin-bottom:14px}
+.dl2{display:block;margin-bottom:12px}.dl2 span{display:block;font-size:13px;font-weight:600;color:var(--mute);margin-bottom:4px}dialog textarea.fi{min-height:120px}
+</style>
+<style>
+/* ===== Màu theo vùng (lấy cách làm của app): data-rp=on khi đang xem một vùng có màu ===== */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:50%;top:12px;transform:translateX(-50%);width:auto;height:auto;padding:12px 24px;background:var(--pink);color:var(--on);font-weight:700;border-radius:12px;z-index:200;overflow:visible;box-shadow:0 4px 20px #000a}
+html[data-rp=on] body{background-color:var(--bg);background-image:radial-gradient(rgba(255,255,255,0.065) 1px,transparent 1px),radial-gradient(900px 520px at 85% -10%,color-mix(in srgb,var(--pink2) 24%,transparent),transparent 60%),radial-gradient(700px 500px at -10% 110%,color-mix(in srgb,var(--pink) 20%,transparent),transparent 60%);background-size:26px 26px,100% 100%,100% 100%;background-attachment:fixed,fixed,fixed}
+:where(html[data-rp=on]) .row,:where(html[data-rp=on]) .card,:where(html[data-rp=on]) .faq details{background:linear-gradient(135deg,color-mix(in srgb,var(--card) 85%,transparent),color-mix(in srgb,var(--panel) 85%,transparent))}
+html[data-rp=on] .rpi:hover,html[data-rp=on] .rpi.on,html[data-rp=on] .menu a:hover,html[data-rp=on] .menu a.on{background:linear-gradient(90deg,color-mix(in srgb,var(--pink) 18%,transparent),color-mix(in srgb,var(--pink) 6%,var(--card)) 70%)}
+html[data-rp=on] .meta i,html[data-rp=on] .card em{color:var(--mute)}
+html[data-rp=on] .meta i.l,html[data-rp=on] .seg.on{color:var(--on)}
+html[data-rp=on] .hero h1{color:var(--text)}
+.top .ul-wrap{position:relative;flex-shrink:0;pointer-events:auto}
+.ul-btn{pointer-events:auto;display:flex;align-items:center;gap:8px;height:42px;padding:0 14px;background:color-mix(in srgb,var(--panel) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--text);border:1px solid rgba(255,255,255,0.12);border-radius:14px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .18s ease}
+.ul-btn *{pointer-events:none}
+.ul-btn:hover,.ul-btn[aria-expanded=true]{border-color:var(--pink);color:#fff;box-shadow:var(--glow);transform:translateY(-1px)}
+.ul-btn .ul-ic{width:16px;height:16px;color:var(--pink);flex-shrink:0}
+.ul-btn .ul-arr{width:14px;height:14px;color:var(--mute);transition:transform .2s ease;flex-shrink:0}
+.ul-btn[aria-expanded=true] .ul-arr{transform:rotate(180deg);color:var(--pink)}
+.ul-pop{pointer-events:auto;position:absolute;right:0;top:calc(100% + 8px);min-width:170px;background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.14);border-radius:16px;padding:6px;box-shadow:0 16px 36px rgba(0,0,0,0.65),0 0 0 1px rgba(255,255,255,0.06);z-index:45;display:flex;flex-direction:column;gap:3px;animation:ulPop .18s ease}
+.ul-pop[hidden]{display:none}
+@keyframes ulPop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.ul-opt{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;height:38px;padding:0 12px;border:0;border-radius:10px;background:none;color:var(--mute);font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .14s ease;text-align:left}
+.ul-opt *{pointer-events:none}
+.ul-opt:hover{background:var(--chip);color:#fff}
+.ul-opt.on{background:color-mix(in srgb,var(--pink) 15%,transparent);color:var(--pink)}
+.ul-opt svg{width:15px;height:15px;opacity:0;transition:opacity .14s ease}
+.ul-opt.on svg{opacity:1;color:var(--pink)}
+.ulsel{display:none}
+@media(max-width:480px){.ul-btn{padding:0 10px}.ul-btn span{display:none}}
+#sq-clr{background:none;border:0;color:var(--mute);cursor:pointer;padding:4px;display:grid;place-items:center;border-radius:50%;flex-shrink:0}
+#sq-clr:hover{color:#fff}
+#sq-clr svg{width:16px;height:16px}
+.top-btn{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:24;width:42px;height:42px;border-radius:50%;background:color-mix(in srgb,var(--panel) 90%,transparent);border:1px solid var(--line);color:var(--mute);cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 20px #0008;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .2s,opacity .2s,border-color .2s,color .2s;opacity:0;pointer-events:none;transform:translateY(10px)}
+.top-btn.on{opacity:1;pointer-events:auto;transform:none}
+.top-btn:hover{color:#fff;border-color:var(--pink);transform:translateY(-2px)}
+.top-btn svg{width:20px;height:20px}
+</style>
+<style>
+/* Fallback cho trình duyệt không hỗ trợ color-mix() (Chrome <111, Safari <16.2) */
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  :root{--grad:linear-gradient(135deg,#ff8fbf,#ff8fbf 55%,#c39bff)}
+  .pk:has(input:checked){background:#261c33;border-color:#ff8fbf}
+  .seg.on{background:#c39bff;border-color:#c39bff}
+  .meta i.l{background:#c39bff}
+  .sbox:focus-within{box-shadow:0 0 0 3px rgba(255,143,191,.18);border-color:#ff8fbf}
+  .top-btn{background:rgba(31,23,41,.9)}
+  .mb,.menu{background:rgba(31,23,41,.9)}
+  .sbox{background:rgba(31,23,41,.8)}
+}
+</style>
+<style>@media (forced-colors:active){h1,.menu .mh{color:CanvasText;background:none;-webkit-background-clip:border-box;background-clip:border-box;filter:none}h1 svg{background:none;color:CanvasText}}body.paused:before,body.paused:after{animation-play-state:paused}</style>
+<style>.ics{padding-top:40px}.icg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ic{position:relative;display:flex;flex-direction:column;gap:6px;padding:22px;border-radius:var(--r);border:1px solid #ffffff16;background:linear-gradient(135deg,#2c2140cc,#1f1729cc);color:#fff;text-decoration:none;box-shadow:inset 0 1px 1px rgba(255,255,255,.14),0 8px 24px #0005;transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .2s}
+.ic:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--pink) 45%,transparent);box-shadow:inset 0 1px 1px rgba(255,255,255,.2),0 14px 36px #0008,0 0 30px color-mix(in srgb,var(--pink) 18%,transparent)}
+.ic.w2{grid-column:span 2}.ic.f{background:linear-gradient(135deg,color-mix(in srgb,var(--pink) 16%,var(--card)),color-mix(in srgb,var(--pink2) 8%,var(--panel)));border-color:color-mix(in srgb,var(--pink) 35%,transparent)}
+.ic-i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--grad);color:var(--on);margin-bottom:8px}.ic-i svg{width:22px;height:22px}
+.ic h3{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.ic h3 em{font-style:normal;font-size:13px;font-weight:600;color:var(--pink2)}
+.ic p{color:var(--mute);font-size:15px;max-width:34em}.ic-go{margin-top:auto;padding-top:10px;color:var(--pink);font-weight:600;font-size:14px}
+.ic-first{margin-top:24px;text-align:center;color:var(--mute)}.ic-first a{color:var(--pink);font-weight:600;text-decoration:none}.ic-first a:hover{text-decoration:underline}
+@media(max-width:860px){.icg{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.icg{grid-template-columns:1fr}.ic.w2{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.ic:hover{transform:none}}
+/* Kho File Cộng Đồng */
+.cmf{display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+.cmf label{display:grid;gap:6px;font-weight:600;font-size:14px;color:var(--mute)}
+.cmf input,.cmf select,.cmf textarea{font:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%;box-sizing:border-box}
+.cmf textarea{min-height:96px;resize:vertical}
+.cmf .cm2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.cmf .cm2{grid-template-columns:1fr}}
+.cmf .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cmf button{border:0;cursor:pointer;font-family:inherit;justify-self:start}
+.cmf button:disabled{opacity:.6;cursor:wait}
+#cm-msg{font-size:15px;color:var(--mute);min-height:1.4em}
+.cmc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.cmc h3{margin:0;font-size:18px}.cmc p{color:var(--mute);margin:8px 0;white-space:pre-wrap;word-break:break-word}
+.cmh{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.cmh small,.cmm{color:var(--mute);font-size:13px}.cmm{margin-bottom:10px}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link sr">Chuyển đến nội dung chính</a>
+<div id="spb" aria-hidden="true"></div>
+<header class="top"><div class="tin">
+ <button class="mb" id="mb" aria-label="Mục lục" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h10"/></svg><span id="mbl">Giới thiệu</span></button>
+ <label class="sbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="sq" type="search" placeholder="Tìm file, vùng..." aria-label="Tìm file" autocomplete="off"><button type="button" id="sq-clr" aria-label="Xóa tìm kiếm" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></label>
+ <div class="ul-wrap" id="ul-wrap">
+  <button class="ul-btn" id="ul-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Ngôn ngữ giao diện"><svg class="ul-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span id="ul-cur">Tiếng Việt</span><svg class="ul-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="ul-pop" id="ul-pop" role="listbox" hidden>
+   <button class="ul-opt" type="button" role="option" data-lang="vi"><span>Tiếng Việt</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+   <button class="ul-opt" type="button" role="option" data-lang="en"><span>English</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+   <button class="ul-opt" type="button" role="option" data-lang="ru"><span>Русский</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+   <button class="ul-opt" type="button" role="option" data-lang="pt"><span>Português</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+  </div>
+  <select class="ulsel" id="ul" aria-hidden="true"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="ru">Русский</option><option value="pt">Português</option></select>
+ </div>
+ </div></header>
+<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><a href="#/community">Kho File Cộng Đồng</a><a href="#/updates">Cập nhật</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a><a id="gb" href="#" target="_blank" rel="noopener">GitBook <small>↗</small></a></nav>
+<div class="scrim" id="scrim" aria-hidden="true"></div>
+<div class="sr" id="live" aria-live="polite"></div>
+<div class="rp" id="rp" hidden></div>
+<div class="shell"><main id="main" tabindex="-1"><noscript><p class="lead" style="padding:48px 0">Trang này cần bật JavaScript để hiển thị danh sách file. Bạn có thể tải app tại <a href="https://github.com/pxtk08/Electro-Cat-App/releases/latest" style="color:var(--pink)">GitHub</a>.</p></noscript></main></div>
+<div class="bar" id="bar" hidden><span id="bn"></span><button class="cp" id="bx" type="button">Bỏ chọn</button><button class="dl" id="bz" type="button"></button></div>
+<script>
+/* ====== ĐA NGÔN NGỮ GIAO DIỆN (vi, en, ru, pt) ======
+ Thêm chữ mới: thêm một dòng vào I18N theo thứ tự [vi, en, ru, pt]. Dùng tr("khoa",{n:5}) với {n} trong chuỗi.
+ Ngôn ngữ giao diện tách khỏi ngôn ngữ file (LS). Chưa có bản dịch thì rơi về tiếng Anh. */
+const UI_LANGS=["vi","en","ru","pt"],UL_FALLBACK="en";
+const detectUL=()=>{try{const v=localStorage.getItem("ul");if(UI_LANGS.includes(v))return v}catch(e){}
+ for(const l of (navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""])){const c=String(l).toLowerCase().slice(0,2);if(UI_LANGS.includes(c))return c}return UL_FALLBACK};
+let UL=detectUL();
+const I18N={
+ic_h:[`Trang này có gì?`,`What's on this site?`,`Что есть на сайте?`,`O que tem neste site?`],
+ic_files:[`Chọn vùng, tải file điểm tele sẵn dùng (.zip) để nhập vào app. Nơi bạn sẽ ghé nhiều nhất.`,`Pick a region and download ready-to-use teleport files (.zip) to import into the app. Where you'll spend most of your time.`,`Выберите регион и скачайте готовые файлы телепортов (.zip) для импорта в приложение. Главный раздел сайта.`,`Escolha uma região e baixe arquivos de teleporte prontos (.zip) para importar no app. A seção mais usada.`],
+ic_app:[`Tải Electro Cat App, công cụ nhập các file này để dùng trong game.`,`Get Electro Cat App, the tool that imports these files for use in the game.`,`Скачайте Electro Cat App — инструмент для импорта этих файлов в игру.`,`Baixe o Electro Cat App, a ferramenta que importa esses arquivos para o jogo.`],
+ic_guide:[`Hướng dẫn từng bước: cài app, nhập file và xử lý khi gặp vấn đề.`,`Step-by-step guides: install the app, import files and fix common problems.`,`Пошаговые руководства: установка, импорт файлов и решение проблем.`,`Guias passo a passo: instalar o app, importar arquivos e resolver problemas.`],
+ic_faq:[`Câu trả lời nhanh cho những thắc mắc hay gặp.`,`Quick answers to the most common questions.`,`Быстрые ответы на частые вопросы.`,`Respostas rápidas para as dúvidas mais comuns.`],
+ic_upd:[`Lịch sử thay đổi: file mới, bản sửa và cập nhật của trang.`,`Changelog: new files, fixes and site updates.`,`История изменений: новые файлы, исправления и обновления сайта.`,`Histórico de mudanças: novos arquivos, correções e atualizações do site.`],
+ic_rep:[`Gặp file lỗi hoặc điểm sai? Gửi báo cáo để được sửa.`,`Found a broken file or a wrong point? Send a report so it can be fixed.`,`Нашли битый файл или неверную точку? Отправьте отчёт.`,`Encontrou um arquivo com erro ou ponto errado? Envie um relatório.`],
+ic_about:[`Người làm ra trang này và những ai đã đóng góp.`,`Who made this site and who contributed.`,`Кто создал сайт и кто внёс вклад.`,`Quem fez este site e quem contribuiu.`],
+ic_open:[`Mở`,`Open`,`Открыть`,`Abrir`],
+ic_first:[`Mới ghé lần đầu?`,`First time here?`,`Впервые здесь?`,`Primeira vez aqui?`],
+ic_first2:[`Bắt đầu từ Hướng dẫn`,`Start with the Guide`,`Начните с руководства`,`Comece pelo Guia`],
+toc:[`Mục lục`,`Contents`,`Содержание`,`Índice`],
+intro:[`Giới thiệu`,`Introduction`,`Введение`,`Introdução`],
+files:[`Kho File`,`File Library`,`Хранилище файлов`,`Biblioteca de arquivos`],
+updates:[`Cập nhật`,`Updates`,`Обновления`,`Atualizações`],
+guide:[`Hướng dẫn`,`Guide`,`Руководство`,`Guia`],
+faq:[`FAQ`,`FAQ`,`FAQ`,`FAQ`],
+community:[`Kho File Cộng Đồng`,`Community File Library`,`Хранилище файлов сообщества`,`Biblioteca da comunidade`],
+x_comm_lead:[`Bài đăng và file do cộng đồng chia sẻ. Ai cũng có thể đăng, bài sẽ hiện sau khi được duyệt.`,`Posts and files shared by the community. Anyone can post; posts appear after review.`],
+x_comm_note:[`Chỉ nhận file .zip hoặc .json, tối đa 10 MB. Hãy tự kiểm tra file bạn tải về từ cộng đồng, vì đây là file không chính thức.`,`Only .zip or .json files up to 10 MB. Check any community file yourself before using it, as these are unofficial.`],
+cm_new:[`Đăng bài mới`,`New post`],
+cm_name:[`Tên bài`,`Title`],
+cm_desc:[`Mô tả`,`Description`],
+cm_author:[`Tên người đăng (tuỳ chọn)`,`Your name (optional)`],
+cm_region:[`Vùng`,`Region`],
+cm_lang:[`Ngôn ngữ`,`Language`],
+cm_other:[`Khác`,`Other`],
+cm_file:[`File (.zip hoặc .json, tối đa 10 MB)`,`File (.zip or .json, max 10 MB)`],
+cm_send:[`Đăng bài`,`Post`],
+cm_list:[`Bài của cộng đồng`,`Community posts`],
+cm_none:[`Chưa có bài nào được duyệt.`,`No approved posts yet.`],
+cm_load:[`Đang tải bài…`,`Loading posts…`],
+cm_err:[`Không tải được danh sách bài. Thử lại sau nhé.`,`Could not load posts. Please try again later.`],
+cm_nocfg:[`Tính năng đăng bài chưa được bật.`,`Posting is not enabled yet.`],
+cm_dl:[`Tải`,`Download`],
+cm_ok:[`Đã gửi! Bài sẽ hiện sau khi được duyệt.`,`Sent! Your post will appear after review.`],
+cm_bad:[`Gửi thất bại, thử lại sau nhé.`,`Failed to send, please try again.`],
+cm_needname:[`Nhập tên bài.`,`Enter a title.`],
+cm_needfile:[`Chọn file .zip hoặc .json.`,`Choose a .zip or .json file.`],
+cm_big:[`File quá lớn, tối đa 10 MB.`,`File too large, max 10 MB.`],
+cm_wait:[`Đợi một chút rồi đăng tiếp nhé.`,`Please wait a moment before posting again.`],
+cm_sending:[`Đang gửi…`,`Sending…`],
+report:[`Báo lỗi / Đóng góp`,`Report / Contribute`,`Сообщить об ошибке / Помочь`,`Reportar / Contribuir`],
+about:[`Credit & miễn trừ`,`Credits & disclaimer`,`Авторы и отказ от ответственности`,`Créditos e aviso legal`],
+nf:[`Không tìm thấy`,`Not found`,`Не найдено`,`Não encontrado`],
+sph:[`Tìm file, vùng...`,`Search files, regions...`,`Поиск файлов, регионов...`,`Buscar arquivos, regiões...`],
+sl:[`Tìm file`,`Search files`,`Поиск файлов`,`Buscar arquivos`],
+unsel:[`Bỏ chọn`,`Clear`,`Снять выбор`,`Limpar seleção`],
+uilang:[`Ngôn ngữ giao diện`,`Interface language`,`Язык интерфейса`,`Idioma da interface`],
+desc:[`Kho file tele theo từng vùng: chọn vùng, tải file .zip, nhập vào app.`,`Tele files by region: pick a region, download the .zip, import it into the app.`,`Tele-файлы по регионам: выберите регион, скачайте .zip и импортируйте в приложение.`,`Arquivos de tele por região: escolha a região, baixe o .zip e importe no app.`],
+ogd:[`Điểm tele từng vùng, tải một lần là xong.`,`Tele points for every region, one download.`,`Точки телепорта по регионам, одна загрузка.`,`Pontos de tele de cada região, um só download.`],
+search:[`Tìm kiếm`,`Search`,`Поиск`,`Busca`],
+results:[`Kết quả`,`Results`,`Результаты`,`Resultados`],
+rfor:[`{n} file cho "{q}"`,`{n} files for "{q}"`,`Файлов: {n} по запросу "{q}"`,`{n} arquivo(s) para "{q}"`],
+nonef:[`Không tìm thấy file nào. Thử từ khoá ngắn hơn, ví dụ tên vùng hoặc "tổng".`,`No files found. Try a shorter keyword, such as a region name.`,`Файлы не найдены. Попробуйте более короткий запрос, например название региона.`,`Nenhum arquivo encontrado. Tente uma palavra mais curta, como o nome de uma região.`],
+found:[`{n} file tìm thấy`,`{n} files found`,`Найдено файлов: {n}`,`{n} arquivo(s) encontrado(s)`],
+home_lead:[`File tele dùng cho tool Unicore trên {s}. Chọn một mục bên dưới để xem và tải file.`,`Tele files for the Unicore tool on {s}. Pick a section below to browse and download.`,`Tele-файлы для инструмента Unicore на {s}. Выберите раздел ниже, чтобы просмотреть и скачать файлы.`,`Arquivos de tele para a ferramenta Unicore em {s}. Escolha uma seção abaixo para ver e baixar.`],
+nfiles:[`{n} file`,`{n} files`,`Файлов: {n}`,`{n} arquivos`],
+nlangs:[`{n} ngôn ngữ`,`{n} languages`,`языков: {n}`,`{n} idiomas`],
+nofiles:[`Chưa có file nào trong mục này.`,`No files in this section yet.`,`В этом разделе пока нет файлов.`,`Ainda não há arquivos nesta seção.`],
+soon:[`Sắp có`,`Coming soon`,`Скоро`,`Em breve`],
+soonl:[`sắp có`,`coming soon`,`скоро`,`em breve`],
+dlall:[`Tải toàn bộ kho ({n} file, .zip)`,`Download everything ({n} files, .zip)`,`Скачать всё ({n} файлов, .zip)`,`Baixar tudo ({n} arquivos, .zip)`],
+lang:[`Ngôn ngữ`,`Language`,`Язык`,`Idioma`],
+region:[`Vùng`,`Region`,`Регион`,`Região`],
+pick:[`Chọn vùng`,`Choose region`,`Выбрать регион`,`Escolher região`],
+all:[`Tất cả`,`All`,`Все`,`Todos`],
+allitems:[`Tất cả các mục`,`All sections`,`Все разделы`,`Todas as seções`],
+selall:[`Chọn tất cả`,`Select all`,`Выбрать все`,`Selecionar tudo`],
+unselall:[`Bỏ chọn tất cả`,`Deselect all`,`Снять выбор со всех`,`Desmarcar tudo`],
+sort:[`Sắp xếp`,`Sort`,`Сортировка`,`Ordenar`],
+s_def:[`Mặc định`,`Default`,`По умолчанию`,`Padrão`],
+s_new:[`Mới nhất`,`Newest`,`Новые`,`Mais recentes`],
+s_name:[`Tên A–Z`,`Name A–Z`,`Имя А–Я`,`Nome A–Z`],
+dlreg:[`Tải cả vùng (.zip)`,`Download whole region (.zip)`,`Скачать весь регион (.zip)`,`Baixar a região inteira (.zip)`],
+new:[`Mới`,`New`,`Новое`,`Novo`],
+pts:[`điểm`,`points`,`точек`,`pontos`],
+dl:[`Tải`,`Download`,`Скачать`,`Baixar`],
+dlof:[`Tải về {n}`,`Download {n}`,`Скачать {n}`,`Baixar {n}`],
+link:[`Link`,`Link`,`Ссылка`,`Link`],
+cplk:[`Sao chép link {n}`,`Copy link for {n}`,`Копировать ссылку {n}`,`Copiar link de {n}`],
+copied:[`Đã chép`,`Copied`,`Скопировано`,`Copiado`],
+copied2:[`Đã sao chép`,`Copied to clipboard`,`Скопировано в буфер обмена`,`Copiado para a área de transferência`],
+goto:[`Đến file →`,`Go to file →`,`К файлу →`,`Ir ao arquivo →`],
+sel:[`Đã chọn {n} file`,`{n} files selected`,`Выбрано файлов: {n}`,`{n} arquivo(s) selecionado(s)`],
+scroll_top:[`Lên đầu trang`,`Back to top`,`Наверх`,`Voltar ao topo`],
+dln:[`Tải {n} file (.zip)`,`Download {n} files (.zip)`,`Скачать файлов: {n} (.zip)`,`Baixar {n} arquivos (.zip)`],
+dl1:[`Tải file`,`Download file`,`Скачать файл`,`Baixar arquivo`],
+zipping:[`Đang gói {n}/{m} file...`,`Packing {n}/{m} files...`,`Упаковка {n}/{m} файлов...`,`Compactando {n}/{m} arquivos...`],
+done:[`Đã tải xong {n} file`,`Downloaded {n} files`,`Скачано файлов: {n}`,`{n} arquivo(s) baixado(s)`],
+hero_t:[`Tàng Thư File Tele Của`,`The Teleport Files Archive Of`,`Архив файлов телепорта сервера`,`Acervo de Arquivos de Teleporte do`],
+hn_h:[`Trước khi vào kho`,`Before you dive in`,`Прежде чем зайти`,`Antes de entrar`],
+hn_hi:[`Xin chào mọi người 👋`,`Hello everyone 👋`,`Всем привет 👋`,`Olá a todos 👋`],
+hn_lead:[`Đây là trang web tổng hợp đầy đủ mọi thứ bạn cần để có thể sử dụng file do tôi làm một cách mượt mà nhất.`,`This site brings together everything you need to use my files as smoothly as possible.`,`Здесь собрано всё, что нужно, чтобы максимально удобно пользоваться моими файлами.`,`Este site reúne tudo o que você precisa para usar meus arquivos da forma mais tranquila possível.`],
+hn_1t:[`Full 100% map, không sót một rương`,`100% map completion, not a single chest missed`,`100% карты, ни одного пропущенного сундука`,`100% do mapa, sem perder nenhum baú`],
+hn_1p:[`File tôi làm đều cố gắng để khi các bạn dùng có thể full 100% map các vùng và không sót một rương nào.`,`I do my best to make every file let you clear 100% of every region without missing a single chest.`,`Я стараюсь делать каждый файл так, чтобы вы прошли все регионы на 100% и не пропустили ни одного сундука.`,`Faço cada arquivo para que você complete 100% de todas as regiões sem deixar nenhum baú para trás.`],
+hn_2t:[`Hướng dẫn có sẵn ngay trong file`,`Guides built right into the file`,`Подсказки прямо в файле`,`Guias dentro do próprio arquivo`],
+hn_2p:[`Có đầy đủ hướng dẫn giải đố, lưu ý và nhắc nhở. Nếu bạn bí hoặc mắc kẹt ở bất kỳ chỗ nào, câu trả lời đã nằm sẵn trong file.`,`Full puzzle solutions, notes and reminders are included. If you get stuck anywhere, the answer is already in the file.`,`В файле есть решения головоломок, заметки и напоминания. Если вы застряли, ответ уже внутри.`,`Soluções de quebra-cabeças, avisos e lembretes estão incluídos. Se travar em algum ponto, a resposta já está no arquivo.`],
+hn_3t:[`Dùng thường xuyên? Thử app của tôi`,`Use them often? Try my app`,`Пользуетесь часто? Попробуйте моё приложение`,`Usa com frequência? Experimente meu app`],
+hn_3p:[`Nếu các bạn thường xuyên dùng file thì có thể tham khảo thử app của tôi. Xem qua tính năng và giao diện rồi tải nếu ưng.`,`If you use the files regularly, check out my app. Look over the features and interface, then download it if you like it.`,`Если вы часто пользуетесь файлами, загляните в моё приложение. Посмотрите возможности и интерфейс, а затем скачайте, если понравится.`,`Se você usa os arquivos com frequência, dê uma olhada no meu app. Veja os recursos e a interface e baixe se gostar.`],
+hn_app:[`Xem app`,`See the app`,`Посмотреть приложение`,`Ver o app`],
+app:[`App`,`App`,`Приложение`,`App`],
+app_eye:[`Ứng dụng đi kèm`,`Companion app`,`Приложение`,`App complementar`],
+app_lead:[`App dành cho bạn nào hay dùng file: nhập file nhanh, tự cập nhật dữ liệu và tự cập nhật chính nó, không phải tải tay từng lần.`,`An app for people who use the files often: import quickly, keep data up to date and update itself, with no manual downloading each time.`,`Приложение для тех, кто часто пользуется файлами: быстрый импорт, автообновление данных и самого приложения, без ручной загрузки.`,`Um app para quem usa os arquivos com frequência: importa rápido, atualiza os dados e a si mesmo, sem baixar tudo manualmente.`],
+app_dl:[`Tải app cho Windows`,`Download for Windows`,`Скачать для Windows`,`Baixar para Windows`],
+app_gh:[`Xem trên GitHub`,`View on GitHub`,`Открыть на GitHub`,`Ver no GitHub`],
+app_os:[`Bộ cài .exe cho Windows · miễn phí`,`Windows .exe installer · free`,`Установщик .exe для Windows · бесплатно`,`Instalador .exe para Windows · grátis`],
+app_fh:[`App làm được gì`,`What the app does`,`Что умеет приложение`,`O que o app faz`],
+app_f1t:[`Nhập file .zip không cần giải nén`,`Import .zip files without extracting`,`Импорт .zip без распаковки`,`Importe .zip sem extrair`],
+app_f1p:[`Chỉ cần đưa file .zip vừa tải vào app, app tự phân loại theo tên file.`,`Just drop the .zip you downloaded into the app and it sorts files by name.`,`Просто добавьте скачанный .zip, приложение само рассортирует файлы по названию.`,`Basta colocar o .zip baixado no app, que organiza os arquivos pelo nome.`],
+app_f2t:[`Tự cập nhật dữ liệu file`,`Data files update themselves`,`Файлы обновляются сами`,`Dados atualizam sozinhos`],
+app_f2p:[`App tự đọc kho file và lấy bản mới khi tôi cập nhật, bạn luôn có file mới nhất.`,`The app reads the file library and fetches new versions as I update them, so you always have the latest.`,`Приложение читает хранилище и подтягивает новые версии, поэтому у вас всегда свежие файлы.`,`O app lê o acervo e busca novas versões quando eu atualizo, então você sempre tem o mais recente.`],
+app_f3t:[`Tự cập nhật chính app`,`The app updates itself`,`Приложение обновляется само`,`O app se atualiza`],
+app_f3p:[`Có bản mới là app tự báo và cập nhật, không cần tải lại bộ cài.`,`When a new version is out the app updates itself, no need to download the installer again.`,`Когда выходит новая версия, приложение обновляется само, заново скачивать установщик не нужно.`,`Quando sai uma versão nova, o app se atualiza, sem precisar baixar o instalador de novo.`],
+app_f4t:[`Cài một lần là dùng`,`Install once and go`,`Установил и пользуйся`,`Instale uma vez e use`],
+app_f4p:[`Bộ cài .exe quen thuộc, cài xong mở lên là dùng được ngay.`,`A familiar .exe installer: install it, open it and you are ready.`,`Привычный установщик .exe: установили, открыли и пользуетесь.`,`Um instalador .exe comum: instale, abra e já pode usar.`],
+app_sh:[`Giao diện app`,`App interface`,`Интерфейс приложения`,`Interface do app`],
+app_shp:[`Bấm vào ảnh để xem cỡ lớn, dùng phím ← → để chuyển ảnh.`,`Tap an image to view it full size, use the ← → keys to switch.`,`Нажмите на изображение, чтобы увеличить, клавиши ← → переключают кадры.`,`Toque na imagem para ampliar e use as teclas ← → para trocar.`],
+gal2k:[`Mondstadt`,`Mondstadt`,`Мондштадт`,`Mondstadt`],
+gal3k:[`Liyue`,`Liyue`,`Ли Юэ`,`Liyue`],
+gal4k:[`Inazuma`,`Inazuma`,`Инадзума`,`Inazuma`],
+gal1k:[`Tải dữ liệu`,`Data download`,`Загрузка данных`,`Baixar dados`],
+gal2t:[`Giao diện đổi màu theo từng vùng`,`An interface that takes on each region’s colors`,`Интерфейс меняет цвета под каждый регион`,`Uma interface que muda de cor em cada região`],
+gal3t:[`Phân loại file rõ ràng`,`Files, clearly organized`,`Чёткая сортировка файлов`,`Arquivos bem organizados`],
+gal4t:[`Mọi thao tác chỉ một chạm`,`Every action one tap away`,`Любое действие в одно касание`,`Cada ação a um toque`],
+gal1t:[`Tải và cập nhật tự động`,`Automatic download and updates`,`Автоматическая загрузка и обновление`,`Download e atualização automáticos`],
+gal2p:[`Chọn vùng ở thanh bên, màu chủ đạo, biểu tượng, số file và tổng số điểm tele đổi theo ngay.`,`Pick a region in the sidebar and the accent color, icon, file count and total teleport points update instantly.`,`Выберите регион на боковой панели: акцентный цвет, значок, число файлов и общее число точек обновятся сразу.`,`Escolha uma região na barra lateral e a cor, o ícone, o número de arquivos e o total de pontos de teleporte mudam na hora.`],
+gal3p:[`Tách theo Master, Split và Legacy. Mỗi file ghi rõ số điểm và có sẵn bản VI, EN, RU, PT.`,`Split into Master, Split and Legacy. Each file shows its point count and comes in VI, EN, RU and PT.`,`Разделение на Master, Split и Legacy. У каждого файла указано число точек и есть версии VI, EN, RU, PT.`,`Separados em Master, Split e Legacy. Cada arquivo mostra o número de pontos e tem versões VI, EN, RU e PT.`],
+gal4p:[`Tìm nhanh bằng phím /, sắp xếp, đánh dấu sao, xem README rồi bấm Use để dùng file.`,`Search with the / key, sort, star favorites, read the README, then press Use to apply a file.`,`Поиск клавишей /, сортировка, избранное, README, а затем кнопка Use, чтобы применить файл.`,`Busque com a tecla /, ordene, favorite, leia o README e toque em Use para aplicar o arquivo.`],
+gal1p:[`Tải từ kho online, tự giải nén và xếp theo vùng, ngôn ngữ, loại file. App kiểm tra cập nhật mỗi lần mở và mỗi 24 giờ.`,`Downloads from the online store, unpacks and sorts by region, language and type. The app checks for updates on every launch and every 24 hours.`,`Загрузка из онлайн-хранилища, автоматическая распаковка и сортировка по региону, языку и типу. Проверка обновлений при каждом запуске и каждые 24 часа.`,`Baixa do repositório online, descompacta e organiza por região, idioma e tipo. O app verifica atualizações a cada abertura e a cada 24 horas.`],
+gals1:[`Ngôn ngữ`,`Languages`,`Языка`,`Idiomas`],
+gals2:[`Kiểu file`,`File types`,`Типа файлов`,`Tipos de arquivo`],
+gals3:[`Tự kiểm tra cập nhật`,`Auto update check`,`Автопроверка обновлений`,`Verificação automática`],
+gals3s:[`mỗi lần mở app`,`on every launch`,`при каждом запуске`,`a cada abertura`],
+gal_prev:[`Ảnh trước`,`Previous image`,`Предыдущее изображение`,`Imagem anterior`],
+gal_next:[`Ảnh sau`,`Next image`,`Следующее изображение`,`Próxima imagem`],
+gal_close:[`Đóng`,`Close`,`Закрыть`,`Fechar`],
+app_end_t:[`Ưng rồi thì tải thôi`,`Like what you see? Grab it`,`Понравилось? Скачивайте`,`Gostou? Baixe agora`],
+app_end_p:[`Luôn là bản mới nhất, tải thẳng từ GitHub.`,`Always the latest version, downloaded straight from GitHub.`,`Всегда последняя версия, загрузка напрямую с GitHub.`,`Sempre a versão mais recente, direto do GitHub.`],
+hsub:[`File tele cho tool Unicore (Genshin) trên server {s}. Toàn bộ file do pxtk.08 làm, tải miễn phí tại đây.`,`Tele files for the Unicore tool (Genshin) on the {s} server. All files are made by pxtk.08 and free to download here.`,`Tele-файлы для инструмента Unicore (Genshin) на сервере {s}. Все файлы сделаны pxtk.08 и доступны бесплатно.`,`Arquivos de tele para a ferramenta Unicore (Genshin) no servidor {s}. Todos os arquivos são feitos por pxtk.08 e gratuitos.`],
+enter:[`Vào kho file`,`Browse files`,`Открыть хранилище`,`Ver arquivos`],
+faqlink:[`Câu hỏi thường gặp`,`Frequently asked questions`,`Частые вопросы`,`Perguntas frequentes`],
+ifact:[`Hiện có {n} file ở {m} mục.`,`{n} files in {m} sections.`,`{n} файлов в {m} разделах.`,`{n} arquivos em {m} seções.`],
+ifact2:[`Hiện có {n} file ở {m} mục, cập nhật gần nhất {d}.`,`{n} files in {m} sections, last updated {d}.`,`{n} файлов в {m} разделах, последнее обновление: {d}.`,`{n} arquivos em {m} seções, última atualização em {d}.`],
+howto:[`Cách dùng`,`How to use`,`Как пользоваться`,`Como usar`],
+newup:[`Mới cập nhật`,`Recently updated`,`Недавние обновления`,`Atualizados recentemente`],
+seelog:[`Xem nhật ký cập nhật →`,`See the update log →`,`Журнал обновлений →`,`Ver o histórico de atualizações →`],
+havef:[`Đã có file`,`Available now`,`Уже доступно`,`Já disponíveis`],
+moresoon:[`{n} mục nữa sắp có`,`{n} more coming soon`,`Ещё {n} скоро`,`Mais {n} em breve`],
+k_tong:[`File tổng`,`Full file`,`Полный файл`,`Arquivo completo`],
+k_le:[`File chia lẻ`,`Split files`,`Файлы по группам`,`Arquivos divididos`],
+k_cu:[`File cũ`,`Old files`,`Старые файлы`,`Arquivos antigos`],
+k_tele:[`Điểm Tele`,`Teleport points`,`Точки телепорта`,`Pontos de teleporte`],
+k_oculi:[`Thần Đồng`,`Oculi`,`Окули`,`Oculi`],
+k_Other:[`Khác`,`Other`,`Другое`,`Outros`],
+kd_tong:[`Bản Unsplit: toàn bộ điểm của vùng gộp trong một file.`,`Unsplit version: all points of the region in a single file.`,`Версия Unsplit: все точки региона в одном файле.`,`Versão Unsplit: todos os pontos da região em um único arquivo.`],
+kd_le:[`Bản Split: điểm được tách theo nhóm (Rương, Đánh Quái…) bên trong file.`,`Split version: points are grouped by category (Chests, Combat…) inside the file.`,`Версия Split: точки разделены по категориям (Сундуки, Бои…) внутри файла.`,`Versão Split: os pontos são separados por categoria (Baús, Combate…) dentro do arquivo.`],
+kd_cu:[`Bản cũ, hoặc tên file không ghi Split/Unsplit.`,`Older version, or the file name doesn't say Split/Unsplit.`,`Старая версия или в имени файла нет Split/Unsplit.`,`Versão antiga, ou o nome do arquivo não indica Split/Unsplit.`],
+kd_tele:[`Toàn bộ điểm tele.`,`All teleport points.`,`Все точки телепорта.`,`Todos os pontos de teleporte.`],
+kd_oculi:[`Các điểm Thần Đồng.`,`Oculi locations.`,`Расположение окули.`,`Locais dos Oculi.`],
+kd_Other:[`Do cộng đồng đóng góp, chưa được kiểm chứng. Hãy dùng thận trọng.`,`Contributed by the community and not verified. Use with caution.`,`Вклад сообщества, не проверено. Используйте с осторожностью.`,`Contribuição da comunidade, não verificado. Use com cuidado.`],
+c_ruong:[`Rương`,`Chests`,`Сундуки`,`Baús`],
+c_danh_quai:[`Đánh Quái`,`Combat`,`Бои`,`Combate`],
+c_khieu_chien:[`Khiêu Chiến`,`Challenges`,`Испытания`,`Desafios`],
+c_tien_linh:[`Tiên Linh`,`Seelie`,`Селли`,`Seelie`],
+c_giai_do:[`Giải Đố`,`Puzzles`,`Загадки`,`Enigmas`],
+x_how1t:[`Chọn vùng`,`Choose a region`,`Выберите регион`,`Escolha a região`],
+x_how1p:[`Vào Kho File rồi chọn vùng bạn cần. Trên máy tính, rê chuột vào ô ở mép phải màn hình để đổi vùng nhanh.`,`Open the File Library and pick the region you need. On desktop, hover the box on the right edge of the screen to switch regions quickly.`,`Откройте «Хранилище файлов» и выберите нужный регион. На компьютере наведите курсор на блок у правого края экрана, чтобы быстро сменить регион.`,`Abra a Biblioteca de arquivos e escolha a região. No computador, passe o mouse sobre a caixa na borda direita da tela para trocar de região rapidamente.`],
+x_how2t:[`Chọn loại file`,`Choose a file type`,`Выберите тип файла`,`Escolha o tipo de arquivo`],
+x_how2p:[`File tổng gộp toàn bộ điểm của vùng. File chia lẻ tách theo nhóm: Rương, Đánh Quái, Khiêu Chiến, Tiên Linh, Giải Đố. Tick nhiều file để tải một lần dưới dạng .zip.`,`The full file merges every point of the region. Split files are grouped by category: Chests, Combat, Challenges, Seelie, Puzzles. Tick several files to download them at once as a .zip.`,`Полный файл объединяет все точки региона. Файлы по группам разделены по категориям: Сундуки, Бои, Испытания, Селли, Загадки. Отметьте несколько файлов, чтобы скачать их одним .zip.`,`O arquivo completo reúne todos os pontos da região. Os arquivos divididos são separados por categoria: Baús, Combate, Desafios, Seelie, Enigmas. Marque vários arquivos para baixar de uma vez em .zip.`],
+x_how3t:[`Nhập vào app`,`Import into the app`,`Импорт в приложение`,`Importe no app`],
+x_how3p:[`Mở app và nhập file .zip vừa tải (không cần giải nén), app tự phân loại theo tên file nên đừng đổi tên. Nếu file lỗi hoặc không đọc được, xem <a href="#/faq">câu hỏi thường gặp</a>.`,`Open the app and import the .zip you just downloaded (no need to unzip). The app sorts files by file name, so don't rename them. If a file is broken or unreadable, see the <a href="#/faq">FAQ</a>.`,`Откройте приложение и импортируйте скачанный .zip (распаковывать не нужно). Приложение сортирует файлы по имени, поэтому не переименовывайте их. Если файл повреждён или не читается, см. <a href="#/faq">частые вопросы</a>.`,`Abra o app e importe o .zip baixado (não precisa descompactar). O app classifica pelo nome do arquivo, então não renomeie. Se o arquivo estiver com erro ou não abrir, veja as <a href="#/faq">perguntas frequentes</a>.`],
+path:[`Mở app Electro Cat và nhập file .zip vừa tải (không cần giải nén). App tự phân loại theo TÊN FILE nên đừng đổi tên file.`,`Open the Electro Cat app and import the .zip you just downloaded (no need to unzip). The app sorts files by FILE NAME, so don't rename them.`,`Откройте приложение Electro Cat и импортируйте скачанный .zip (распаковывать не нужно). Приложение сортирует файлы по ИМЕНИ, поэтому не переименовывайте их.`,`Abra o app Electro Cat e importe o .zip baixado (não precisa descompactar). O app classifica pelo NOME DO ARQUIVO, então não renomeie.`],
+g1t:[`Chọn vùng và ngôn ngữ`,`Choose a region and language`,`Выберите регион и язык`,`Escolha a região e o idioma`],
+g1p:[`Vào Kho File, chọn vùng cần dùng rồi chọn ngôn ngữ ở đầu trang vùng.`,`Open the File Library, pick the region you need, then choose a language at the top of the region page.`,`Откройте «Хранилище файлов», выберите регион, затем язык в верхней части страницы региона.`,`Abra a Biblioteca de arquivos, escolha a região e depois o idioma no topo da página da região.`],
+g2p:[`File tổng gộp toàn bộ điểm. File chia lẻ tách theo nhóm. Tick nhiều file để tải một lần dưới dạng .zip.`,`The full file merges every point. Split files are grouped by category. Tick several files to download them at once as a .zip.`,`Полный файл объединяет все точки. Файлы по группам разделены по категориям. Отметьте несколько файлов, чтобы скачать их одним .zip.`,`O arquivo completo reúne todos os pontos. Os arquivos divididos são separados por categoria. Marque vários arquivos para baixar de uma vez em .zip.`],
+g3t:[`Kiểm tra file (tuỳ chọn)`,`Verify the file (optional)`,`Проверьте файл (по желанию)`,`Verifique o arquivo (opcional)`],
+g3p:[`Nếu file có mã SHA-256, so mã đó với mã tính từ file đã tải (xem mục FAQ).`,`If the file has a SHA-256 hash, compare it with the hash computed from the downloaded file (see the FAQ).`,`Если у файла есть хеш SHA-256, сравните его с хешем скачанного файла (см. раздел FAQ).`,`Se o arquivo tiver hash SHA-256, compare-o com o hash calculado do arquivo baixado (veja as FAQ).`],
+g5t:[`Kiểm tra lại`,`Check again`,`Проверьте результат`,`Confira novamente`],
+g5p:[`Mở lại và xem các điểm tele đã hiển thị đúng chưa.`,`Reopen it and check that the teleport points appear correctly.`,`Откройте приложение снова и проверьте, что точки телепорта отображаются правильно.`,`Abra novamente e confira se os pontos de teleporte aparecem corretamente.`],
+faq1q:[`Dùng file đã tải như thế nào?`,`How do I use a downloaded file?`,`Как использовать скачанный файл?`,`Como usar o arquivo baixado?`],
+faq2q:[`File tổng và file chia lẻ khác nhau thế nào?`,`What is the difference between the full file and split files?`,`Чем отличается полный файл от файлов по группам?`,`Qual a diferença entre o arquivo completo e os arquivos divididos?`],
+faq2a:[`File tổng gộp toàn bộ điểm của một vùng, file chia lẻ tách theo nhóm (Rương, Đánh Quái, Khiêu Chiến, Tiên Linh, Giải Đố) để bạn chọn dùng.`,`The full file merges every point of a region. Split files are grouped by category (Chests, Combat, Challenges, Seelie, Puzzles) so you can pick what you need.`,`Полный файл объединяет все точки региона. Файлы по группам разделены по категориям (Сундуки, Бои, Испытания, Селли, Загадки), чтобы вы могли выбрать нужное.`,`O arquivo completo reúne todos os pontos de uma região. Os arquivos divididos são separados por categoria (Baús, Combate, Desafios, Seelie, Enigmas) para você escolher o que usar.`],
+faq3q:[`File tải về bị lỗi hoặc không đọc được?`,`A downloaded file is broken or unreadable?`,`Скачанный файл повреждён или не читается?`,`O arquivo baixado está com erro ou não abre?`],
+faq3a:[`Hãy thử tải lại và kiểm tra đúng vùng, đúng ngôn ngữ. Nếu vẫn lỗi, vào mục Báo lỗi / Đóng góp và gửi kèm tên file, vùng, ngôn ngữ.`,`Try downloading it again and check that the region and language are correct. If it still fails, go to Report / Contribute and send the file name, region and language.`,`Попробуйте скачать файл ещё раз и проверьте, что регион и язык выбраны верно. Если ошибка осталась, откройте раздел «Сообщить об ошибке / Помочь» и отправьте название файла, регион и язык.`,`Tente baixar novamente e confira se a região e o idioma estão corretos. Se continuar com erro, vá em Reportar / Contribuir e envie o nome do arquivo, a região e o idioma.`],
+faq4q:[`Làm sao biết file không bị sửa đổi?`,`How can I tell a file hasn't been modified?`,`Как убедиться, что файл не изменён?`,`Como saber se o arquivo não foi alterado?`],
+faq4a:[`Nếu file có mã SHA-256, bấm nút SHA-256 để chép mã rồi so với mã tính từ file đã tải. Windows: certutil -hashfile ten-file.zip SHA256. Linux/macOS: sha256sum ten-file.zip (hoặc shasum -a 256 ten-file.zip).`,`If a file has a SHA-256 hash, click the SHA-256 button to copy it and compare it with the hash computed from your downloaded file. Windows: certutil -hashfile file-name.zip SHA256. Linux/macOS: sha256sum file-name.zip (or shasum -a 256 file-name.zip).`,`Если у файла есть хеш SHA-256, нажмите кнопку SHA-256, чтобы скопировать его, и сравните с хешем скачанного файла. Windows: certutil -hashfile file-name.zip SHA256. Linux/macOS: sha256sum file-name.zip (или shasum -a 256 file-name.zip).`,`Se o arquivo tiver hash SHA-256, clique no botão SHA-256 para copiá-lo e compare com o hash calculado do arquivo baixado. Windows: certutil -hashfile file-name.zip SHA256. Linux/macOS: sha256sum file-name.zip (ou shasum -a 256 file-name.zip).`],
+faq5q:[`File cũ còn dùng được không?`,`Can I still use old files?`,`Можно ли ещё использовать старые файлы?`,`Os arquivos antigos ainda podem ser usados?`],
+faq5a:[`File cũ được giữ lại để dùng khi cần. Nên ưu tiên bản mới nhất và đọc ghi chú của file để biết khác biệt.`,`Old files are kept for when you need them. Prefer the newest version and read the file's note to see what changed.`,`Старые файлы сохранены на случай, если они понадобятся. Лучше использовать новейшую версию и прочитать примечание к файлу, чтобы узнать, что изменилось.`,`Os arquivos antigos são mantidos para quando precisar. Prefira a versão mais recente e leia a nota do arquivo para saber o que mudou.`],
+faq6q:[`Làm sao biết có file mới?`,`How do I know when there are new files?`,`Как узнать о новых файлах?`,`Como saber se há arquivos novos?`],
+faq6a:[`Xem mục Cập nhật: có nhật ký thay đổi và danh sách file mới nhất. Tải bản mới rồi thay file cũ.`,`Check the Updates page: it has a change log and the list of the newest files. Download the new version and replace the old file.`,`Загляните в раздел «Обновления»: там журнал изменений и список новых файлов. Скачайте новую версию и замените старый файл.`,`Veja a página Atualizações: há um histórico de mudanças e a lista dos arquivos mais recentes. Baixe a nova versão e substitua o arquivo antigo.`],
+cr1:[`Tác giả của tất cả file tele trên trang này`,`Author of all the tele files on this site`,`Автор всех tele-файлов на этом сайте`,`Autor de todos os arquivos de tele deste site`],
+cl1t:[`Ra mắt Kho File Tele`,`Tele File Library launched`,`Запуск Хранилища Tele-файлов`,`Lançamento da Biblioteca de arquivos Tele`],
+cl1i1:[`Thêm file Mondstadt, Liyue và Điểm Tele (dữ liệu mẫu, hãy thay bằng nội dung thật).`,`Added the Mondstadt, Liyue and Teleport Points files (sample data, replace with real content).`,`Добавлены файлы Mondstadt, Liyue и точки телепорта (примерные данные, замените настоящим содержимым).`,`Adicionados os arquivos de Mondstadt, Liyue e Pontos de teleporte (dados de exemplo, substitua por conteúdo real).`],
+x_upd_lead:[`Nhật ký thay đổi và các file mới nhất.`,`Change log and the newest files.`,`Журнал изменений и новейшие файлы.`,`Histórico de mudanças e os arquivos mais recentes.`],
+x_upd_recent:[`File cập nhật gần đây`,`Recently updated files`,`Недавно обновлённые файлы`,`Arquivos atualizados recentemente`],
+x_faq_lead:[`Những câu hỏi thường gặp.`,`Frequently asked questions.`,`Частые вопросы.`,`Perguntas frequentes.`],
+x_guide_lead0:[`Từ chọn file đến nhập vào app.`,`From picking a file to importing it into the app.`,`От выбора файла до импорта в приложение.`,`Da escolha do arquivo até a importação no app.`],
+x_guide_lead:[`Chọn một bài để xem.`,`Pick an article to read.`,`Выберите статью для чтения.`,`Escolha um artigo para ler.`],
+x_video:[`Xem video hướng dẫn`,`Watch the video guide`,`Смотреть видеоруководство`,`Ver o vídeo-guia`],
+x_draft:[`Nháp`,`Draft`,`Черновик`,`Rascunho`],
+x_loading:[`Đang tải…`,`Loading…`,`Загрузка…`,`Carregando…`],
+x_back_guides:[`Tất cả bài hướng dẫn`,`All guides`,`Все руководства`,`Todos os guias`],
+x_post_fail:[`Không tải được bài này. Thử tải lại trang sau ít phút.`,`Couldn't load this article. Try reloading the page in a few minutes.`,`Не удалось загрузить статью. Попробуйте обновить страницу через несколько минут.`,`Não foi possível carregar este artigo. Tente recarregar a página em alguns minutos.`],
+x_rep_lead:[`Gặp file lỗi, thiếu điểm hoặc muốn đóng góp file? Gửi theo mẫu dưới đây.`,`Found a broken file, missing points, or want to contribute a file? Send it using the template below.`,`Нашли повреждённый файл, не хватает точек или хотите предложить файл? Отправьте по шаблону ниже.`,`Encontrou um arquivo com erro, pontos faltando ou quer contribuir com um arquivo? Envie pelo modelo abaixo.`],
+x_tpl:[`Vùng: \nNgôn ngữ: \nTên file: \nBản game: \nMô tả lỗi / điểm cần thêm: `,`Region: \nLanguage: \nFile name: \nGame version: \nDescription of the problem / points to add: `,`Регион: \nЯзык: \nИмя файла: \nВерсия игры: \nОписание ошибки / какие точки добавить: `,`Região: \nIdioma: \nNome do arquivo: \nVersão do jogo: \nDescrição do erro / pontos a adicionar: `],
+x_rep_copy:[`Sao chép mẫu`,`Copy template`,`Скопировать шаблон`,`Copiar modelo`],
+x_about_lead:[`Những người và nguồn đã góp phần tạo nên kho file này.`,`The people and sources behind this file library.`,`Люди и источники, благодаря которым появилось это хранилище.`,`As pessoas e fontes que ajudaram a criar esta biblioteca.`],
+x_about_note:[`Đây là dự án của cộng đồng, không liên kết với, không được bảo trợ hay xác nhận bởi nhà phát hành game. Mọi tên gọi và hình ảnh thuộc về chủ sở hữu tương ứng. File được cung cấp “nguyên trạng”, bạn tự chịu trách nhiệm khi sử dụng, đặc biệt với mục File Không Chính Thức. Hãy sao lưu file gốc trước khi thay.`,`This is a community project, not affiliated with, sponsored or endorsed by the game's publisher. All names and images belong to their respective owners. Files are provided “as is” and you use them at your own risk, especially the Unofficial Files section. Back up the original files before replacing them.`,`Это проект сообщества, не связанный с издателем игры, не спонсируемый и не одобренный им. Все названия и изображения принадлежат их владельцам. Файлы предоставляются «как есть», вы используете их на свой риск, особенно из раздела «Неофициальные файлы». Сделайте резервную копию оригинальных файлов перед заменой.`,`Este é um projeto da comunidade, sem vínculo, patrocínio ou aprovação da publicadora do jogo. Todos os nomes e imagens pertencem aos respectivos donos. Os arquivos são fornecidos “como estão” e você os usa por sua conta e risco, especialmente os da seção Arquivos não oficiais. Faça backup dos arquivos originais antes de substituir.`],
+x_nf_t:[`Không tìm thấy trang`,`Page not found`,`Страница не найдена`,`Página não encontrada`],
+x_nf_p:[`Đường dẫn này không tồn tại.`,`This link doesn't exist.`,`Такой ссылки не существует.`,`Este link não existe.`],
+x_nf_back:[`Về Giới thiệu`,`Back to Introduction`,`Назад к введению`,`Voltar à introdução`],
+x_loadfail:[`Không tải được danh sách file từ GitHub`,`Couldn't load the file list from GitHub`,`Не удалось загрузить список файлов с GitHub`,`Não foi possível carregar a lista de arquivos do GitHub`],
+x_zipbig:[`Tổng {n} MB, quá lớn để gói zip. Hãy tải từng file.`,`Total {n} MB is too large to zip. Please download files one by one.`,`Общий размер {n} МБ слишком велик для zip. Скачивайте файлы по одному.`,`Total de {n} MB é grande demais para zip. Baixe os arquivos um a um.`],
+x_zippart:[`Đã gói {n} file, lỗi {m}: {l}. Thử lại hoặc bấm Tải từng file.`,`Packed {n} files, {m} failed: {l}. Retry or download files one by one.`,`Упаковано файлов: {n}, ошибок: {m}: {l}. Повторите попытку или скачайте файлы по одному.`,`{n} arquivo(s) compactado(s), {m} com erro: {l}. Tente de novo ou baixe um a um.`],
+x_zipfail:[`Không tải được: {l}. Thử lại hoặc bấm Tải từng file.`,`Couldn't download: {l}. Retry or download files one by one.`,`Не удалось скачать: {l}. Повторите попытку или скачайте файлы по одному.`,`Não foi possível baixar: {l}. Tente de novo ou baixe um a um.`],
+x_direct:[`Không tải trực tiếp được, đang mở file ở tab mới`,`Couldn't download directly, opening the file in a new tab`,`Не удалось скачать напрямую, открываю файл в новой вкладке`,`Não foi possível baixar direto, abrindo o arquivo em nova aba`],
+x_copyp:[`Sao chép:`,`Copy:`,`Копировать:`,`Copiar:`],
+x_manote:[`Tên file chưa theo quy tắc nhận diện của app.`,`The file name doesn't follow the app's naming rules.`,`Имя файла не соответствует правилам распознавания приложения.`,`O nome do arquivo não segue as regras de reconhecimento do app.`],
+game:[`Game {v}`,`Game {v}`,`Игра {v}`,`Jogo {v}`],
+rn_Dragonspine:[`Long Tích Tuyết Sơn`,`Dragonspine`,`Драконий Хребет`,`Dragonspine`],
+rn_Chasm:[`Khu Mỏ Ngầm`,`The Chasm`,`Разлом`,`The Chasm`],
+rn_SeaOfBygoneEras:[`Biển Kỷ Nguyên Cũ`,`Sea of Bygone Eras`,`Море Ушедших Эпох`,`Mar das Eras Passadas`],
+rn_ChenyuVale:[`Trầm Ngọc Cốc`,`Chenyu Vale`,`Долина Чэньюй`,`Vale Chenyu`],
+rn_AncientSacredMountain:[`Núi Thánh Viễn Cổ`,`Ancient Sacred Mountain`,`Древняя Священная Гора`,`Montanha Sagrada Ancestral`],
+rn_TempleOfSpace:[`Thần Điện Không Gian`,`Temple of Space`,`Храм Пространства`,`Templo do Espaço`],
+rn_FrostMoon:[`Sương Nguyệt`,`Frostmoon`,`Морозная Луна`,`Lua Gélida`],
+rn_TeleportOculi:[`Điểm Tele Và Thần Đồng`,`Teleport Points & Oculi`,`Точки телепорта и окули`,`Pontos de teleporte e Oculi`],
+rn_Unofficial:[`File Không Chính Thức`,`Unofficial Files`,`Неофициальные файлы`,`Arquivos não oficiais`]
+};
+const tr=(k,v)=>{const e=I18N[k];if(!e)return k;let x=e[UI_LANGS.indexOf(UL)]||e[1]||e[0];if(v)for(const a in v)x=x.split("{"+a+"}").join(v[a]);return x};
+/* ====== CHỈNH Ở ĐÂY ======
+ Đường dẫn file tự ghép theo thư mục giống app:  <Vùng>/<ngôn ngữ>/<tong|le|cu>/<file>
+ Mục Tele & Thần Đồng: TeleportOculi/<tele|oculi>/<file>   |   Không chính thức: Unofficial/<nhóm>/<file>
+ Thêm file = thêm một dòng F(vùng, loại, ngôn ngữ, tên file, tên hiển thị, số điểm, dung lượng, ngày, nhóm, ghi chú).
+ Các dòng bên dưới chỉ là DỮ LIỆU MẪU, hãy thay bằng file thật. */
+const SITE={server:"Electro Cat",repo:"pxtk08/Electro-Cat-App-Data",branch:"main",dir:"", /* repo GitHub dạng "tenchu/tenrepo": trang tự đọc files.json và tải file từ raw.githubusercontent.com; dir = thư mục con chứa file (nếu có) */
+ contact:"", /* vd "Liên hệ: Discord abc#1234" */gitbook:"",
+ path:"", /* điền đường dẫn thư mục tele của server, để trống sẽ hiện câu chung */
+ gameVer:"", /* vd "6.1" -> mỗi file hiện chip "Game 6.1" */
+ app:"https://github.com/pxtk08/Electro-Cat-App/releases/latest",appRepo:"pxtk08/Electro-Cat-App",appPage:"https://github.com/pxtk08/Electro-Cat-App",appShots:[] /* ảnh giao diện app: ["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/screens/1.png", ...] hoặc data:image/... */,discord:"https://discord.gg/B4eDWYWDVu",sbUrl:"https://gocjhsauaegmayqofiuw.supabase.co" /* dán Project URL Supabase, vd https://abcxyz.supabase.co */,sbKey:"sb_publishable_pln-2avkXsysmdpJ6vyT3g_jSrUu5bH",form:"",github:"",video:"" /* điền link thật thì nút mới hiện; để trống hoặc còn "ten-..." thì tự ẩn */};
+const SHOTS=["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%202.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%203.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%204.png"];
+/* Mã SHA-256 (tuỳ chọn): bọc dòng F(...) trong Object.assign(F(...),{sha:"<mã từ sha256sum>"}) -> hiện nút SHA-256 */
+const tx=s=>s==="path"&&SITE.path?SITE.path:(I18N[s]?tr(s):s);
+let CHANGELOG=[{d:"2026-11-10",t:"cl1t",items:["cl1i1"]}];
+const GUIDE=[ /* thêm img:"duong-dan-anh.png" vào từng bước để có ảnh minh hoạ; t/p là khoá I18N hoặc chữ thường */
+ {t:"g1t",p:"g1p"},{t:"x_how2t",p:"g2p"},{t:"g3t",p:"g3p"},{t:"x_how3t",p:"path"},{t:"g5t",p:"g5p"}];
+const CREDITS=[["pxtk.08","cr1"]];
+let FAQ=[
+ {q:"faq1q",a:"path"},{q:"faq2q",a:"faq2a"},{q:"faq3q",a:"faq3a"},{q:"faq4q",a:"faq4a"},{q:"faq5q",a:"faq5a"},{q:"faq6q",a:"faq6a"}
+];
+/* Thứ tự và tên theo GitBook của bạn: [id thư mục, tên hiển thị] */
+const ALL=[["Mondstadt","Mondstadt"],["Liyue","Liyue"],["Inazuma","Inazuma"],["Sumeru","Sumeru"],["Fontaine","Fontaine"],["Natlan","Natlan"],["NodKrai","Nod Krai"],["Dragonspine","Long Tích Tuyết Sơn"],["Chasm","Khu Mỏ Ngầm"],["Enkanomiya","Enkanomiya"],["SeaOfBygoneEras","Biển Kỷ Nguyên Cũ"],["ChenyuVale","Trầm Ngọc Cốc"],["AncientSacredMountain","Núi Thánh Viễn Cổ"],["TempleOfSpace","Thần Điện Không Gian"],["FrostMoon","Sương Nguyệt"],["Snezhnaya","Snezhnaya"],["TeleportOculi","Điểm Tele Và Thần Đồng"],["Unofficial","File Không Chính Thức"]];
+const KIND={tong:"File tổng",le:"File chia lẻ",cu:"File cũ",tele:"Điểm Tele",oculi:"Thần Đồng",Other:"Khác"},KORD=["tong","le","cu","tele","oculi"];
+const LANG={vi:"Tiếng Việt",en:"English",ru:"Русский",pt:"Português"};
+const F=(region,kind,lang,file,name,pts,size,date,cat,note)=>({region,kind,lang,file,name,pts,size,date,cat,note,ver:"v1.0",gv:SITE.gameVer,sha:""});
+const CATS=[["ruong","Rương"],["danh-quai","Đánh Quái"],["khieu-chien","Khiêu Chiến"],["tien-linh","Tiên Linh"],["giai-do","Giải Đố"]];
+const MON=l=>[F("Mondstadt","tong",l,"tong.json","Mondstadt - File tổng",0,"20 KB","2026-11-10","","Gộp toàn bộ điểm của vùng."),
+ ...CATS.map(([f,c])=>F("Mondstadt","le",l,f+".json","Mondstadt - "+c,0,"5 KB","2026-11-10",c,""))];
+let FILES=[
+ ...MON("vi"),F("Mondstadt","cu","vi","tong-cu.json","Mondstadt - File tổng (bản cũ)",0,"18 KB","2026-09-01","","Bản trước khi cập nhật."),
+ ...MON("en"),
+ F("Liyue","tong","vi","tong.json","Liyue - File tổng",0,"31 KB","2026-11-10","","Gộp toàn bộ điểm của vùng."),
+ F("TeleportOculi","tele","","tele.json","Điểm Tele",0,"14 KB","2026-11-10","","Tất cả điểm tele."),
+ F("Unofficial","Other","","khac.json","File thử nghiệm",0,"3 KB","2026-11-10","","Do cộng đồng đóng góp.")
+];
+/* ========================= */
+const $=i=>document.getElementById(i),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const kn=k=>I18N["k_"+k]?tr("k_"+k):k,cn=c=>{const x=CATS.find(a=>a[1]===c);return x?tr("c_"+x[0].replace(/-/g,"_")):c},pgl=p=>tr({post:"guide",edit:"guide",home:"files"}[p]||p),ko=k=>KORD.indexOf(k)+1||99,cnt=r=>FILES.filter(f=>f.region===r).length;
+const RAW=SITE.repo?"https://raw.githubusercontent.com/"+SITE.repo+"/"+SITE.branch+"/"+(SITE.dir?SITE.dir.replace(/^\/|\/$/g,"")+"/":""):"";
+const url=f=>f.url||RAW+[f.region,f.lang,f.kind,f.file].filter(Boolean).join("/");
+const FOLDER='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+let q="";let CUR=location.hash.replace(/^#\/?/,"");const SEL=new Set(),LS=(()=>{try{return JSON.parse(localStorage.getItem("tl")||"{}")}catch(e){return{}}})(),LORD=["vi","en","ru","pt"];
+const KDESC={tong:"Bản Unsplit: toàn bộ điểm của vùng gộp trong một file.",le:"Bản Split: điểm được tách theo nhóm (Rương, Đánh Quái…) bên trong file.",cu:"Bản cũ, hoặc tên file không ghi Split/Unsplit.",tele:"Toàn bộ điểm tele.",oculi:"Các điểm Thần Đồng.",Other:"Do cộng đồng đóng góp, chưa được kiểm chứng. Hãy dùng thận trọng."};
+const NEW_DAYS=1,isNew=f=>{if(!f.date)return false;const[y,m,d]=String(f.date).split("-").map(Number),n=new Date(),a=new Date(y,m-1,d),b=new Date(n.getFullYear(),n.getMonth(),n.getDate()),k=Math.round((b-a)/864e5);return k>=0&&k<=NEW_DAYS};
+function lv(t){const e=$("live");e.textContent="";setTimeout(()=>e.textContent=t,50)}
+const prow=(f,sl)=>{const k=url(f);return `<div class="row pk" data-row="${esc(fk(f))}"><label class="pl"><input type="checkbox" data-k="${esc(k)}"${SEL.has(k)?" checked":""}><span class="bx" aria-hidden="true"></span><div><h3>${esc(f.name)}</h3>${f.note?`<p>${esc(tx(f.note))}</p>`:""}<div class="meta">${isNew(f)?'<i class="nw">'+tr("new")+'</i>':""}${sl&&f.lang?`<i class="l">${esc(LANG[f.lang]||f.lang)}</i>`:""}${f.cat?`<i class="l">${esc(cn(f.cat))}</i>`:""}${f.pts?`<i>${f.pts} ${tr("pts")}</i>`:""}<i>${esc(f.size)}</i>${f.ver?`<i>${esc(f.ver)}</i>`:""}${f.gv?`<i>${esc(tr("game",{v:f.gv}))}</i>`:""}<i>${esc(fd(f.date))}</i></div></div></label>
+<div class="act"><a class="dl" href="${esc(k)}" download aria-label="${esc(tr("dlof",{n:f.name}))}">${tr("dl")}</a><button class="cp" data-u="${esc(k)}" aria-label="${esc(tr("cplk",{n:f.name}))}">${tr("link")}</button>${f.sha?`<button class="cp" data-h="${esc(f.sha)}" title="${esc(f.sha)}">SHA-256</button>`:""}</div></div>`};
+const crumb=(...p)=>{p=p.slice(1);return p.length<2?"":`<nav class="crumb" aria-label="breadcrumb">${p.map((x,i)=>(i?"<span>/</span>":"")+x).join("")}</nav>`};
+const foot=()=>`<footer><div class="fl"><a href="#/guide">${tr("guide")}</a><a href="#/updates">${tr("updates")}</a><a href="#/report">${esc(tr("report"))}</a><a href="#/about">${esc(tr("about"))}</a></div>${ok(SITE.contact)?esc(SITE.contact):""}${ADM()?"":'<button class="lk" type="button" data-ad="login" aria-label="Quản trị" title="Quản trị"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>'}</footer>`;
+const ok=u=>u&&!/ten-|\.\.\./.test(u),fd=d=>String(d||"").split("-").reverse().join("/"),nz=t=>String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").toLowerCase();
+const rn=id=>(ALL.find(x=>x[0]===id)||[0,id])[1];
+const recent=n=>[...FILES].sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,n);
+const fk=f=>[f.region,f.lang,f.kind,f.file].filter(Boolean).join("/");
+const li=f=>`<li><a class="t" href="#/r/${esc(fk(f))}"><span class="rgn">${esc(rn(f.region))}</span><span class="fnm">${esc(f.name)}</span></a><small>${esc(LANG[f.lang]||"")}${f.lang?" · ":""}${esc(fd(f.date))}</small><a class="gt" href="#/r/${esc(fk(f))}">${tr("goto")}</a></li>`;
+function focusRow(k){const e=[...document.querySelectorAll("[data-row]")].find(x=>x.dataset.row===k);if(e){e.classList.add("hit");e.scrollIntoView({block:"center"})}}
+let SO="def";
+const SORTUI=()=>`<div class="lg" role="group" aria-label="${tr("sort")}"><em>${tr("sort")}</em>${[["def",tr("s_def")],["new",tr("s_new")],["name",tr("s_name")]].map(([k,t])=>`<button class="seg${k===SO?" on":""}" data-so="${k}" aria-pressed="${k===SO}">${t}</button>`).join("")}<button class="seg" id="dr" type="button">${tr("dlreg")}</button></div>`;
+const srt=a=>SO==="new"?[...a].sort((x,y)=>(y.date||"").localeCompare(x.date||"")):SO==="name"?[...a].sort((x,y)=>x.name.localeCompare(y.name,UL)):a;
+const pn=i=>{const ks=[...ALL.keys()],pv=ks.filter(j=>j<i&&cnt(ALL[j][0])).pop(),nx=ks.find(j=>j>i&&cnt(ALL[j][0]));return `<div class="pn">${pv!==undefined?`<a class="gh" href="#/r/${ALL[pv][0]}">← ${esc(ALL[pv][1])}</a>`:"<span></span>"}${nx!==undefined?`<a class="gh" href="#/r/${ALL[nx][0]}">${esc(ALL[nx][1])} →</a>`:""}</div>`};
+function updates(){const A=ADM(),ch=[...CHANGELOG].sort((a,b)=>String(b.d).localeCompare(String(a.d)));return `<h1>${tr("updates")}</h1><p class="lead">${tr("x_upd_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="up-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm cập nhật</button></div>':""}`+ch.map(c=>`<div class="log"><time>${esc(fd(c.d))}</time><h3>${esc(tx(c.t))}</h3><ul>${(c.items||[]).map(i=>`<li>${esc(tx(i))}</li>`).join("")}</ul>${A?`<div class="hl" style="margin:10px 0 0"><button class="cp" data-ad="up-edit" data-i="${CHANGELOG.indexOf(c)}" type="button">Sửa</button><button class="cp" data-ad="up-del" data-i="${CHANGELOG.indexOf(c)}" type="button">Xóa</button></div>`:""}</div>`).join("")+`<h2 class="ih2">${tr("x_upd_recent")}</h2><ul class="ul">${recent(15).map(li).join("")}</ul>`+foot()}
+/* ===== Chế độ quản trị: chỉ hiện khi có token GitHub hợp lệ; mọi thay đổi ghi thẳng vào repo ===== */
+const PV={};const PWH="c3588868b18ffbab5b415842461fa4e55adbb4cbcfb9e2b5016b5e2f35d92756";
+let TOK="";try{TOK=sessionStorage.getItem("gt")||"";localStorage.removeItem("gt")}catch(e){}
+const ADM=()=>!!TOK,br=()=>encodeURIComponent(SITE.branch),gpath=g=>"Guide/"+g.slug+".md";
+const enc=x=>{const u=new TextEncoder().encode(x);let t="";for(let i=0;i<u.length;i+=8192)t+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(t)},dec=b=>new TextDecoder().decode(Uint8Array.from(atob(String(b).replace(/\s/g,"")),c=>c.charCodeAt(0)));
+const ghp=x=>x.split("/").map(encodeURIComponent).join("/");
+async function gh(path,opt={}){const r=await fetch(path.startsWith("http")?path:"https://api.github.com/repos/"+SITE.repo+"/contents/"+path,{...opt,headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK,...(opt.body?{"Content-Type":"application/json"}:{})}});
+ const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(r.status===401?"Token sai hoặc đã hết hạn":r.status===403?"Token không đủ quyền (cần Contents: Read and write)":(j.message||"Lỗi "+r.status));return j}
+function applyContent(c){if(Array.isArray(c.faq))FAQ=c.faq;if(Array.isArray(c.updates))CHANGELOG=c.updates;GUIDES=Array.isArray(c.guides)?c.guides:[];GL=1;if(route().p!=="edit")render()}
+async function ct(mut,msg){const ex=await gh("content.json?ref="+br()).catch(()=>null);let c={};if(ex){try{c=JSON.parse(dec(ex.content))}catch(e){c={}}}
+ if(!Array.isArray(c.faq))c.faq=FAQ.map(x=>({q:tx(x.q),a:tx(x.a)}));if(!Array.isArray(c.updates))c.updates=CHANGELOG.map(x=>({...x,t:tx(x.t),items:(x.items||[]).map(tx)}));if(!Array.isArray(c.guides))c.guides=[];
+ mut(c);await gh("content.json",{method:"PUT",body:JSON.stringify({message:msg,content:enc(JSON.stringify(c,null,2)+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
+ FAQ=c.faq;CHANGELOG=c.updates;GUIDES=c.guides;GL=1;return c}
+function dlg(title,fields,onOk,note){let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
+ d.innerHTML=`<form id="dform"><h2>${esc(title)}</h2>${note?`<div class="note">${note}</div>`:""}${fields.map(f=>f.type==="checkbox"?`<label class="fl2" style="margin-bottom:12px"><input type="checkbox" id="df-${f.id}"> ${esc(f.label)}</label>`:`<label class="dl2"><span>${esc(f.label)}</span>${f.type==="textarea"?`<textarea class="fi" id="df-${f.id}" rows="${f.rows||5}"></textarea>`:`<input class="fi" id="df-${f.id}" type="${f.type||"text"}" autocomplete="off">`}</label>`).join("")}<p id="dm" style="min-height:1.4em;font-size:14px"></p><div class="hl" style="margin:0"><button class="go" id="dok" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu</button><button class="cp" id="dno" type="button">Hủy</button></div></form>`;
+ fields.forEach(f=>{const e=$("df-"+f.id);if(f.type==="checkbox")e.checked=!!f.value;else e.value=f.value||""});
+ $("dform").onsubmit=e=>e.preventDefault();$("dno").onclick=()=>d.close();d.showModal();
+ $("dok").onclick=async()=>{const b=$("dok");b.disabled=true;$("dm").textContent="";try{await onOk(Object.fromEntries(fields.map(f=>[f.id,f.type==="checkbox"?$("df-"+f.id).checked:$("df-"+f.id).value])));d.close();render()}catch(e){$("dm").textContent=e.message;$("dm").style.color="#ff9db0";b.disabled=false}}}
+function admUI(){let p=$("apill");if(!TOK){if(p)p.remove();return}if(!p){p=document.createElement("div");p.id="apill";p.className="apill";p.innerHTML='Chế độ quản trị <button class="cp" type="button" data-ad="logout" style="min-height:30px;padding:0 12px">Thoát</button>';document.body.appendChild(p)}}
+const lines=x=>String(x).split(/\r?\n/).map(t=>t.trim()).filter(Boolean),today=()=>new Date().toISOString().slice(0,10);
+function adm(a,i){
+ const run=(f,m)=>ct(f,m).then(()=>render()).catch(e=>alert(e.message)),need=(v,t)=>{if(!String(v).trim())throw new Error(t)};
+ if(a==="login")return dlg("Đăng nhập quản trị",[{id:"pw",label:"Mật mã",type:"password"}],async v=>{
+  const t=v.pw.trim();need(t,"Nhập mật mã");
+  if(!(window.crypto&&crypto.subtle))throw new Error("Trình duyệt không hỗ trợ, hãy mở trang bằng https");
+  const wait=Number(sessionStorage.getItem("pwx")||0)-Date.now();if(wait>0)throw new Error("Thử lại sau "+Math.ceil(wait/1000)+" giây");
+  const h=[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)))].map(x=>x.toString(16).padStart(2,"0")).join("");
+  if(h!==PWH){const n=Number(sessionStorage.getItem("pwn")||0)+1;sessionStorage.setItem("pwn",n);if(n>=3)sessionStorage.setItem("pwx",Date.now()+30000*n);throw new Error("Sai mật mã")}
+  sessionStorage.removeItem("pwn");sessionStorage.removeItem("pwx");
+  setTimeout(()=>dlg("Nhập token",[{id:"tok",label:"Token GitHub",type:"password"}],async w=>{const k=w.tok.trim();need(k,"Nhập token");TOK=k;
+   try{const j=await gh("https://api.github.com/repos/"+SITE.repo);if(j.permissions&&!j.permissions.push)throw new Error("Token này không có quyền ghi vào repo");try{sessionStorage.setItem("gt",k)}catch(e){}}catch(e){TOK="";throw e}admUI()}),0)});
+ if(a==="logout"){TOK="";try{localStorage.removeItem("gt");sessionStorage.removeItem("gt")}catch(e){}admUI();render();return}
+ if(a==="faq-add")return dlg("Thêm câu hỏi",[{id:"q",label:"Câu hỏi"},{id:"a",label:"Trả lời",type:"textarea",rows:6}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>c.faq.push({q:v.q.trim(),a:v.a.trim()}),"Thêm FAQ")});
+ if(a==="faq-edit")return dlg("Sửa câu hỏi",[{id:"q",label:"Câu hỏi",value:tx(FAQ[i].q)},{id:"a",label:"Trả lời",type:"textarea",rows:6,value:tx(FAQ[i].a)}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>{c.faq[i]={q:v.q.trim(),a:v.a.trim()}},"Sửa FAQ")});
+ if(a==="faq-del"){if(confirm("Xóa câu hỏi này?"))run(c=>c.faq.splice(i,1),"Xóa FAQ");return}
+ if(a==="faq-up"){if(i>0)run(c=>{[c.faq[i-1],c.faq[i]]=[c.faq[i],c.faq[i-1]]},"Sắp xếp FAQ");return}
+ if(a==="faq-down"){if(i<FAQ.length-1)run(c=>{[c.faq[i+1],c.faq[i]]=[c.faq[i],c.faq[i+1]]},"Sắp xếp FAQ");return}
+ if(a==="up-add")return dlg("Thêm cập nhật",[{id:"d",label:"Ngày",type:"date",value:today()},{id:"t",label:"Tiêu đề"},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>c.updates.push({d:v.d,t:v.t.trim(),items:lines(v.items)}),"Thêm cập nhật")});
+ if(a==="up-edit"){const x=CHANGELOG[i];return dlg("Sửa cập nhật",[{id:"d",label:"Ngày",type:"date",value:x.d},{id:"t",label:"Tiêu đề",value:tx(x.t)},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6,value:(x.items||[]).map(tx).join("\n")}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>{c.updates[i]={d:v.d,t:v.t.trim(),items:lines(v.items)}},"Sửa cập nhật")})}
+ if(a==="up-del"){if(confirm("Xóa mục cập nhật này?"))run(c=>c.updates.splice(i,1),"Xóa cập nhật");return}}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-ad]");if(b){e.preventDefault();adm(b.dataset.ad,Number(b.dataset.i))}});
+function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạn cần đăng nhập để viết bài.</p><div class="hl"><button class="go" data-ad="login" type="button" style="border:0;cursor:pointer;font-family:inherit">Đăng nhập</button><a class="gh" href="#/guide">← Hướng dẫn</a></div>`+foot();
+ return `<div class="crumb"><a href="#/guide">← Danh sách hướng dẫn</a></div><h1>${s==="_new"?"Bài hướng dẫn mới":"Sửa bài hướng dẫn"}</h1><p class="lead">Bài lưu thẳng vào repo ${esc(SITE.repo)}.</p>
+ <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px">
+ <div class="fg"><input class="fi" id="e-date" type="date" aria-label="Ngày"><input class="fi" id="e-order" type="number" min="0" placeholder="Thứ tự" aria-label="Thứ tự"><input class="fi" id="e-slug" placeholder="tên-file (tự tạo từ tiêu đề)" aria-label="Tên file"><label class="fl2"><input type="checkbox" id="e-draft"> Nháp</label></div>
+ <div class="lg"><button class="seg on" data-v="w" type="button">Viết</button><button class="seg" data-v="p" type="button">Xem trước</button></div>
+ <div id="e-w"><div class="tb" id="e-tb">${[["h2","H2"],["h3","H3"],["b","B"],["i","I"],["c","&lt;/&gt;"],["a","Link"],["ul","• Danh sách"],["ol","1. Danh sách"],["q","Trích dẫn"],["hr","—"],["img","Chèn ảnh"]].map(([k,t])=>`<button class="cp" type="button" data-t="${k}">${t}</button>`).join("")}</div>
+ <textarea class="fi" id="e-body" spellcheck="false" placeholder="Viết nội dung bằng Markdown. Dán ảnh (Ctrl+V) để tải ảnh lên luôn."></textarea><input type="file" id="e-img" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden></div>
+ <div id="e-p" hidden></div>
+ <div class="hl"><button class="go" id="ad-save" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu &amp; đăng</button><button class="cp" id="ad-del" type="button" hidden>Xóa bài</button></div>
+ <p class="note" id="am">Ctrl+S để lưu nhanh.</p></section>`+foot()}
+async function editInit(s){if(!ADM())return;
+ const say=(t,e)=>{const x=$("am");if(x){x.textContent=t;x.style.color=e?"#ff9db0":""}};
+ const G="Guide/",ta=$("e-body"),st={slug:s==="_new"?"":s},val=id=>$(id).value;
+ const view=v=>{$("e-w").hidden=v!=="w";$("e-p").hidden=v!=="p";document.querySelectorAll("[data-v]").forEach(x=>x.classList.toggle("on",x.dataset.v===v));
+  if(v==="p")$("e-p").innerHTML=`<h1 style="font-size:28px;margin-bottom:16px">${esc(val("e-title"))}</h1><article class="post">${md(ta.value,G+"x.md")}</article>`};
+ const g0=GUIDES.find(x=>x.slug===s)||{};
+ $("e-title").value=g0.title||"";$("e-summary").value=g0.summary||"";$("e-date").value=g0.date||today();$("e-order").value=g0.order||"";
+ $("e-draft").checked=!!g0.draft&&g0.draft!=="false";$("e-slug").value=st.slug;$("e-slug").disabled=!!st.slug;$("ad-del").hidden=!st.slug;
+ const ins=x=>{ta.setRangeText(x,ta.selectionStart,ta.selectionEnd,"end");ta.focus()};
+ const wr=(a,b,ph)=>{const s0=ta.selectionStart,e0=ta.selectionEnd;ta.setRangeText(a+(ta.value.slice(s0,e0)||ph)+b,s0,e0,"end");ta.focus()};
+ const pre=p=>{const s0=ta.value.lastIndexOf("\n",ta.selectionStart-1)+1;ta.setRangeText(p,s0,s0,"end");ta.focus()};
+ const T={h2:()=>pre("## "),h3:()=>pre("### "),b:()=>wr("**","**","chữ đậm"),i:()=>wr("*","*","chữ nghiêng"),c:()=>wr("`","`","code"),a:()=>wr("[","](https://)","văn bản link"),ul:()=>pre("- "),ol:()=>pre("1. "),q:()=>pre("> "),hr:()=>ins("\n---\n"),img:()=>$("e-img").click()};
+ async function up(f){const m=f.name.match(/\.(png|jpe?g|gif|webp)$/i);if(!m)return say("Chỉ nhận ảnh png, jpg, gif, webp",1);if(f.size>5*1048576)return say("Ảnh quá lớn (tối đa 5MB)",1);
+  say("Đang tải ảnh lên…");const du=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=rej;r.readAsDataURL(f)});
+  const nm=fold(f.name.replace(/\.[^.]+$/,"")).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"anh",fn=nm+"-"+Date.now().toString(36)+"."+m[1].toLowerCase();
+  try{await gh(ghp(G+"img/"+fn),{method:"PUT",body:JSON.stringify({message:"Thêm ảnh "+fn,content:du.split(",")[1],branch:SITE.branch})});PV["img/"+fn]=du;ins("\n![mô tả ảnh](img/"+fn+")\n");say("Đã tải ảnh lên. Người xem thấy ảnh sau vài phút.")}catch(e){say(e.message,1)}}
+ async function save(){const one=x=>String(x).replace(/\s+/g," ").trim(),title=one(val("e-title"));if(!title)return say("Nhập tiêu đề trước",1);
+  let slug=st.slug;if(!slug){slug=fold(val("e-slug")||title).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");if(!slug)return say("Tên file không hợp lệ",1)}
+  const path=G+slug+".md";$("ad-save").disabled=true;say("Đang lưu…");
+  try{const ex=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(ex&&!st.slug&&!confirm("Đã có bài tên file "+slug+". Ghi đè?"))throw new Error("Đã huỷ");
+   await gh(ghp(path),{method:"PUT",body:JSON.stringify({message:"Cập nhật bài: "+title,content:enc(ta.value.trim()+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
+   const e={slug,title,summary:one(val("e-summary")),date:val("e-date"),order:Number(val("e-order"))||0,draft:$("e-draft").checked};
+   await ct(c=>{const k=c.guides.findIndex(g=>g.slug===slug);if(k>=0)c.guides[k]=e;else c.guides.push(e)},"Cập nhật danh sách hướng dẫn");
+   st.slug=slug;$("e-slug").value=slug;$("e-slug").disabled=true;$("ad-del").hidden=false;
+   say("Đã lưu"+(e.draft?" (nháp, chỉ bạn thấy)":"")+". Người xem thấy bản mới sau tối đa vài phút.")}catch(x){say(x.message,1)}
+  $("ad-save").disabled=false}
+ document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>view(b.dataset.v));
+ $("e-tb").onclick=e=>{const b=e.target.closest("[data-t]");if(b)T[b.dataset.t]()};
+ $("e-img").onchange=async()=>{for(const f of [...$("e-img").files])await up(f);$("e-img").value=""};
+ ta.onpaste=e=>{const f=[...(e.clipboardData?.files||[])].find(x=>x.type.startsWith("image/"));if(f){e.preventDefault();up(f)}};
+ ta.onkeydown=e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){e.preventDefault();save()}};
+ $("ad-save").onclick=save;
+ $("ad-del").onclick=async()=>{if(!st.slug||!confirm("Xóa bài này?"))return;try{const path=G+st.slug+".md",j=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(j)await gh(ghp(path),{method:"DELETE",body:JSON.stringify({message:"Xóa bài "+st.slug,sha:j.sha,branch:SITE.branch})});await ct(c=>{c.guides=c.guides.filter(g=>g.slug!==st.slug)},"Xóa khỏi danh sách hướng dẫn");go("#/guide",true)}catch(e){say(e.message,1)}};
+ if(st.slug){ta.value="Đang tải…";ta.disabled=true;try{const j=await gh(ghp(G+st.slug+".md")+"?ref="+br());ta.value=dec(j.content).replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*\n/,"")}catch(e){ta.value="";say("Không mở được nội dung bài: "+e.message,1)}ta.disabled=false}}
+if(TOK&&SITE.repo)gh("https://api.github.com/repos/"+SITE.repo).catch(e=>{if(/Token sai/.test(e.message)){TOK="";try{localStorage.removeItem("gt");sessionStorage.removeItem("gt")}catch(x){}admUI();render()}});
+admUI();
+const gu=sl=>String(sl).split("/").map(encodeURIComponent).join("/");
+const asrc=(u,base)=>{u=u.replace(/&amp;/g,"&");if(PV[u])return esc(PV[u]);try{const h=new URL(u,new URL(RAW+base,location.href));return h.protocol==="https:"||h.origin===location.origin?esc(h.href):""}catch(e){return""}};
+function md(t,base){
+ const il=x=>{x=esc(x).replace(/`([^`]+)`/g,"<code>$1</code>");
+  x=x.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,(_,a,u)=>{const r=asrc(u,base);return r?`<img src="${r}" alt="${a}" loading="lazy">`:a});
+  x=x.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(_,a,u)=>/^(https?:\/\/|#\/)/.test(u)?`<a href="${u}"${u[0]==="#"?"":' target="_blank" rel="noopener"'}>${a}</a>`:a);
+  return x.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(^|[^*])\*([^*\s][^*]*)\*/g,"$1<em>$2</em>")};
+ const LI=/^\s*([-*]|\d+\.)\s+/,L=t.replace(/\r/g,"").split("\n");let o="",i=0;
+ while(i<L.length){const l=L[i];let m;
+  if(/^```/.test(l)){const b=[];i++;while(i<L.length&&!/^```/.test(L[i]))b.push(L[i++]);i++;o+=`<pre><code>${esc(b.join("\n"))}</code></pre>`;continue}
+  if(m=l.match(/^(#{1,4})\s+(.*)/)){const n=m[1].length+1;o+=`<h${n}>${il(m[2])}</h${n}>`;i++;continue}
+  if(/^(-{3,}|\*{3,})\s*$/.test(l)){o+="<hr>";i++;continue}
+  if(/^>/.test(l)){const b=[];while(i<L.length&&/^>/.test(L[i]))b.push(L[i++].replace(/^>\s?/,""));o+=`<blockquote>${il(b.join(" "))}</blockquote>`;continue}
+  if(LI.test(l)){const ol=/^\s*\d+\./.test(l),b=[];while(i<L.length&&LI.test(L[i]))b.push(L[i++].replace(LI,""));const tg=ol?"ol":"ul";o+=`<${tg}>${b.map(x=>`<li>${il(x)}</li>`).join("")}</${tg}>`;continue}
+  if(!l.trim()){i++;continue}
+  const b=[];while(i<L.length&&L[i].trim()&&!/^(```|#{1,4}\s|>|(-{3,}|\*{3,})\s*$)/.test(L[i])&&!LI.test(L[i]))b.push(L[i++]);
+  if(!b.length)b.push(L[i++]);o+=`<p>${il(b.join(" "))}</p>`}
+ return o}
+function post(sl){const g=GUIDES.find(x=>x.slug===sl),bc=t=>crumb("<a href=\"#/\">Kho File Tele</a>","<a href=\"#/guide\">Hướng dẫn</a>",esc(t));
+ if(!g||(g.draft&&!ADM()))return GL?nf():`<h1>${tr("guide")}</h1><p class="lead">${tr("x_loading")}</p>`;
+ const back='<div class="pn"><a class="gh" href="#/guide">← '+tr("x_back_guides")+'</a></div>';
+ fetch(RAW+gpath(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
+  const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g));
+  document.title=g.title+" · Kho File Tele";
+  $("main").innerHTML=bc(g.title)+`<h1>${esc(g.title)}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a></div>`:""}`+back+foot()})
+ .catch(()=>{if(route().s===sl)$("main").innerHTML=bc(g.title)+`<h1>${esc(g.title)}</h1><p class="none">${tr("x_post_fail")}</p>`+back+foot()});
+ return bc(g.title)+`<h1>${esc(g.title)}</h1><p class="lead">${tr("x_loading")}</p>`}
+function guide(){if(!GL)return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_loading")}</p>`;
+ const A=ADM(),vis=GUIDES.filter(g=>!g.draft||A),add=A?`<div class="hl"><a class="go" href="#/edit/guide/_new">+ Thêm bài hướng dẫn</a></div>`:"";
+ if(!vis.length)return A?`<h1>${tr("guide")}</h1><p class="lead">Chưa có bài nào.</p>`+add+foot():guide0();
+ const L=[...vis].sort((a,b)=>(a.order||999)-(b.order||999)||String(b.date).localeCompare(String(a.date)));
+ return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_guide_lead")}</p>${add}${ok(SITE.video)?`<div class="hl"><a class="go" href="${esc(SITE.video)}" target="_blank" rel="noopener">${tr("x_video")}</a></div>`:""}${L.map(g=>`<a class="row gp" href="#/guide/${gu(g.slug)}"><div><h3>${esc(g.title)}</h3>${g.summary?`<p>${esc(g.summary)}</p>`:""}${g.draft||g.date?`<div class="meta">${g.draft?'<i class="l">'+tr("x_draft")+'</i>':""}${g.date?`<i>${esc(fd(g.date))}</i>`:""}</div>`:""}</div>${CHEV}</a>`).join("")}`+foot()}
+function guide0(){return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_guide_lead0")}</p>${ok(SITE.video)?`<div class="hl"><a class="go" href="${esc(SITE.video)}" target="_blank" rel="noopener">${tr("x_video")}</a></div>`:""}<ol class="how">${GUIDE.map(g=>`<li><h3>${esc(tx(g.t))}</h3><p>${esc(tx(g.p))}</p>${g.img?`<img src="${esc(g.img)}" alt="${esc(tx(g.t))}" loading="lazy" style="grid-column:2;max-width:100%;border-radius:12px;margin-top:12px;border:1px solid var(--line)">`:""}</li>`).join("")}</ol>`+foot()}
+function about(){return `<h1>${esc(tr("about"))}</h1><p class="lead">${tr("x_about_lead")}</p><ul class="ul">${CREDITS.map(c=>`<li><span class="t">${esc(c[0])}</span><small>${esc(tx(c[1]))}</small></li>`).join("")}</ul><div class="note">${tr("x_about_note")}</div>`+foot()}
+function report(){const L=[["Discord",SITE.discord],["Form",SITE.form],["GitHub",SITE.github]].filter(x=>ok(x[1])),T=tr("x_tpl");
+ return `<h1>${esc(tr("report"))}</h1><p class="lead">${tr("x_rep_lead")}</p><div class="pre">${esc(T)}</div><div class="hl"><button class="go" type="button" data-t="${esc(T)}" style="border:0;cursor:pointer;font-family:inherit">${tr("x_rep_copy")}</button>${L.map(x=>`<a class="gh" href="${esc(x[1])}" target="_blank" rel="noopener">${x[0]} ↗</a>`).join("")}</div>`+foot()}
+const CM={rows:null,err:false},CM_EXT=["zip","json"],CM_MAX=10*1048576;
+const cmOn=()=>/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(SITE.sbUrl||"")&&!!SITE.sbKey;
+const cmHd=()=>({apikey:SITE.sbKey});
+const cmSize=n=>n>=1048576?(n/1048576).toFixed(1)+" MB":Math.max(1,Math.round(n/1024))+" KB";
+function cmList(){if(!cmOn())return `<p class="none">${tr("cm_nocfg")}</p>`;if(CM.err)return `<p class="none">${tr("cm_err")}</p>`;if(CM.rows===null)return `<p class="lead">${tr("cm_load")}</p>`;if(!CM.rows.length)return `<p class="none">${tr("cm_none")}</p>`;
+ return CM.rows.filter(r=>/^[\w.-]+$/.test(r.file_path||"")).map(r=>{const dl=SITE.sbUrl+"/storage/v1/object/public/community-files/"+r.file_path+"?download="+encodeURIComponent(r.file_name||r.file_path),d=String(r.created_at||"").slice(0,10);
+  const m=[r.region,r.lang&&String(r.lang).toUpperCase(),r.author,r.file_size?cmSize(r.file_size):""].filter(Boolean).map(esc).join(" · ");
+  return `<div class="cmc"><div class="cmh"><h3>${esc(r.name)}</h3><small>${esc(fd(d))}</small></div>${r.description?`<p>${esc(r.description)}</p>`:""}<div class="cmm">${m}</div><a class="go" href="${esc(dl)}" rel="noopener">${tr("cm_dl")}</a></div>`}).join("")}
+async function cmLoad(){if(!cmOn()||CM.rows)return;try{const r=await fetch(SITE.sbUrl+"/rest/v1/community_posts?select=id,created_at,name,description,region,lang,author,file_path,file_name,file_size&approved=eq.true&order=created_at.desc&limit=100",{headers:cmHd()});if(!r.ok)throw 0;CM.rows=await r.json();CM.err=false}catch(e){CM.err=true;CM.rows=[]}const el=$("cm-list");if(el)el.innerHTML=cmList()}
+async function cmSend(f){const msg=$("cm-msg"),say=(t,e)=>{msg.textContent=t;msg.style.color=e?"#ff9db0":""},btn=f.querySelector("button");
+ if(f.website.value)return;const name=f.cname.value.trim(),file=f.cfile.files[0];
+ if(!name)return say(tr("cm_needname"),1);
+ const ext=file?file.name.split(".").pop().toLowerCase():"";if(!file||!CM_EXT.includes(ext))return say(tr("cm_needfile"),1);
+ if(file.size>CM_MAX)return say(tr("cm_big"),1);
+ let last=0;try{last=+localStorage.getItem("cmlast")||0}catch(e){}if(Date.now()-last<60000)return say(tr("cm_wait"),1);
+ btn.disabled=true;say(tr("cm_sending"));
+ try{const path=Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
+  let r=await fetch(SITE.sbUrl+"/storage/v1/object/community-files/"+path,{method:"POST",headers:{...cmHd(),"Content-Type":ext==="zip"?"application/zip":"application/json"},body:file});if(!r.ok)throw 0;
+  r=await fetch(SITE.sbUrl+"/rest/v1/community_posts",{method:"POST",headers:{...cmHd(),"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify({name:name.slice(0,80),description:f.cdesc.value.trim().slice(0,1000)||null,region:f.cregion.value||null,lang:f.clang.value||null,author:f.cauthor.value.trim().slice(0,40)||null,file_path:path,file_name:file.name.slice(0,120),file_size:file.size,approved:false})});if(!r.ok)throw 0;
+  try{localStorage.setItem("cmlast",String(Date.now()))}catch(e){}f.reset();say(tr("cm_ok"))}catch(e){say(tr("cm_bad"),1)}btn.disabled=false}
+function commInit(){const f=$("cm-form");if(f)f.onsubmit=e=>{e.preventDefault();cmSend(f)};cmLoad()}
+function community(){const ro=ALL.map(([id,n])=>`<option value="${esc(id)}">${esc(n)}</option>`).join("")+`<option value="">${tr("cm_other")}</option>`,lo=["vi","en","ru","pt"].map(l=>`<option value="${l}">${l.toUpperCase()}</option>`).join("")+`<option value="">${tr("cm_other")}</option>`;
+ return crumb("<a href=\"#/\">Kho File Tele</a>",esc(tr("community")))+`<h1>${tr("community")}</h1><p class="lead">${tr("x_comm_lead")}</p><div class="note">${tr("x_comm_note")}</div>`+(cmOn()?`<h2 class="ih2">${tr("cm_new")}</h2><form class="cmf" id="cm-form" autocomplete="off"><label>${tr("cm_name")}<input name="cname" maxlength="80" required></label><label>${tr("cm_desc")}<textarea name="cdesc" maxlength="1000"></textarea></label><div class="cm2"><label>${tr("cm_region")}<select name="cregion">${ro}</select></label><label>${tr("cm_lang")}<select name="clang">${lo}</select></label></div><label>${tr("cm_author")}<input name="cauthor" maxlength="40"></label><label>${tr("cm_file")}<input name="cfile" type="file" accept=".zip,.json"></label><input class="hp" name="website" tabindex="-1" aria-hidden="true"><button class="go" type="submit">${tr("cm_send")}</button><div id="cm-msg" role="status"></div></form>`:"")+`<h2 class="ih2">${tr("cm_list")}</h2><div id="cm-list">${cmList()}</div>`+foot()}
+function nf(){return `<h1>${tr("x_nf_t")}</h1><p class="lead">${tr("x_nf_p")}</p><div class="hl"><a class="go" href="#/files">${tr("enter")}</a><a class="gh" href="#/">${tr("x_nf_back")}</a></div>`+foot()}
+function route(){const h=CUR,P={faq:"faq",app:"app",files:"home",community:"community",updates:"updates",guide:"guide",report:"report",about:"about"};
+ if(h.startsWith("edit/guide/")){let t=h.slice(11);try{t=decodeURIComponent(t)}catch(e){}return{p:"edit",s:t}}if(h.startsWith("guide/")){let t=h.slice(6);try{t=decodeURIComponent(t)}catch(e){}return{p:"post",s:t}}if(P[h])return{p:P[h]};if(h===""||h==="/")return{p:"intro"};
+ if(h.startsWith("r/")){let t=h.slice(2);try{t=decodeURIComponent(t)}catch(e){}const i=ALL.findIndex(x=>x[0]===t.split("/")[0]);if(i>=0)return{p:"r",i,k:t.includes("/")?t:""}}return{p:"nf"}}
+function home(){return crumb("<a href=\"#/\">Kho File Tele</a>")+`<h1>${FOLDER}${tr("files")}</h1><p class="lead">${esc(tr("home_lead",{s:SITE.server}))}</p>
+ <div class="grid">${ALL.map(([id,n],i)=>cnt(id)?`<a class="card" href="#/r/${id}"><span>${i+1}. ${esc(n)}</span><em>${tr("nfiles",{n:cnt(id)})}</em>${CHEV}</a>`:`<div class="card soon"><span>${i+1}. ${esc(n)}</span><em class="z">${tr("soon")}</em></div>`).join("")}</div><div class="hl"><button class="gh" id="da" type="button" style="cursor:pointer;font-family:inherit">${tr("dlall",{n:FILES.length})}</button></div>`+foot()}
+function region(i,k){const [id,n]=ALL[i],all=FILES.filter(f=>f.region===id);
+ const ff=k&&FILES.find(f=>fk(f)===k);if(ff&&ff.lang)LS[id]=ff.lang;
+ const langs=LORD.filter(l=>all.some(f=>f.lang===l)),lang=langs.includes(LS[id])?LS[id]:langs.includes(UL)?UL:langs[0],g=langs.length?all.filter(f=>f.lang===lang):all;
+ let h=crumb("<a href=\"#/\">Kho File Tele</a>","<a href=\"#/files\">"+tr("files")+"</a>",esc(n))+`<h1>${i+1}. ${esc(n)}</h1><p class="lead">${all.length?tr("nfiles",{n:all.length})+(langs.length>1?" · "+tr("nlangs",{n:langs.length}):""):tr("nofiles")}</p>`;
+ h+=RS(i);if(langs.length>1)h+=`<div class="lg" role="group" aria-label="${tr("lang")}"><em>${tr("lang")}</em>${langs.map(l=>`<button class="seg${l===lang?" on":""}" data-lg="${l}" aria-pressed="${l===lang}">${esc(LANG[l])}</button>`).join("")}</div>`;
+ if(g.length>1)h+=SORTUI();
+ [...new Set(g.map(f=>f.kind))].sort((a,b)=>ko(a)-ko(b)).forEach(k=>{const s=srt(g.filter(f=>f.kind===k));
+  h+=`<section class="blk"><div class="bh"><div><h2>${esc(kn(k))}</h2><p>${esc(I18N["kd_"+k]?tr("kd_"+k):"")}</p></div>${s.length>1?'<button class="sa" type="button">'+tr("selall")+'</button>':""}</div>${s.map(prow).join("")}</section>`});
+ return h+pn(i)+foot()}
+function faq(){const A=ADM();return crumb("<a href=\"#/\">Kho File Tele</a>","FAQ")+`<h1>FAQ</h1><p class="lead">${tr("x_faq_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="faq-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm câu hỏi</button></div>':""}<div class="faq">${FAQ.map((x,i)=>`<details><summary>${esc(tx(x.q))}</summary><p>${esc(tx(x.a))}</p>${A?`<div class="hl" style="margin:0 20px 16px"><button class="cp" data-ad="faq-edit" data-i="${i}" type="button">Sửa</button><button class="cp" data-ad="faq-up" data-i="${i}" type="button" aria-label="Lên">↑</button><button class="cp" data-ad="faq-down" data-i="${i}" type="button" aria-label="Xuống">↓</button><button class="cp" data-ad="faq-del" data-i="${i}" type="button">Xóa</button></div>`:""}</details>`).join("")}</div>`+foot()}
+function results(){const words=nz(q).split(/\s+/).filter(Boolean),r=FILES.filter(f=>{const hay=nz([f.name,tx(f.note),f.cat,rn(f.region),(ALL.find(x=>x[0]===f.region)||[])[2],kn(f.kind),(I18N["k_"+f.kind]||[])[0],LANG[f.lang]||""].join(" "));return words.every(w=>hay.includes(w))});
+ let h=crumb("<a href=\"#/\">Kho File Tele</a>",tr("search"))+`<h1>${tr("results")}</h1><p class="lead">${esc(tr("rfor",{n:r.length,q}))}</p>`;
+ if(!r.length)return h+'<p class="none">'+esc(tr("nonef"))+'</p>'+foot();
+ ALL.forEach(([id,n],i)=>{const g=r.filter(f=>f.region===id);if(g.length)h+=`<div class="kd"><a href="#/r/${id}" style="color:inherit">${i+1}. ${esc(n)}</a></div>`+g.map(f=>prow(f,1)).join("")});
+ return h+foot()}
+const RS=i=>`<label class="rs"><span>${tr("region")}</span><select data-rs aria-label="${tr("pick")}">${ALL.map(([id,n],j)=>`<option value="${id}"${j===i?" selected":""}>${j+1}. ${esc(n)}${cnt(id)?"":" ("+tr("soonl")+")"}</option>`).join("")}</select></label>`;
+const GRID='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>';
+function rp(R){const el=$("rp");el.hidden=!!q||R.p!=="r";if(el.hidden)return;const cur=R.p==="r"?R.i:-1;
+ el.innerHTML='<div class="rpin"><div class="rph" tabindex="0" role="button" aria-label="'+tr("pick")+'"><span class="rpt">'+GRID+'</span><span class="rpx"><b>'+tr("pick")+'</b><small>'+(cur>=0?esc(ALL[cur][1]):tr("all"))+'</small></span></div><div class="rpl"><a class="rpi all'+(R.p==="home"?" on":"")+'" href="#/files">'+tr("allitems")+'</a>'+
+ ALL.map(([id,n],i)=>'<a class="rpi'+(cur===i?" on":"")+(cnt(id)?"":" z")+'" href="#/r/'+id+'"><i>'+(i+1)+'</i><span>'+esc(n)+'</span>'+(cnt(id)?"<em>"+cnt(id)+"</em>":"")+'</a>').join("")+'</div></div>'}
+function intro(){const have=ALL.filter(([id])=>cnt(id)),ds=FILES.map(f=>f.date).filter(Boolean).sort(),last=ds[ds.length-1]||"";
+ const I=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+ const C=[["#/files","files","ic_files",'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',"w2 f"],
+  ["#/app","app","ic_app",'<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',""],
+  ["#/guide","guide","ic_guide",'<path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h13"/>',""],
+  ["#/faq","faq","ic_faq",'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/>',""],
+  ["#/updates","updates","ic_upd",'<path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/>',""],
+  ["#/report","report","ic_rep",'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',""],
+  ["#/about","about","ic_about",'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',"w2"]];
+ return `<section class="hero"><div class="hin"><h1>${tr("hero_t")} <span style="display:block;width:fit-content;margin:6px auto 0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">${esc(SITE.server)}</span></h1>
+ <p class="hsub">${esc(tr("hsub",{s:SITE.server}))}</p>
+ <div class="iact"><a class="go" href="#/files">${tr("enter")}</a><a class="gh" href="#/app">${tr("app")}</a></div>
+ <p class="ifact">${esc(last?tr("ifact2",{n:FILES.length,m:have.length,d:last.split("-").reverse().join("/")}):tr("ifact",{n:FILES.length,m:have.length}))}</p></div></section>
+ <section class="ics"><h2 class="ih2" style="margin-top:0">${tr("ic_h")}</h2><div class="icg">${C.map(([h,k,d,p,c])=>`<a class="ic ${c}" href="${h}"><i class="ic-i">${I(p)}</i><h3>${tr(k)}${k==="files"&&FILES.length?`<em>${tr("nfiles",{n:FILES.length})}</em>`:""}</h3><p>${tr(d)}</p><span class="ic-go">${tr("ic_open")} →</span></a>`).join("")}</div>
+ <p class="ic-first">${tr("ic_first")} <a href="#/guide">${tr("ic_first2")} →</a></p></section>`+foot()}
+
+/* Lấy bản release mới nhất của app từ GitHub, gắn link tải .exe trực tiếp vào nút; lỗi thì giữ link trang releases */
+let APPREL=null;
+function appRel(){const put=r=>{document.querySelectorAll(".app-dl").forEach(a=>{if(r.url)a.href=r.url;if(r.tag&&!a.querySelector("small"))a.insertAdjacentHTML("beforeend",' <small style="opacity:.75;font-weight:600;margin-left:4px">'+esc(r.tag)+(r.mb?" · "+r.mb+" MB":"")+'</small>')})};
+ if(APPREL)return put(APPREL);if(!SITE.appRepo)return;
+ fetch("https://api.github.com/repos/"+SITE.appRepo+"/releases/latest",{headers:{Accept:"application/vnd.github+json"}}).then(r=>r.ok?r.json():Promise.reject()).then(j=>{const a=(j.assets||[]).find(x=>/\.exe$/i.test(x.name));if(!a)return;APPREL={url:a.browser_download_url,tag:j.tag_name||"",mb:(a.size/1048576).toFixed(1)};put(APPREL)}).catch(()=>{})}
+const GAL_AC=["#ff8fbf","#5fd6c0","#f0b94d","#b58cff"];
+const GI={prev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',next:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',zoom:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>',x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>'};
+function gallery(sh){const n=Math.min(sh.length,4),p2=v=>String(v).padStart(2,"0");
+ const tabs=sh.slice(0,n).map((u,i)=>`<button class="gt${i?"":" on"}" type="button" role="tab" aria-selected="${i?"false":"true"}" data-gi="${i}" style="--ac:${GAL_AC[i]}"><span class="gt-n">${p2(i+1)}</span>${esc(tr("gal"+(i+1)+"k"))}</button>`).join("");
+ const imgs=sh.slice(0,n).map((u,i)=>`<img class="${i?"":"on"}" src="${esc(u)}" alt="${esc(tr("app_sh"))} ${i+1}: ${esc(tr("gal"+(i+1)+"t"))}" width="1164" height="750" draggable="false"${i?' loading="lazy"':""}>`).join("");
+ const caps=sh.slice(0,n).map((u,i)=>`<div class="gcb${i?"":" on"}"><b>${esc(tr("gal"+(i+1)+"t"))}</b><span>${esc(tr("gal"+(i+1)+"p"))}</span></div>`).join("");
+ return `<div class="gal" data-gal data-n="${n}" data-i="0" style="--ac:${GAL_AC[0]}"><div class="gt-row" role="tablist">${tabs}</div><div class="gs"><button class="ga p" type="button" data-gn="-1" aria-label="${esc(tr("gal_prev"))}">${GI.prev}</button><button class="ga n" type="button" data-gn="1" aria-label="${esc(tr("gal_next"))}">${GI.next}</button><button class="gv" type="button" data-gz aria-label="${esc(tr("app_sh"))}">${imgs}<span class="gz" aria-hidden="true">${GI.zoom}</span></button></div><div class="gcap"><div class="gcn" aria-hidden="true"><span class="gcv">01</span><small>/ ${p2(n)}</small></div><div class="gcc" aria-live="polite">${caps}</div></div><div class="gst"><div class="gsc"><strong>4</strong><b>${esc(tr("gals1"))}</b><small>VI · EN · RU · PT</small></div><div class="gsc"><strong>3</strong><b>${esc(tr("gals2"))}</b><small>Master · Split · Legacy</small></div><div class="gsc"><strong>24h</strong><b>${esc(tr("gals3"))}</b><small>${esc(tr("gals3s"))}</small></div></div></div>`}
+(function(){let root=null,lb=null,lbi=0,ret=null,tx0=null;
+ const pad=v=>String(v).padStart(2,"0");
+ function pick(r,i){const n=+r.dataset.n;i=(i%n+n)%n;r.dataset.i=i;r.style.setProperty("--ac",GAL_AC[i]);
+  r.querySelectorAll(".gt").forEach((b,j)=>{b.classList.toggle("on",j===i);b.setAttribute("aria-selected",j===i?"true":"false")});
+  r.querySelectorAll(".gv img").forEach((m,j)=>m.classList.toggle("on",j===i));
+  r.querySelectorAll(".gcb").forEach((c,j)=>c.classList.toggle("on",j===i));
+  const v=r.querySelector(".gcv");if(v)v.textContent=pad(i+1);return i}
+ function mk(){if(lb)return lb;lb=document.createElement("div");lb.className="lb";lb.setAttribute("role","dialog");lb.setAttribute("aria-modal","true");
+  lb.innerHTML=`<button class="lbx" type="button" data-lx aria-label="${esc(tr("gal_close"))}">${GI.x}</button><button class="ga p" type="button" data-ln="-1" aria-label="${esc(tr("gal_prev"))}">${GI.prev}</button><img alt=""><button class="ga n" type="button" data-ln="1" aria-label="${esc(tr("gal_next"))}">${GI.next}</button><div class="lb-c"></div>`;
+  document.body.appendChild(lb);return lb}
+ function show(i){const n=SHOTS.length>4?4:SHOTS.length;lbi=(i%n+n)%n;const l=mk(),m=l.querySelector("img");m.src=SHOTS[lbi];m.alt=tr("gal"+(lbi+1)+"t");l.style.setProperty("--ac",GAL_AC[lbi]);l.querySelector(".lb-c").textContent=pad(lbi+1)+" / "+pad(n)+" · "+tr("gal"+(lbi+1)+"t")}
+ function open(r){root=r;ret=document.activeElement;show(+r.dataset.i);const l=mk();l.classList.add("on");l.querySelector(".lbx").focus()}
+ function close(){if(!lb||!lb.classList.contains("on"))return false;lb.classList.remove("on");if(root)pick(root,lbi);if(ret&&ret.focus)ret.focus();return true}
+ document.addEventListener("click",e=>{const t=e.target;let b;
+  if((b=t.closest("[data-gi]"))){const r=b.closest("[data-gal]");pick(r,+b.dataset.gi);return}
+  if((b=t.closest("[data-gn]"))){const r=b.closest("[data-gal]");pick(r,+r.dataset.i+ +b.dataset.gn);return}
+  if((b=t.closest("[data-gz]"))){open(b.closest("[data-gal]"));return}
+  if(t.closest("[data-lx]")||t===lb){close();return}
+  if((b=t.closest("[data-ln]"))){show(lbi+ +b.dataset.ln)}});
+ document.addEventListener("keydown",e=>{
+  if(lb&&lb.classList.contains("on")){if(e.key==="Escape"){e.stopImmediatePropagation();close()}else if(e.key==="ArrowLeft")show(lbi-1);else if(e.key==="ArrowRight")show(lbi+1);return}
+  const r=document.activeElement&&document.activeElement.closest&&document.activeElement.closest("[data-gal]");
+  if(r&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){e.preventDefault();pick(r,+r.dataset.i+(e.key==="ArrowRight"?1:-1))}},true);
+ document.addEventListener("touchstart",e=>{const r=e.target.closest&&e.target.closest("[data-gal] .gv");tx0=r?e.touches[0].clientX:null},{passive:true});
+ document.addEventListener("touchend",e=>{if(tx0===null)return;const r=e.target.closest("[data-gal]");const d=e.changedTouches[0].clientX-tx0;tx0=null;if(r&&Math.abs(d)>45){pick(r,+r.dataset.i+(d<0?1:-1));e.preventDefault&&0}},{passive:true});
+})();
+function appPage(){const dl=ok(SITE.app)?SITE.app:"",sh=SHOTS.filter(Boolean);
+ const ic={cube:'<path d="M21 8l-9-5-9 5v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8"/>',sync:'<path d="M20 11a8 8 0 0 0-14-4l-2 2M4 5v4h4M4 13a8 8 0 0 0 14 4l2-2M20 19v-4h-4"/>',up:'<path d="M12 19V6M6 12l6-6 6 6M5 21h14"/>',zip:'<path d="M6 3h8l4 4v14H6V3zM14 3v5h4M10 11h2M10 14h2M10 17h2"/>'};
+ const sv=k=>`<i class="hn-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ic[k]}</svg></i>`;
+ const btn=dl?`<a class="go app-dl" href="${esc(dl)}" target="_blank" rel="noopener">${tr("app_dl")}</a>`:"";
+ return crumb('<a href="#/">Kho File Tele</a>',esc(tr("app")))+`<section class="app-hero"><span class="hn-eye">${tr("app_eye")}</span><h1>Electro Cat App</h1><p class="lead">${tr("app_lead")}</p><div class="iact">${btn}${ok(SITE.appPage)?`<a class="gh" href="${esc(SITE.appPage)}" target="_blank" rel="noopener">${tr("app_gh")} ↗</a>`:""}<a class="gh" href="#/files">${tr("enter")}</a></div><p class="ifact">${tr("app_os")}</p></section>
+ <h2 class="ih2">${tr("app_fh")}</h2><div class="hn-k app-k">${[["zip","1"],["sync","2"],["up","3"],["cube","4"]].map(([k,n])=>`<div class="hn-c">${sv(k)}<b>${tr("app_f"+n+"t")}</b><span>${tr("app_f"+n+"p")}</span></div>`).join("")}</div>
+ ${sh.length?`<h2 class="ih2">${tr("app_sh")}</h2><p class="lead" style="margin-bottom:18px">${tr("app_shp")}</p>${gallery(sh)}`:""}
+ ${dl?`<div class="hn-cta app-end"><div class="hn-tx"><b>${tr("app_end_t")}</b><span>${tr("app_end_p")}</span></div>${btn.replace('app-dl','app-dl hn-app')}</div>`:""}`+foot()}
+
+const PG={intro:["Giới thiệu","#/"],home:["Kho File","#/files"],community:["Kho File Cộng Đồng","#/community"],app:["App","#/app"],faq:["FAQ","#/faq"],updates:["Cập nhật","#/updates"],guide:["Hướng dẫn","#/guide"],post:["Hướng dẫn","#/guide"],report:["Báo lỗi / Đóng góp","#/report"],about:["Credit & miễn trừ","#/about"],edit:["Hướng dẫn","#/guide"],nf:["Không tìm thấy",""]};
+const RC={Mondstadt:"#5fd6c0",Dragonspine:"#9ad7ff",Liyue:"#f0b94d",Inazuma:"#b58cff",Sumeru:"#8fd14f",Fontaine:"#4fa8ff",Natlan:"#ff7a45",NodKrai:"#9FA8F2",Snezhnaya:"#8fa8ff",Enkanomiya:"#7C8FD8",Chasm:"#c9835a",ChenyuVale:"#4fd1a1",SeaOfBygoneEras:"#43BDEB",AncientSacredMountain:"#E63946",TempleOfSpace:"#E5373F",FrostMoon:"#9DBFE4"};
+/* bảng đầy đủ: c = màu chính, c2 = màu phụ, d = [nền, panel, card, viền, chữ, chữ phụ] */
+const RP={
+ NodKrai:{c:"#9FA8F2",c2:"#E8B4D6",d:["#10143A","#171C48","#1F2558","rgba(159,168,242,.22)","#EEF0FF","#A9AED8"]},
+ Enkanomiya:{c:"#7C8FD8",c2:"#E9B44C",d:["#0E1322","#141A2E","#1B233D","rgba(124,143,216,.22)","#E8ECF8","#96A0C4"]},
+ SeaOfBygoneEras:{c:"#43BDEB",c2:"#B79CF2",d:["#0A2A4A","#0F3459","#154068","rgba(67,189,235,.24)","#E8F6FF","#9CC4E0"]},
+ AncientSacredMountain:{c:"#E63946",c2:"#FF7D00",d:["#1F1A17","#28211D","#322922","rgba(230,57,70,.3)","#F5EBE6","#C9AFA3"]},
+ TempleOfSpace:{c:"#E5373F",c2:"#A08896",d:["#15070A","#1F0B10","#2B1017","rgba(229,55,63,.28)","#F8EBEC","#C9A5A9"]},
+ FrostMoon:{c:"#9DBFE4",c2:"#EFD99B",d:["#0B1018","#111822","#19212E","rgba(157,191,228,.2)","#EEF3F8","#9AA8B8"]}
+};
+function theme(id){const H=document.documentElement,st=H.style,p=RP[id],c=p?p.c:RC[id],tc=$("tc"),K=["--pink","--pink2","--on","--bg","--panel","--card","--line","--text","--mute","--chip"];
+ if(!c){K.forEach(k=>st.removeProperty(k));H.removeAttribute("data-rp");if(tc)tc.content="#18121f";return}
+ const n=parseInt(c.slice(1),16),r=(n>>16)/255,g=(n>>8&255)/255,b=(n&255)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn,lum=.2126*r+.7152*g+.0722*b;
+ let h=0,sa=0;if(d){sa=d/(1-Math.abs(2*l-1));h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h=(h*60+360)%360}
+ st.setProperty("--pink",c);st.setProperty("--pink2",p?p.c2:`hsl(${(h+315)%360} ${Math.min(sa*100,90)}% ${Math.max(l*100,62)}%)`);st.setProperty("--on",lum>.45?"#2a1633":"#fff");
+ if(p){["--bg","--panel","--card","--line"].forEach((k,i)=>st.setProperty(k,p.d[i]));st.setProperty("--text",p.d[4]);st.setProperty("--mute",p.d[5]);st.setProperty("--chip",`color-mix(in srgb,${c} 18%,${p.d[1]})`);if(tc)tc.content=p.d[0]}
+ else{["--bg","--panel","--card","--line","--text","--mute","--chip"].forEach(k=>st.removeProperty(k));if(tc)tc.content="#18121f"}
+ H.dataset.rp="on"}
+function render(){const R=route();theme(!q&&R.p==="r"?ALL[R.i][0]:"");document.body.dataset.p=q?"search":R.p;rp(R);
+ const lb=R.p==="r"?ALL[R.i][1]:pgl(R.p),hm=R.p==="r"?"#/files":(PG[R.p]||[])[1];
+ $("mbl").textContent=q?tr("search"):lb;document.title=(q?tr("search")+" “"+q+"” · ":R.p==="intro"?"":lb+" · ")+"Kho File Tele";
+ document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm));
+ if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,community,app:appPage,updates,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);if(R.p==="community"&&!q)commInit();syncBar();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
+function syncBar(){const n=SEL.size;$("bar").hidden=!n;$("bn").textContent=tr("sel",{n});$("bz").textContent=n>1?tr("dln",{n}):tr("dl1");
+ document.querySelectorAll(".blk").forEach(b=>{const a=b.querySelector(".sa");if(a)a.textContent=[...b.querySelectorAll("input[data-k]")].every(x=>x.checked)?tr("unselall"):tr("selall")})}
+const crcT=Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;return c>>>0});
+const crc=d=>{let x=-1;for(let i=0;i<d.length;i++)x=crcT[(x^d[i])&255]^(x>>>8);return(x^-1)>>>0};
+function zipBlob(items){const en=new TextEncoder(),parts=[],cd=[];let off=0;
+ for(const f of items){const nm=en.encode(f.name),c=crc(f.data),L=f.data.length,D=f.z||f.data,C=D.length,m=f.z?8:0,h=new DataView(new ArrayBuffer(30));
+  h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(8,m,true);h.setUint16(12,0x21,true);h.setUint32(14,c,true);h.setUint32(18,C,true);h.setUint32(22,L,true);h.setUint16(26,nm.length,true);
+  parts.push(h.buffer,nm,D);
+  const d=new DataView(new ArrayBuffer(46));d.setUint32(0,0x02014b50,true);d.setUint16(4,20,true);d.setUint16(6,20,true);d.setUint16(8,0x0800,true);d.setUint16(10,m,true);d.setUint16(14,0x21,true);d.setUint32(16,c,true);d.setUint32(20,C,true);d.setUint32(24,L,true);d.setUint16(28,nm.length,true);d.setUint32(42,off,true);
+  cd.push(d.buffer,nm);off+=30+nm.length+C}
+ const sz=cd.reduce((a,b)=>a+(b.byteLength??b.length),0),e=new DataView(new ArrayBuffer(22));
+ e.setUint32(0,0x06054b50,true);e.setUint16(8,items.length,true);e.setUint16(10,items.length,true);e.setUint32(12,sz,true);e.setUint32(16,off,true);
+ return new Blob([...parts,...cd,e.buffer],{type:"application/zip"})}
+const deflate=async d=>{if(!window.CompressionStream)return null;try{const z=new Uint8Array(await new Response(new Blob([d]).stream().pipeThrough(new CompressionStream("deflate-raw"))).arrayBuffer());return z.length<d.length?z:null}catch(e){return null}};
+async function dlZip(L){const list=L||[...SEL].map(u=>FILES.find(f=>url(f)===u)).filter(Boolean),b=$("bz");if(!list.length)return;
+ const tot=list.reduce((a,f)=>a+(f.bytes||0),0);if(tot>150*1048576){const msg=tr("x_zipbig",{n:Math.round(tot/1048576)});$("bar").hidden=false;$("bn").textContent=msg;lv(msg);setTimeout(syncBar,5000);return}
+ $("bar").hidden=false;b.disabled=true;const items=[],bad=[];let n=0,i=0;
+ const upd=()=>{$("bn").textContent=tr("zipping",{n,m:list.length});b.textContent=Math.round(n/list.length*100)+"%"};upd();
+ const w=async()=>{while(i<list.length){const f=list[i++];try{const r=await fetch(url(f));if(!r.ok)throw 0;const data=new Uint8Array(await r.arrayBuffer());if(f.sha&&window.crypto&&crypto.subtle){const hx=[...new Uint8Array(await crypto.subtle.digest("SHA-256",data))].map(x=>x.toString(16).padStart(2,"0")).join("");if(hx!==String(f.sha).toLowerCase())throw 0}items.push({name:fk(f),data,z:/\.zip$/i.test(f.file)?null:await deflate(data)})}catch(e){bad.push(f.name)}n++;upd()}};
+ await Promise.all(Array.from({length:Math.min(4,list.length)},w));
+ if(items.length){const a=document.createElement("a");a.href=URL.createObjectURL(zipBlob(items));a.download=((ALL[route().i]||[])[0]||"kho")+"-tele.zip";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+ const bl=bad.slice(0,3).join(", ")+(bad.length>3?"…":""),msg=bad.length?(items.length?tr("x_zippart",{n:items.length,m:bad.length,l:bl}):tr("x_zipfail",{l:bl})):tr("done",{n:items.length});
+ $("bn").textContent=msg;lv(msg);b.disabled=false;setTimeout(syncBar,bad.length?7000:2500)}
+async function saveUrl(u,n){try{const r=await fetch(u);if(!r.ok)throw 0;const a=document.createElement("a");a.href=URL.createObjectURL(await r.blob());a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}catch(e){lv(tr("x_direct"));open(u,"_blank","noopener")}}
+let GUIDES=[],GL=0;
+const fold=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/gi,"d").toLowerCase();
+/* Bảng nhận diện lấy từ importer.js của app (thêm ChenyuVale cho khớp danh sách vùng của trang) */
+const RALIAS={Mondstadt:["mondstadt"],Dragonspine:["dragonspine"],Liyue:["liyue"],Inazuma:["inazuma"],Sumeru:["sumeru"],Fontaine:["fontaine"],Natlan:["natlan"],NodKrai:["nodkrai"],Snezhnaya:["snezhnaya"],Enkanomiya:["enkanomiya"],Chasm:["chasm","vucdasau","khumongam"],SeaOfBygoneEras:["seaofbygoneeras","bienkynguyencu"],AncientSacredMountain:["ancientsacredmountain","nuithanhvienco"],TempleOfSpace:["templeofspace","thandienkhonggian"],FrostMoon:["frostmoon","suongnguyet"],ChenyuVale:["chenyuvale","tramngoccoc"]};
+const LPAT=[["vi",/\b(vietnamese|tieng viet|vn|vi)\b/],["en",/\b(english|tieng anh|en)\b/],["ru",/\b(russian|tieng nga|ru)\b/],["pt",/\b(portuguese|tieng bo dao nha|pt)\b/]];
+function classify(fn){const f=fold(fn.replace(/\.zip$/i,"")),oc=/oculus|oculi|than dong/.test(f),te=/teleport|\btele\b|diem tele/.test(f);
+ if(oc&&te)return{err:1};if(oc)return{region:"TeleportOculi",kind:"oculi",lang:""};if(te)return{region:"TeleportOculi",kind:"tele",lang:""};
+ const cp=f.replace(/[^a-z0-9]/g,""),hit=Object.keys(RALIAS).filter(id=>RALIAS[id].some(a=>cp.includes(a)));if(hit.length!==1)return{err:1};
+ const ls=LPAT.filter(([,re])=>re.test(f)).map(([l])=>l);if(ls.length!==1)return{err:1};
+ return{region:hit[0],lang:ls[0],kind:/unsplit/.test(f)?"tong":/split/.test(f)?"le":"cu"}}
+function fromManifest(m){const day=String(m.version||"").slice(0,10);
+ return(m.files||[]).map(x=>{const sg=String(x.path).split("/"),fn=sg[sg.length-1],c=classify(fn),kb=Math.max(1,Math.round((x.size||0)/1024));
+  const un=c.err?{region:"Unofficial",kind:"Other",lang:"",note:"x_manote"}:{...c,note:""};
+  return{...un,file:(sg[0].toLowerCase()==="data"&&sg.length>1?sg.slice(1):sg).join("/"),name:fn.replace(/\.zip$/i,""),pts:0,size:kb<1024?kb+" KB":(kb/1024).toFixed(1)+" MB",bytes:x.size||0,date:day,cat:"",ver:"",gv:SITE.gameVer,sha:x.sha256||"",url:RAW+sg.map(encodeURIComponent).join("/")}})}
+function go(h,push){CUR=String(h).replace(/^#\/?/,"");SEL.clear();q="";$("sq").value="";if(push){try{history.pushState(null,"",h)}catch(e){}}render();if(!route().k)scrollTo(0,0);const h1=document.querySelector("#main h1");if(h1){h1.tabIndex=-1;h1.focus({preventScroll:true})}}
+window.addEventListener("hashchange",()=>go(location.hash));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(sq.value){sq.value="";q="";if($("sq-clr"))$("sq-clr").hidden=true;render();sq.blur();return}const o=mn.classList.contains("on");tg(false);if(o)mb.focus()}else if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();sq.focus()}});
+document.addEventListener("change",e=>{const sl=e.target.closest("select[data-rs]");if(sl){go("#/r/"+sl.value,true);return}const c=e.target.closest("input[data-k]");if(c){c.checked?SEL.add(c.dataset.k):SEL.delete(c.dataset.k);syncBar()}});
+document.addEventListener("click",e=>{const t=e.target;
+ const lk=t.closest('a[href^="#/"]');if(lk){e.preventDefault();go(lk.getAttribute("href"),true);return}
+ const dd=t.closest("a.dl[download]");if(dd&&new URL(dd.href,location.href).origin!==location.origin&&!/\.zip$/i.test(dd.href)){e.preventDefault();saveUrl(dd.href,decodeURIComponent(dd.href.split("/").pop()));return}
+ const hc=t.closest("[data-h],[data-t]");if(hc){const v=hc.dataset.h||hc.dataset.t,old=hc.textContent;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>{hc.textContent=tr("copied");lv(tr("copied2"));setTimeout(()=>hc.textContent=old,1500)}).catch(()=>prompt(tr("x_copyp"),v));return}
+ if(t.closest("#da")){dlZip(FILES.slice());return}
+ if(t.closest("#dr")){const id=ALL[route().i][0],all=FILES.filter(f=>f.region===id),ls=LORD.filter(l=>all.some(f=>f.lang===l)),lg=ls.includes(LS[id])?LS[id]:ls.includes(UL)?UL:ls[0];dlZip(ls.length?all.filter(f=>f.lang===lg):all);return}
+ const so=t.closest(".seg[data-so]");if(so){SO=so.dataset.so;render();return}
+ const c=t.closest(".cp[data-u]");if(c){const u=new URL(c.dataset.u,location.href).href,old=c.textContent;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{c.textContent=tr("copied");lv(tr("copied2"));setTimeout(()=>c.textContent=old,1500)}).catch(()=>prompt("Link:",u));return}
+ const g=t.closest(".seg[data-lg]");if(g){LS[ALL[route().i][0]]=g.dataset.lg;try{localStorage.setItem("tl",JSON.stringify(LS))}catch(e){}SEL.clear();render();return}
+ const a=t.closest(".sa");if(a){const bs=[...a.closest(".blk").querySelectorAll("input[data-k]")],on=!bs.every(x=>x.checked);bs.forEach(x=>{x.checked=on;on?SEL.add(x.dataset.k):SEL.delete(x.dataset.k)});syncBar();return}
+ if(t.closest("#bx")){SEL.clear();document.querySelectorAll("input[data-k]").forEach(x=>x.checked=false);syncBar();return}
+ if(t.closest("#bz"))dlZip()});
+$("gb").href=SITE.gitbook;$("gb").hidden=!ok(SITE.gitbook);const sq=$("sq"),sqClr=$("sq-clr");sq.oninput=()=>{q=sq.value.trim();if(sqClr)sqClr.hidden=!sq.value;render();if(q)scrollTo(0,0)};
+if(sqClr)sqClr.onclick=()=>{sq.value="";q="";sqClr.hidden=true;render();sq.focus()};
+const mb=$("mb"),mn=$("menu"),tg=o=>{mn.classList.toggle("on",o);mb.setAttribute("aria-expanded",o);const m=$("main");if(m)m.inert=!!o;if(o)mn.querySelector("a").focus()};
+mb.onclick=e=>{e.stopPropagation();tg(!mn.classList.contains("on"))};
+mn.onclick=e=>{if(e.target.closest("a"))tg(false)};
+document.addEventListener("click",e=>{if(!mn.contains(e.target)&&e.target!==mb&&!mb.contains(e.target))tg(false)});
+function applyStatic(){document.documentElement.lang=UL;ALL.forEach(a=>{if(!a[2])a[2]=a[1];a[1]=I18N["rn_"+a[0]]?tr("rn_"+a[0]):a[2]});const M={"#/":"intro","#/files":"files","#/community":"community","#/app":"app","#/updates":"updates","#/guide":"guide","#/faq":"faq","#/report":"report","#/about":"about"};
+ document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>{const k=M[a.getAttribute("href")];if(k)a.textContent=tr(k)});
+ mn.setAttribute("aria-label",tr("toc"));mn.querySelector(".mh").textContent=tr("toc");mb.setAttribute("aria-label",tr("toc"));
+ sq.placeholder=tr("sph");sq.setAttribute("aria-label",tr("sl"));$("bx").textContent=tr("unsel");
+ document.querySelector('meta[name=description]').content=tr("desc");const og=document.querySelector('meta[property="og:description"]');if(og)og.content=tr("ogd");
+ $("ul").value=UL;$("ul").setAttribute("aria-label",tr("uilang"));
+ const ulCur=$("ul-cur"),LN={vi:"Tiếng Việt",en:"English",ru:"Русский",pt:"Português"};
+ if(ulCur)ulCur.textContent=LN[UL]||"Tiếng Việt";
+ document.querySelectorAll(".ul-opt").forEach(b=>{const on=b.dataset.lang===UL;b.classList.toggle("on",on);b.setAttribute("aria-selected",on?"true":"false")})}
+$("ul").onchange=e=>{UL=e.target.value;try{localStorage.setItem("ul",UL)}catch(x){}
+ ALL.forEach(([id])=>{if(FILES.some(f=>f.region===id&&f.lang===UL))LS[id]=UL});try{localStorage.setItem("tl",JSON.stringify(LS))}catch(x){}applyStatic();render()};
+const ulBtn=$("ul-btn"),ulPop=$("ul-pop"),tgUl=o=>{if(!ulPop||!ulBtn)return;ulPop.hidden=!o;ulBtn.setAttribute("aria-expanded",o?"true":"false")};
+if(ulBtn&&ulPop){
+ ulBtn.onclick=e=>{e.stopPropagation();tgUl(ulPop.hidden)};
+ ulPop.querySelectorAll(".ul-opt").forEach(b=>{
+  b.onclick=e=>{e.stopPropagation();tgUl(false);const l=b.dataset.lang;if(l&&l!==UL){const s=$("ul");if(s){s.value=l;s.onchange({target:s})}}};
+ });
+ document.addEventListener("click",e=>{if(!ulBtn.contains(e.target)&&!ulPop.contains(e.target))tgUl(false)});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!ulPop.hidden){tgUl(false);ulBtn.focus()}});
+}
+try{
+ const cm=localStorage.getItem("ec_manifest");if(cm){const d=fromManifest(JSON.parse(cm));if(d&&d.length)FILES=d}
+ const cc=localStorage.getItem("ec_content");if(cc){applyContent(JSON.parse(cc))}
+}catch(e){}
+applyStatic();render();
+const RER=()=>{if(route().p!=="edit")render()};
+fetch(RAW+"manifest.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(m=>{const d=fromManifest(m);if(d.length){FILES=d;try{localStorage.setItem("ec_manifest",JSON.stringify(m))}catch(e){}RER()}}).catch(()=>{if(SITE.repo&&!FILES.length){FILES=[];RER();lv(tr("x_loadfail"))}});
+fetch(RAW+"content.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(c=>{applyContent(c);try{localStorage.setItem("ec_content",JSON.stringify(c))}catch(e){}RER()}).catch(()=>{GL=1;RER()});
+let topBtn=document.getElementById("top-btn");
+if(!topBtn){topBtn=document.createElement("button");topBtn.id="top-btn";topBtn.className="top-btn";topBtn.type="button";topBtn.setAttribute("aria-label",tr("scroll_top"));topBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>';topBtn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});document.body.appendChild(topBtn)}
+const spb=document.getElementById("spb");let tick=0;
+const onScroll=()=>{tick=0;const y=window.scrollY;if(topBtn)topBtn.classList.toggle("on",y>320);if(spb){const h=document.documentElement.scrollHeight-window.innerHeight;spb.style.width=(h>0?Math.min(100,Math.max(0,y/h*100)):0)+"%"}};
+window.addEventListener("scroll",()=>{if(!tick)tick=requestAnimationFrame(onScroll)},{passive:true});
+let mmE=null,mmP=0;
+document.addEventListener("mousemove",e=>{const el=e.target.closest&&e.target.closest(".card,.row,.hn-c");if(!el)return;mmE={el,x:e.clientX,y:e.clientY};if(mmP)return;mmP=1;requestAnimationFrame(()=>{mmP=0;const{el,x,y}=mmE,r=el.getBoundingClientRect();el.style.setProperty("--mx",(x-r.left)+"px");el.style.setProperty("--my",(y-r.top)+"px")})},{passive:true});
+document.addEventListener("visibilitychange",()=>document.body.classList.toggle("paused",document.hidden));
+</script></body></html>
