@@ -638,7 +638,7 @@ html[data-rp=on] .hero h1{color:var(--text)}
   <select class="ulsel" id="ul" aria-hidden="true"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="ru">Русский</option><option value="pt">Português</option></select>
  </div>
  </div></header>
-<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><div class="mg" id="mg"><div class="mgr"><a href="#/community">Kho File Cộng Đồng</a><button type="button" class="mgb" id="mgb" aria-expanded="false" aria-controls="msub" aria-label="Mở rộng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div><div class="msub" id="msub"><div><a href="#/community/dl" data-t="cm_sdl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span>Tải file</span></a><a href="#/community/up" data-t="cm_sup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 20h14"/></svg><span>Đăng file</span></a></div></div></div><a href="#/updates">Cập nhật</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a><a id="gb" href="#" target="_blank" rel="noopener">GitBook <small>↗</small></a></nav>
+<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><div class="mg" id="mg"><div class="mgr"><a href="#/community">Kho File Cộng Đồng</a><button type="button" class="mgb" id="mgb" aria-expanded="false" aria-controls="msub" aria-label="Mở rộng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div><div class="msub" id="msub"><div><a href="#/community/dl" data-t="cm_sdl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span>Tải file</span></a><a href="#/community/up" data-t="cm_sup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 20h14"/></svg><span>Đăng file</span></a></div></div></div><a href="#/updates">Cập nhật</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a></nav>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
 <div class="sr" id="live" aria-live="polite"></div>
 <div class="rp" id="rp" hidden></div>
@@ -901,7 +901,7 @@ const tr=(k,v)=>{const e=I18N[k];if(!e)return k;let x=e[UI_LANGS.indexOf(UL)]||e
  Thêm file = thêm một dòng F(vùng, loại, ngôn ngữ, tên file, tên hiển thị, số điểm, dung lượng, ngày, nhóm, ghi chú).
  Các dòng bên dưới chỉ là DỮ LIỆU MẪU, hãy thay bằng file thật. */
 const SITE={server:"Electro Cat",repo:"pxtk08/Electro-Cat-App-Data",branch:"main",dir:"", /* repo GitHub dạng "tenchu/tenrepo": trang tự đọc files.json và tải file từ raw.githubusercontent.com; dir = thư mục con chứa file (nếu có) */
- contact:"", /* vd "Liên hệ: Discord abc#1234" */gitbook:"",
+ contact:"", /* vd "Liên hệ: Discord abc#1234" */
  path:"", /* điền đường dẫn thư mục tele của server, để trống sẽ hiện câu chung */
  gameVer:"", /* vd "6.1" -> mỗi file hiện chip "Game 6.1" */
  app:"https://github.com/pxtk08/Electro-Cat-App/releases/latest",appRepo:"pxtk08/Electro-Cat-App",appPage:"https://github.com/pxtk08/Electro-Cat-App",appShots:[] /* ảnh giao diện app: ["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/screens/1.png", ...] hoặc data:image/... */,discord:"https://discord.gg/yZXXvqutAS",sbUrl:"https://gocjhsauaegmayqofiuw.supabase.co" /* dán Project URL Supabase, vd https://abcxyz.supabase.co */,sbKey:"sb_publishable_pln-2avkXsysmdpJ6vyT3g_jSrUu5bH",form:"",github:"",video:"" /* điền link thật thì nút mới hiện; để trống hoặc còn "ten-..." thì tự ẩn */};
@@ -915,7 +915,7 @@ const CREDITS=[["pxtk.08","cr1"]];
 let FAQ=[
  {q:"faq1q",a:"path"},{q:"faq2q",a:"faq2a"},{q:"faq3q",a:"faq3a"},{q:"faq4q",a:"faq4a"},{q:"faq5q",a:"faq5a"},{q:"faq6q",a:"faq6a"}
 ];
-/* Thứ tự và tên theo GitBook của bạn: [id thư mục, tên hiển thị] */
+/* Thứ tự và tên hiển thị: [id thư mục, tên hiển thị] */
 const ALL=[["Mondstadt","Mondstadt"],["Liyue","Liyue"],["Inazuma","Inazuma"],["Sumeru","Sumeru"],["Fontaine","Fontaine"],["Natlan","Natlan"],["NodKrai","Nod Krai"],["Dragonspine","Long Tích Tuyết Sơn"],["Chasm","Khu Mỏ Ngầm"],["Enkanomiya","Enkanomiya"],["SeaOfBygoneEras","Biển Kỷ Nguyên Cũ"],["ChenyuVale","Trầm Ngọc Cốc"],["AncientSacredMountain","Núi Thánh Viễn Cổ"],["TempleOfSpace","Thần Điện Không Gian"],["FrostMoon","Sương Nguyệt"],["Snezhnaya","Snezhnaya"],["TeleportOculi","Điểm Tele Và Thần Đồng"]];
 const KIND={tong:"File tổng",le:"File chia lẻ",cu:"File cũ",tele:"Điểm Tele",oculi:"Thần Đồng",Other:"Khác"},KORD=["tong","le","cu","tele","oculi"];
 const LANG={vi:"Tiếng Việt",en:"English",ru:"Русский",pt:"Português"};
@@ -1020,13 +1020,18 @@ async function editInit(s){if(!ADM())return;
  function openChPicker(){
   let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
   const quick=[
-   ["📦 · teleport-files-by-pxtk08","#/files","Kho File chính"],
-   ["🤝 · share-teleport-files-here","#/community","Kho File Cộng Đồng"],
-   ["📱 · Electro Cat App","#/app","Tải ứng dụng"],
+   ["🏠 · Giới thiệu","#/","Trang giới thiệu"],
+   ["📖 · Hướng dẫn","#/guide","Danh sách bài hướng dẫn"],
    ["❓ · FAQ","#/faq","Hỏi đáp thường gặp"],
-   ["💬 · Kênh Discord",SITE.discord||"https://discord.gg/yZXXvqutAS","Server Discord"],
+   ["📱 · App","#/app","Electro Cat App"],
+   ["📦 · Kho File","#/files","Kho File chính"],
+   ["🤝 · Kho File Cộng Đồng","#/community","File do cộng đồng chia sẻ"],
+   ["⬇️ · Tải file","#/community/dl","Kho Cộng Đồng · Tải file"],
+   ["⬆️ · Đăng file","#/community/up","Kho Cộng Đồng · Đăng file"],
    ["📢 · Cập nhật","#/updates","Lịch sử thay đổi"],
-   ["🚨 · Báo lỗi / Đóng góp","#/report","Mẫu báo lỗi"]
+   ["🚨 · Báo lỗi / Đóng góp","#/report","Mẫu báo lỗi"],
+   ["ℹ️ · Credit & miễn trừ","#/about","Credit và miễn trừ trách nhiệm"],
+   ["💬 · Discord",SITE.discord||"https://discord.gg/yZXXvqutAS","Server Discord"]
   ];
   d.innerHTML=`<form id="dform" style="max-width:580px">
    <h2>📌 Gán kênh / điều hướng</h2>
@@ -1080,7 +1085,12 @@ const CH_MAP={
  "faq":["❓ FAQ","#/faq"],
  "discord":["💬 Discord",SITE.discord||"https://discord.gg/yZXXvqutAS"],
  "updates":["📢 Cập nhật","#/updates"],
- "report":["🚨 Báo lỗi","#/report"]
+ "report":["🚨 Báo lỗi","#/report"],
+ "guide":["📖 Hướng dẫn","#/guide"],
+ "about":["ℹ️ Credit & miễn trừ","#/about"],
+ "home":["🏠 Giới thiệu","#/"],
+ "dl":["⬇️ Tải file","#/community/dl"],
+ "up":["⬆️ Đăng file","#/community/up"]
 };
 const setCurGuide=(slug,title)=>{try{sessionStorage.setItem("ec_cg",JSON.stringify({slug,title,t:Date.now()}))}catch(e){}};
 const getCurGuide=()=>{try{const s=sessionStorage.getItem("ec_cg");return s?JSON.parse(s):null}catch(e){return null}};
@@ -1335,7 +1345,7 @@ document.addEventListener("click",e=>{const t=e.target;
  const a=t.closest(".sa");if(a){const bs=[...a.closest(".blk").querySelectorAll("input[data-k]")],on=!bs.every(x=>x.checked);bs.forEach(x=>{x.checked=on;on?SEL.add(x.dataset.k):SEL.delete(x.dataset.k)});syncBar();return}
  if(t.closest("#bx")){SEL.clear();document.querySelectorAll("input[data-k]").forEach(x=>x.checked=false);syncBar();return}
  if(t.closest("#bz"))dlZip()});
-$("gb").href=SITE.gitbook;$("gb").hidden=!ok(SITE.gitbook);const sq=$("sq"),sqClr=$("sq-clr");sq.oninput=()=>{q=sq.value.trim();if(sqClr)sqClr.hidden=!sq.value;render();if(q)scrollTo(0,0)};
+const sq=$("sq"),sqClr=$("sq-clr");sq.oninput=()=>{q=sq.value.trim();if(sqClr)sqClr.hidden=!sq.value;render();if(q)scrollTo(0,0)};
 if(sqClr)sqClr.onclick=()=>{sq.value="";q="";sqClr.hidden=true;render();sq.focus()};
 const mb=$("mb"),mn=$("menu"),tg=o=>{mn.classList.toggle("on",o);mb.setAttribute("aria-expanded",o);const m=$("main");if(m)m.inert=!!o;if(o)mn.querySelector("a").focus()};
 function mgSet(o){const g=$("mg"),b=$("mgb");if(!g||o===null)return;g.classList.toggle("open",o);b.setAttribute("aria-expanded",o)}
