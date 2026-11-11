@@ -1216,20 +1216,19 @@ function post(sl){const g=gfind(sl),bc=t=>crumb("<a href=\"#/\">Kho File Tele</a
  {const want=gU(g);if(sl!==want){sl=want;CUR="guide/"+want;try{history.replaceState(null,"","#/guide/"+gu(want))}catch(e){}}}
  if(g){setCurGuide(sl,gT(g));syncGuideRet()}
  const back='<div class="pn"><a class="gh" href="#/guide">← '+tr("x_back_guides")+'</a></div>';
- const sibs=GUIDES.filter(x=>x!==g&&gGrp(x)===gGrp(g)&&gSL(x)!==gSL(g)&&(!x.draft||ADM())).sort((a,b)=>LORD.indexOf(gSL(a))-LORD.indexOf(gSL(b))),
-  swl=sibs.length?`<div class="lg" role="navigation" aria-label="${tr("lang")}"><em>${tr("lang")}</em><a class="seg on" aria-current="page">${esc(LANG[gSL(g)]||gSL(g))}</a>${sibs.map(x=>`<a class="seg" href="#/guide/${gu(gU(x))}">${esc(LANG[gSL(x)]||gSL(x))}</a>`).join("")}</div>`:"";
+ 
  fetch(RAW+gpath(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
   const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g));
   document.title=(SITE.server||"Electro Cat")+" · "+gT(g);
   setCurGuide(sl,gT(g));syncGuideRet();
-  $("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1>${swl}${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a><button class="cp" id="gtr-btn" type="button">🌐 Dịch thành bài riêng</button></div>`:""}`+back+foot();if(ADM()&&$("gtr-btn"))$("gtr-btn").onclick=()=>openTrans(g)})
+  $("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a><button class="cp" id="gtr-btn" type="button">🌐 Dịch thành bài riêng</button></div>`:""}`+back+foot();if(ADM()&&$("gtr-btn"))$("gtr-btn").onclick=()=>openTrans(g)})
  .catch(()=>{if(route().s===sl)$("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1><p class="none">${tr("x_post_fail")}</p>`+back+foot()});
  return bc(gT(g))+`<h1>${esc(gT(g))}</h1><p class="lead">${tr("x_loading")}</p>`}
 function guide(){if(!GL)return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_loading")}</p>`;
  const A=ADM(),vis=GUIDES.filter(g=>!g.draft||A),add=A?`<div class="hl"><a class="go" href="#/edit/guide/_new">+ Thêm bài hướng dẫn</a></div>`:"";
  if(!vis.length)return A?`<h1>${tr("guide")}</h1><p class="lead">Chưa có bài nào.</p>`+add+foot():guide0();
- const LL=vis.filter(g=>gSL(g)===UL),EN=vis.filter(g=>gSL(g)==="en"),L0=A?vis:LL.length?LL:EN.length?EN:vis,L=[...L0].sort((a,b)=>(a.order||999)-(b.order||999)||String(b.date).localeCompare(String(a.date)));
- return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_guide_lead")}</p>${add}${ok(SITE.video)?`<div class="hl"><a class="go" href="${esc(SITE.video)}" target="_blank" rel="noopener">${tr("x_video")}</a></div>`:""}${L.map(g=>`<a class="row gp" href="#/guide/${gu(gU(g))}"><div><h3>${esc(gT(g))}</h3>${gS(g)?`<p>${esc(gS(g))}</p>`:""}${g.draft||g.date||A?`<div class="meta">${A?'<i class="l">'+esc(LANG[gSL(g)]||gSL(g))+'</i>':""}${g.draft?'<i class="l">'+tr("x_draft")+'</i>':""}${g.date?`<i>${esc(fd(g.date))}</i>`:""}</div>`:""}</div>${CHEV}</a>`).join("")}`+foot()}
+ const LL=vis.filter(g=>gSL(g)===UL),EN=vis.filter(g=>gSL(g)==="en"),L0=LL.length?LL:EN.length?EN:vis,L=[...L0].sort((a,b)=>(a.order||999)-(b.order||999)||String(b.date).localeCompare(String(a.date)));
+ return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_guide_lead")}</p>${add}${ok(SITE.video)?`<div class="hl"><a class="go" href="${esc(SITE.video)}" target="_blank" rel="noopener">${tr("x_video")}</a></div>`:""}${L.map(g=>`<a class="row gp" href="#/guide/${gu(gU(g))}"><div><h3>${esc(gT(g))}</h3>${gS(g)?`<p>${esc(gS(g))}</p>`:""}${g.draft||g.date?`<div class="meta">${g.draft?'<i class="l">'+tr("x_draft")+'</i>':""}${g.date?`<i>${esc(fd(g.date))}</i>`:""}</div>`:""}</div>${CHEV}</a>`).join("")}`+foot()}
 function guide0(){return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_guide_lead0")}</p>${ok(SITE.video)?`<div class="hl"><a class="go" href="${esc(SITE.video)}" target="_blank" rel="noopener">${tr("x_video")}</a></div>`:""}<ol class="how">${GUIDE.map(g=>`<li><h3>${esc(tx(g.t))}</h3><p>${esc(tx(g.p))}</p>${g.img?`<img src="${esc(g.img)}" alt="${esc(tx(g.t))}" loading="lazy" style="grid-column:2;max-width:100%;border-radius:12px;margin-top:12px;border:1px solid var(--line)">`:""}</li>`).join("")}</ol>`+foot()}
 function about(){return `<h1>${esc(tr("about"))}</h1><p class="lead">${tr("x_about_lead")}</p><ul class="ul">${CREDITS.map(c=>`<li><span class="t">${esc(c[0])}</span><small>${esc(tx(c[1]))}</small></li>`).join("")}</ul><div class="note">${tr("x_about_note")}</div>`+foot()}
 function report(){const L=[["Discord",SITE.discord],["Form",SITE.form],["GitHub",SITE.github]].filter(x=>ok(x[1])),T=tr("x_tpl");
