@@ -959,7 +959,7 @@ function updates(){const A=ADM(),ch=[...CHANGELOG].sort((a,b)=>String(b.d).local
 /* ===== Chế độ quản trị: chỉ hiện khi có token GitHub hợp lệ; mọi thay đổi ghi thẳng vào repo ===== */
 const PV={};const PWH="c3588868b18ffbab5b415842461fa4e55adbb4cbcfb9e2b5016b5e2f35d92756";
 let TOK="";try{TOK=sessionStorage.getItem("gt")||"";localStorage.removeItem("gt")}catch(e){}
-const ADM=()=>!!TOK,br=()=>encodeURIComponent(SITE.branch),gSL=g=>g.lang||"vi",gpath=(g,l)=>"Guide/"+g.slug+(l&&l!==gSL(g)?"."+l:"")+".md",gI=g=>(UL!==gSL(g)&&g.i18n&&g.i18n[UL])||null,gT=g=>(gI(g)&&gI(g).title)||g.title,gU=g=>(gI(g)&&gI(g).slug)||g.slug,gfind=sl=>GUIDES.find(x=>x.slug===sl)||GUIDES.find(x=>x.i18n&&Object.values(x.i18n).some(m=>m&&m.slug===sl)),gS=g=>(gI(g)&&gI(g).summary)||g.summary;
+const ADM=()=>!!TOK,br=()=>encodeURIComponent(SITE.branch),gSL=g=>g.lang||"vi",gpath=(g,l)=>"Guide/"+g.slug+(l&&l!==gSL(g)?"."+l:"")+".md",gI=g=>(UL!==gSL(g)&&g.i18n&&g.i18n[UL])||null,gT=g=>(gI(g)&&gI(g).title)||g.title,gU=g=>(gI(g)&&gI(g).slug)||g.alias||g.slug,gfind=sl=>GUIDES.find(x=>x.slug===sl)||GUIDES.find(x=>x.alias===sl||(x.i18n&&Object.values(x.i18n).some(m=>m&&m.slug===sl))),gS=g=>(gI(g)&&gI(g).summary)||g.summary;
 const enc=x=>{const u=new TextEncoder().encode(x);let t="";for(let i=0;i<u.length;i+=8192)t+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(t)},dec=b=>new TextDecoder().decode(Uint8Array.from(atob(String(b).replace(/\s/g,"")),c=>c.charCodeAt(0)));
 const ghp=x=>x.split("/").map(encodeURIComponent).join("/");
 async function gh(path,opt={}){const r=await fetch(path.startsWith("http")?path:"https://api.github.com/repos/"+SITE.repo+"/contents/"+path,{...opt,cache:"no-store",headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK,...(opt.body?{"Content-Type":"application/json"}:{})}});
@@ -1027,10 +1027,10 @@ async function openTrans(g){
  const saveLangs=async ls=>{
   for(const l of ls){const v=S.v[l];if(!v.title.trim()||!v.body.trim())throw new Error("Bản "+LANG[l]+" cần có tiêu đề và nội dung")}
   const mk=x=>fold(x).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),cur=GUIDES.find(x=>x.slug===g.slug)||g,
-   used=new Set(GUIDES.flatMap(x=>x.slug===g.slug?[]:[x.slug,...Object.values(x.i18n||{}).map(m=>m&&m.slug).filter(Boolean)])),
+   used=new Set(GUIDES.flatMap(x=>x.slug===g.slug?[]:[x.slug,x.alias,...Object.values(x.i18n||{}).map(m=>m&&m.slug).filter(Boolean)].filter(Boolean))),
    mine={};Object.keys(cur.i18n||{}).forEach(l=>{if(cur.i18n[l]&&cur.i18n[l].slug)mine[l]=cur.i18n[l].slug});
   for(const l of ls){const v=S.v[l];let u=mk(v.slug||v.title);if(u===g.slug)u="";
-   if(u&&(used.has(u)||Object.keys(mine).some(k=>k!==l&&mine[k]===u)))throw new Error("Đường dẫn «"+u+"» đã được dùng, hãy đổi tên khác ở tab "+LANG[l]);
+   if(u&&(used.has(u)||u===cur.alias||Object.keys(mine).some(k=>k!==l&&mine[k]===u)))throw new Error("Đường dẫn «"+u+"» đã được dùng, hãy đổi tên khác ở tab "+LANG[l]);
    v.slug=u;if(u)mine[l]=u;else delete mine[l]}
   if(S.cur&&ls.includes(S.cur)&&$("tr-u"))$("tr-u").value=S.v[S.cur].slug;
   for(const l of ls){const v=S.v[l],path="Guide/"+g.slug+"."+l+".md";
@@ -1068,7 +1068,7 @@ async function openTrans(g){
   if(S.cur===l)paint();else tabs()}))}
 function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạn cần đăng nhập để viết bài.</p><div class="hl"><button class="go" data-ad="login" type="button" style="border:0;cursor:pointer;font-family:inherit">Đăng nhập</button><a class="gh" href="#/guide">← Hướng dẫn</a></div>`+foot();
  return `<div class="crumb"><a href="#/guide">← Danh sách hướng dẫn</a></div><h1>${s==="_new"?"Bài hướng dẫn mới":"Sửa bài hướng dẫn"}</h1><p class="lead">Bài lưu thẳng vào repo ${esc(SITE.repo)}.</p>
- <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px">
+ <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px"><input class="fi" id="e-alias" placeholder="Đường dẫn hiển thị của bản gốc (tuỳ chọn), vd: teleport-file-usage-guide" aria-label="Đường dẫn hiển thị" style="margin-top:10px">
  <label class="dl2" style="margin-top:10px"><span>Ngôn ngữ bài viết (bản gốc), chọn đúng thứ tiếng bạn đang viết trong ô bên dưới</span><select class="fi" id="e-lang" aria-label="Ngôn ngữ bài viết">${Object.keys(LANG).map(k=>`<option value="${k}">${esc(LANG[k])}</option>`).join("")}</select></label>
  <div class="fg"><input class="fi" id="e-date" type="date" aria-label="Ngày"><input class="fi" id="e-order" type="number" min="0" placeholder="Thứ tự" aria-label="Thứ tự"><input class="fi" id="e-slug" placeholder="tên-file (tự tạo từ tiêu đề)" aria-label="Tên file"><label class="fl2"><input type="checkbox" id="e-draft"> Nháp</label></div>
  <div class="lg"><button class="seg on" data-v="w" type="button">Viết</button><button class="seg" data-v="p" type="button">Xem trước</button></div>
@@ -1083,7 +1083,7 @@ async function editInit(s){if(!ADM())return;
  const view=v=>{$("e-w").hidden=v!=="w";$("e-p").hidden=v!=="p";document.querySelectorAll("[data-v]").forEach(x=>x.classList.toggle("on",x.dataset.v===v));
   if(v==="p")$("e-p").innerHTML=`<h1 style="font-size:28px;margin-bottom:16px">${esc(val("e-title"))}</h1><article class="post">${md(ta.value,G+"x.md")}</article>`};
  const g0=GUIDES.find(x=>x.slug===s)||{};
- $("e-lang").value=g0.lang||"vi";$("e-title").value=g0.title||"";$("e-summary").value=g0.summary||"";$("e-date").value=g0.date||today();$("e-order").value=g0.order||"";
+ $("e-lang").value=g0.lang||"vi";$("e-alias").value=g0.alias||"";$("e-title").value=g0.title||"";$("e-summary").value=g0.summary||"";$("e-date").value=g0.date||today();$("e-order").value=g0.order||"";
  $("e-draft").checked=!!g0.draft&&g0.draft!=="false";$("e-slug").value=st.slug;$("e-slug").disabled=!!st.slug;$("ad-del").hidden=!st.slug;
  const ins=x=>{ta.setRangeText(x,ta.selectionStart,ta.selectionEnd,"end");ta.focus()};
  const wr=(a,b,ph)=>{const s0=ta.selectionStart,e0=ta.selectionEnd;ta.setRangeText(a+(ta.value.slice(s0,e0)||ph)+b,s0,e0,"end");ta.focus()};
@@ -1127,10 +1127,13 @@ async function editInit(s){if(!ADM())return;
   try{await gh(ghp(G+"img/"+fn),{method:"PUT",body:JSON.stringify({message:"Thêm ảnh "+fn,content:du.split(",")[1],branch:SITE.branch})});PV["img/"+fn]=du;{const s0=ta.selectionStart,alt="mô tả ảnh";ta.setRangeText("\n!["+alt+"](img/"+fn+")\n",s0,ta.selectionEnd,"end");ta.setSelectionRange(s0+3,s0+3+alt.length);ta.focus()}say("Đã tải ảnh lên. Người xem thấy ảnh sau vài phút.")}catch(e){say(e.message,1)}}
  async function save(){const one=x=>String(x).replace(/\s+/g," ").trim(),title=one(val("e-title"));if(!title)return say("Nhập tiêu đề trước",1);
   let slug=st.slug;if(!slug){slug=fold(val("e-slug")||title).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");if(!slug)return say("Tên file không hợp lệ",1)}
+  const mk=x=>fold(x).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");let alias=mk(val("e-alias"));if(alias===slug)alias="";
+  if(alias){const mine=GUIDES.find(x=>x.slug===slug)||{},bad=GUIDES.some(x=>x.slug!==slug&&(x.slug===alias||x.alias===alias||Object.values(x.i18n||{}).some(m=>m&&m.slug===alias)))||Object.values(mine.i18n||{}).some(m=>m&&m.slug===alias);if(bad)return say("Đường dẫn «"+alias+"» đã được dùng, hãy đổi tên khác",1)}
+  $("e-alias").value=alias;
   const path=G+slug+".md";$("ad-save").disabled=true;say("Đang lưu…");
   try{const ex=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(ex&&!st.slug&&!confirm("Đã có bài tên file "+slug+". Ghi đè?"))throw new Error("Đã huỷ");
    await gh(ghp(path),{method:"PUT",body:JSON.stringify({message:"Cập nhật bài: "+title,content:enc(ta.value.trim()+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
-   const e={slug,title,lang:val("e-lang"),summary:one(val("e-summary")),date:val("e-date"),order:Number(val("e-order"))||0,draft:$("e-draft").checked};
+   const e={slug,title,alias,lang:val("e-lang"),summary:one(val("e-summary")),date:val("e-date"),order:Number(val("e-order"))||0,draft:$("e-draft").checked};
    await ct(c=>{const k=c.guides.findIndex(g=>g.slug===slug);if(k>=0){c.guides[k]={...c.guides[k],...e};const im=c.guides[k].i18n;if(im&&im[e.lang]){const n={...im};delete n[e.lang];c.guides[k].i18n=n}}else c.guides.push(e)},"Cập nhật danh sách hướng dẫn");
    st.slug=slug;$("e-slug").value=slug;$("e-slug").disabled=true;$("ad-del").hidden=false;
    say("Đã lưu"+(e.draft?" (nháp, chỉ bạn thấy)":"")+". Người xem thấy bản mới sau tối đa vài phút.")}catch(x){say(x.message,1)}
