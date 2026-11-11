@@ -600,6 +600,25 @@ html[data-rp=on] .hero h1{color:var(--text)}
 .cmtabs{margin:18px 0 4px}.cmtabs .seg{display:inline-flex;align-items:center;text-decoration:none}.cmtabs .seg.on{box-shadow:var(--glow)}#cm-up,#cm-dl{margin-top:28px}
 .cmc{--grad:linear-gradient(135deg,color-mix(in srgb,var(--pink) 78%,#fff),var(--pink) 55%,var(--pink2));--glow:0 6px 22px color-mix(in srgb,var(--pink) 28%,transparent);--chip:color-mix(in srgb,var(--pink) 18%,var(--panel))}
 .cmi{color:var(--pink)}.cmi svg{filter:drop-shadow(0 4px 10px color-mix(in srgb,var(--pink) 35%,transparent))}.cmi b{background:var(--pink)}.cmn strong{color:var(--pink)}.cmfile:hover .cmn strong{color:#fff}
+.gr-bar{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:38;width:max-content;max-width:min(680px,calc(100% - 24px));background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid color-mix(in srgb,var(--pink) 50%,transparent);border-radius:999px;padding:6px 10px 6px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px #000a,var(--glow);animation:grin .24s cubic-bezier(.16,1,.3,1)}
+@keyframes grin{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translate(-50%,0)}}
+.gr-ic{font-size:16px;line-height:1;flex-shrink:0}
+.gr-info{display:flex;align-items:center;gap:6px;min-width:0;font-size:13px;line-height:1.3}
+.gr-lbl{color:var(--mute);white-space:nowrap}
+.gr-title{color:#fff;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+.gr-back{display:inline-flex;align-items:center;gap:6px;background:var(--grad);color:var(--on)!important;font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px;text-decoration:none!important;white-space:nowrap;flex-shrink:0;box-shadow:var(--glow);transition:transform .16s,box-shadow .16s}
+.gr-back:hover{transform:translateY(-1px);box-shadow:0 4px 16px color-mix(in srgb,var(--pink) 55%,transparent)}
+.gr-back svg{width:14px;height:14px}
+.gr-close{background:transparent;border:none;color:var(--mute);cursor:pointer;padding:4px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:14px;line-height:1;flex-shrink:0;transition:color .15s,background .15s}
+.gr-close:hover{color:#fff;background:#ffffff14}
+@media(max-width:560px){.gr-bar{top:58px;padding:6px 8px 6px 10px;gap:8px}.gr-lbl{display:none}.gr-title{max-width:130px;font-size:12px}.gr-back{padding:5px 10px;font-size:12px}}
+.post a.ch-pill,a.ch-pill{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--pink) 15%,transparent);border:1px solid color-mix(in srgb,var(--pink) 40%,transparent);padding:2px 10px;border-radius:999px;font-weight:600;font-size:.95em;color:#ff9db0!important;text-decoration:none!important;vertical-align:baseline;line-height:1.4;transition:all .18s cubic-bezier(.2,.8,.2,1);box-shadow:0 2px 8px #0004}
+.post a.ch-pill:hover,a.ch-pill:hover{background:color-mix(in srgb,var(--pink) 28%,transparent);border-color:var(--pink);color:#fff!important;transform:translateY(-1px);box-shadow:0 4px 14px color-mix(in srgb,var(--pink) 40%,transparent)}
+.ch-pill svg{width:13px;height:13px;opacity:.85}
+.ch-dlg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:12px 0 16px}
+.ch-item{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#ffffff08;border:1px solid #ffffff1a;border-radius:12px;padding:10px 14px;color:#fff;text-align:left;cursor:pointer;font-family:inherit;font-size:13.5px;transition:all .15s}
+.ch-item:hover{background:color-mix(in srgb,var(--pink) 20%,transparent);border-color:var(--pink);transform:translateY(-1px)}
+.ch-item small{color:var(--mute);font-size:12px}
 </style>
 </head>
 <body>
@@ -623,6 +642,7 @@ html[data-rp=on] .hero h1{color:var(--text)}
 <div class="scrim" id="scrim" aria-hidden="true"></div>
 <div class="sr" id="live" aria-live="polite"></div>
 <div class="rp" id="rp" hidden></div>
+<div class="gr-bar" id="gr-bar" hidden><span class="gr-ic" aria-hidden="true">📖</span><div class="gr-info"><span class="gr-lbl" id="gr-lbl">Đang đọc bài:</span><b class="gr-title" id="gr-title"></b></div><a class="gr-back" id="gr-back" href="#/guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span id="gr-btn-txt">Quay lại bài</span></a><button class="gr-close" id="gr-close" type="button" aria-label="Đóng" title="Đóng">✕</button></div>
 <div class="shell"><main id="main" tabindex="-1"><noscript><p class="lead" style="padding:48px 0">Trang này cần bật JavaScript để hiển thị danh sách file. Bạn có thể tải app tại <a href="https://github.com/pxtk08/Electro-Cat-App/releases/latest" style="color:var(--pink)">GitHub</a>.</p></noscript></main></div>
 <div class="bar" id="bar" hidden><span id="bn"></span><button class="cp" id="bx" type="button">Bỏ chọn</button><button class="dl" id="bz" type="button"></button></div>
 <script>
@@ -634,6 +654,10 @@ const detectUL=()=>{try{const v=localStorage.getItem("ul");if(UI_LANGS.includes(
  for(const l of (navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""])){const c=String(l).toLowerCase().slice(0,2);if(UI_LANGS.includes(c))return c}return UL_FALLBACK};
 let UL=detectUL();
 const I18N={
+ret_reading:[`Đang đọc:`,`Reading:`,`Читаете:`,`Lendo:`],
+ret_back:[`Quay lại bài`,`Back to guide`,`Назад к статье`,`Voltar ao guia`],
+ret_close:[`Đóng`,`Dismiss`,`Закрыть`,`Fechar`],
+ch_tb:[`📌 Gán kênh`,`📌 Channel`,`📌 Канал`,`📌 Canal`],
 ic_h:[`Trang này có gì?`,`What's on this site?`,`Что есть на сайте?`,`O que tem neste site?`],
 ic_files:[`Chọn vùng, tải file điểm tele sẵn dùng (.zip) để nhập vào app. Nơi bạn sẽ ghé nhiều nhất.`,`Pick a region and download ready-to-use teleport files (.zip) to import into the app. Where you'll spend most of your time.`,`Выберите регион и скачайте готовые файлы телепортов (.zip) для импорта в приложение. Главный раздел сайта.`,`Escolha uma região e baixe arquivos de teleporte prontos (.zip) para importar no app. A seção mais usada.`],
 ic_app:[`Tải Electro Cat App, công cụ nhập các file này để dùng trong game.`,`Get Electro Cat App, the tool that imports these files for use in the game.`,`Скачайте Electro Cat App — инструмент для импорта этих файлов в игру.`,`Baixe o Electro Cat App, a ferramenta que importa esses arquivos para o jogo.`],
@@ -977,7 +1001,7 @@ function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạ
  <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px">
  <div class="fg"><input class="fi" id="e-date" type="date" aria-label="Ngày"><input class="fi" id="e-order" type="number" min="0" placeholder="Thứ tự" aria-label="Thứ tự"><input class="fi" id="e-slug" placeholder="tên-file (tự tạo từ tiêu đề)" aria-label="Tên file"><label class="fl2"><input type="checkbox" id="e-draft"> Nháp</label></div>
  <div class="lg"><button class="seg on" data-v="w" type="button">Viết</button><button class="seg" data-v="p" type="button">Xem trước</button></div>
- <div id="e-w"><div class="tb" id="e-tb">${[["h2","H2"],["h3","H3"],["b","B"],["i","I"],["c","&lt;/&gt;"],["a","Link"],["ul","• Danh sách"],["ol","1. Danh sách"],["q","Trích dẫn"],["hr","—"],["img","Chèn ảnh"]].map(([k,t])=>`<button class="cp" type="button" data-t="${k}">${t}</button>`).join("")}</div>
+ <div id="e-w"><div class="tb" id="e-tb">${[["h2","H2"],["h3","H3"],["b","B"],["i","I"],["c","&lt;/&gt;"],["a","Link"],["ch","📌 Gán kênh"],["ul","• Danh sách"],["ol","1. Danh sách"],["q","Trích dẫn"],["hr","—"],["img","Chèn ảnh"]].map(([k,t])=>`<button class="cp" type="button" data-t="${k}">${t}</button>`).join("")}</div>
  <textarea class="fi" id="e-body" spellcheck="false" placeholder="Viết nội dung bằng Markdown. Dán ảnh (Ctrl+V) để tải ảnh lên luôn."></textarea><input type="file" id="e-img" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden></div>
  <div id="e-p" hidden></div>
  <div class="hl"><button class="go" id="ad-save" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu &amp; đăng</button><button class="cp" id="ad-del" type="button" hidden>Xóa bài</button></div>
@@ -993,7 +1017,34 @@ async function editInit(s){if(!ADM())return;
  const ins=x=>{ta.setRangeText(x,ta.selectionStart,ta.selectionEnd,"end");ta.focus()};
  const wr=(a,b,ph)=>{const s0=ta.selectionStart,e0=ta.selectionEnd;ta.setRangeText(a+(ta.value.slice(s0,e0)||ph)+b,s0,e0,"end");ta.focus()};
  const pre=p=>{const s0=ta.value.lastIndexOf("\n",ta.selectionStart-1)+1;ta.setRangeText(p,s0,s0,"end");ta.focus()};
- const T={h2:()=>pre("## "),h3:()=>pre("### "),b:()=>wr("**","**","chữ đậm"),i:()=>wr("*","*","chữ nghiêng"),c:()=>wr("`","`","code"),a:()=>wr("[","](https://)","văn bản link"),ul:()=>pre("- "),ol:()=>pre("1. "),q:()=>pre("> "),hr:()=>ins("\n---\n"),img:()=>$("e-img").click()};
+ function openChPicker(){
+  let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
+  const quick=[
+   ["📦 · teleport-files-by-pxtk08","#/files","Kho File chính"],
+   ["🤝 · share-teleport-files-here","#/community","Kho File Cộng Đồng"],
+   ["📱 · Electro Cat App","#/app","Tải ứng dụng"],
+   ["❓ · FAQ","#/faq","Hỏi đáp thường gặp"],
+   ["💬 · Kênh Discord",SITE.discord||"https://discord.gg/yZXXvqutAS","Server Discord"],
+   ["📢 · Cập nhật","#/updates","Lịch sử thay đổi"],
+   ["🚨 · Báo lỗi / Đóng góp","#/report","Mẫu báo lỗi"]
+  ];
+  d.innerHTML=`<form id="dform" style="max-width:580px">
+   <h2>📌 Gán kênh / điều hướng</h2>
+   <div class="note">Bấm vào kênh bên dưới để chèn nhanh vào bài viết. Khi người đọc bấm vào kênh, trang sẽ tự hiện nút để quay về bài này.</div>
+   <label class="dl2"><span>Kênh phổ biến:</span></label>
+   <div class="ch-dlg-grid">${quick.map(([t,u,desc])=>`<button class="ch-item" type="button" data-ch-t="${esc(t)}" data-ch-u="${esc(u)}"><div><strong>${esc(t)}</strong><br><small>${esc(desc)}</small></div><span style="color:var(--pink)">+ Chèn</span></button>`).join("")}</div>
+   <label class="dl2"><span>Hoặc chọn kênh từng vùng:</span><div class="fg" style="margin-top:6px"><select class="fi" id="ch-rsel">${ALL.map(([id,n],i)=>`<option value="${id}">${i+1}. ${esc(n)} (#/r/${id})</option>`).join("")}</select><button class="cp" id="ch-rins" type="button" style="white-space:nowrap">+ Chèn vùng</button></div></label>
+   <label class="dl2" style="margin-top:12px"><span>Hoặc kênh tuỳ chỉnh:</span><div class="fg" style="margin-top:6px"><input class="fi" id="ch-ct" placeholder="Tên kênh (vd: 📦 · teleport-files)"><input class="fi" id="ch-cu" placeholder="Đường dẫn (vd: #/files hoặc link ngoài)"><button class="go" id="ch-cins" type="button" style="white-space:nowrap;border:0;cursor:pointer;font-family:inherit">+ Chèn</button></div></label>
+   <div class="hl" style="margin-top:18px"><button class="cp" id="dno" type="button">Đóng</button></div>
+  </form>`;
+  $("dform").onsubmit=e=>e.preventDefault();
+  $("dno").onclick=()=>d.close();
+  d.querySelectorAll(".ch-item").forEach(btn=>{btn.onclick=()=>{ins(`[${btn.dataset.chT}](${btn.dataset.chU}) `);d.close()}});
+  $("ch-rins").onclick=()=>{const id=$("ch-rsel").value,rn=(ALL.find(x=>x[0]===id)||[])[1]||id;ins(`[📍 ${rn}](#/r/${id}) `);d.close()};
+  $("ch-cins").onclick=()=>{const t=$("ch-ct").value.trim(),u=$("ch-cu").value.trim();if(!t||!u)return alert("Vui lòng nhập tên kênh và đường dẫn");ins(`[${t}](${u}) `);d.close()};
+  d.showModal();
+ }
+ const T={h2:()=>pre("## "),h3:()=>pre("### "),b:()=>wr("**","**","chữ đậm"),i:()=>wr("*","*","chữ nghiêng"),c:()=>wr("`","`","code"),a:()=>wr("[","](https://)","văn bản link"),ch:()=>openChPicker(),ul:()=>pre("- "),ol:()=>pre("1. "),q:()=>pre("> "),hr:()=>ins("\n---\n"),img:()=>$("e-img").click()};
  async function up(f){const m=f.name.match(/\.(png|jpe?g|gif|webp)$/i);if(!m)return say("Chỉ nhận ảnh png, jpg, gif, webp",1);if(f.size>5*1048576)return say("Ảnh quá lớn (tối đa 5MB)",1);
   say("Đang tải ảnh lên…");const du=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=rej;r.readAsDataURL(f)});
   const nm=fold(f.name.replace(/\.[^.]+$/,"")).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"anh",fn=nm+"-"+Date.now().toString(36)+"."+m[1].toLowerCase();
@@ -1020,10 +1071,40 @@ if(TOK&&SITE.repo)gh("https://api.github.com/repos/"+SITE.repo).catch(e=>{if(/To
 admUI();
 const gu=sl=>String(sl).split("/").map(encodeURIComponent).join("/");
 const asrc=(u,base)=>{u=u.replace(/&amp;/g,"&");if(PV[u])return esc(PV[u]);try{const h=new URL(u,new URL(RAW+base,location.href));return h.protocol==="https:"||h.origin===location.origin?esc(h.href):""}catch(e){return""}};
+const CH_MAP={
+ "teleport-files-by-pxtk08":["📦 · teleport-files-by-pxtk08","#/files"],
+ "share-teleport-files-here":["🤝 · share-teleport-files-here","#/community"],
+ "files":["📦 Kho File","#/files"],
+ "community":["🤝 Kho File Cộng Đồng","#/community"],
+ "app":["📱 Tải App","#/app"],
+ "faq":["❓ FAQ","#/faq"],
+ "discord":["💬 Discord",SITE.discord||"https://discord.gg/yZXXvqutAS"],
+ "updates":["📢 Cập nhật","#/updates"],
+ "report":["🚨 Báo lỗi","#/report"]
+};
+const setCurGuide=(slug,title)=>{try{sessionStorage.setItem("ec_cg",JSON.stringify({slug,title,t:Date.now()}))}catch(e){}};
+const getCurGuide=()=>{try{const s=sessionStorage.getItem("ec_cg");return s?JSON.parse(s):null}catch(e){return null}};
+const clearCurGuide=()=>{try{sessionStorage.removeItem("ec_cg")}catch(e){}syncGuideRet()};
+function syncGuideRet(){
+ const b=$("gr-bar");if(!b)return;
+ const cur=getCurGuide(),R=route();
+ if(cur&&(R.p!=="post"||R.s!==cur.slug)&&R.p!=="edit"){
+  b.hidden=false;
+  const l=$("gr-lbl"),t=$("gr-title"),a=$("gr-back"),bt=$("gr-btn-txt");
+  if(l)l.textContent=tr("ret_reading");
+  if(t)t.textContent=cur.title;
+  if(a)a.setAttribute("href","#/guide/"+gu(cur.slug));
+  if(bt)bt.textContent=tr("ret_back");
+ }else{b.hidden=true}
+}
 function md(t,base){
  const il=x=>{x=esc(x).replace(/`([^`]+)`/g,"<code>$1</code>");
   x=x.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,(_,a,u)=>{const r=asrc(u,base);return r?`<img src="${r}" alt="${a}" loading="lazy">`:a});
-  x=x.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(_,a,u)=>/^(https?:\/\/|#\/)/.test(u)?`<a href="${u}"${u[0]==="#"?"":' target="_blank" rel="noopener"'}>${a}</a>`:a);
+  x=x.replace(/\[#([a-zA-Z0-9_\-\.]+)\]/g,(_,k)=>{const m=CH_MAP[k.toLowerCase()];if(m){const ext=/^https?:\/\//.test(m[1]);return `<a href="${m[1]}" class="ch-pill"${ext?' target="_blank" rel="noopener"':""}>${m[0]}</a>`}return `[#${k}]`});
+  x=x.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(_,a,u)=>{
+   if(u.startsWith("#/"))return `<a href="${u}" class="ch-pill">${a}</a>`;
+   if(/^https?:\/\//.test(u)){const isD=/discord\.(gg|com)/.test(u);return `<a href="${u}"${isD?' class="ch-pill"':""} target="_blank" rel="noopener">${a}</a>`}
+   return a});
   return x.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(^|[^*])\*([^*\s][^*]*)\*/g,"$1<em>$2</em>")};
  const LI=/^\s*([-*]|\d+\.)\s+/,L=t.replace(/\r/g,"").split("\n");let o="",i=0;
  while(i<L.length){const l=L[i];let m;
@@ -1038,10 +1119,12 @@ function md(t,base){
  return o}
 function post(sl){const g=GUIDES.find(x=>x.slug===sl),bc=t=>crumb("<a href=\"#/\">Kho File Tele</a>","<a href=\"#/guide\">Hướng dẫn</a>",esc(t));
  if(!g||(g.draft&&!ADM()))return GL?nf():`<h1>${tr("guide")}</h1><p class="lead">${tr("x_loading")}</p>`;
+ if(g){setCurGuide(g.slug,g.title);syncGuideRet()}
  const back='<div class="pn"><a class="gh" href="#/guide">← '+tr("x_back_guides")+'</a></div>';
  fetch(RAW+gpath(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
   const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g));
   document.title=(SITE.server||"Electro Cat")+" · "+g.title;
+  setCurGuide(g.slug,g.title);syncGuideRet();
   $("main").innerHTML=bc(g.title)+`<h1>${esc(g.title)}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a></div>`:""}`+back+foot()})
  .catch(()=>{if(route().s===sl)$("main").innerHTML=bc(g.title)+`<h1>${esc(g.title)}</h1><p class="none">${tr("x_post_fail")}</p>`+back+foot()});
  return bc(g.title)+`<h1>${esc(g.title)}</h1><p class="lead">${tr("x_loading")}</p>`}
