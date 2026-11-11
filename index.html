@@ -909,6 +909,12 @@ const SITE={server:"Electro Cat",repo:"pxtk08/Electro-Cat-App-Data",branch:"main
 const SHOTS=["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%202.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%203.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%204.png"];
 /* Mã SHA-256 (tuỳ chọn): bọc dòng F(...) trong Object.assign(F(...),{sha:"<mã từ sha256sum>"}) -> hiện nút SHA-256 */
 const tx=s=>s==="path"&&SITE.path?SITE.path:(I18N[s]?tr(s):s);
+/* FAQ / Cập nhật đa ngôn ngữ: mỗi mục có thể có lang (ngôn ngữ bản gốc, mặc định vi) và i18n:{en:{...},ru:{...},pt:{...}}. Thiếu bản dịch thì hiện bản gốc. */
+const fxs=(s,l)=>{if(s==="path"&&SITE.path)return SITE.path;const e=I18N[s];return e?(e[UI_LANGS.indexOf(l)]||e[1]||e[0]):s};
+const l10=(x,k)=>{const t=x.i18n&&x.i18n[UL]&&x.i18n[UL][k];return t?String(t):tx(x[k])};
+const itemsOf=x=>{const t=x.i18n&&x.i18n[UL]&&x.i18n[UL].items;return(Array.isArray(t)&&t.length?t:(x.items||[])).map(tx)};
+const OL=["en","ru","pt"],flatFaq=x=>{const kb=!!I18N[x.q],o={q:fxs(x.q,"vi"),a:fxs(x.a,"vi"),lang:"vi"};if(kb)o.i18n=Object.fromEntries(OL.map(l=>[l,{q:fxs(x.q,l),a:fxs(x.a,l)}]));return o},
+flatUp=x=>{const kb=!!I18N[x.t],o={...x,t:fxs(x.t,"vi"),items:(x.items||[]).map(v=>fxs(v,"vi")),lang:"vi"};if(kb)o.i18n=Object.fromEntries(OL.map(l=>[l,{t:fxs(x.t,l),items:(x.items||[]).map(v=>fxs(v,l))}]));return o};
 let CHANGELOG=[{d:"2026-11-10",t:"cl1t",items:["cl1i1"]}];
 const GUIDE=[ /* thêm img:"duong-dan-anh.png" vào từng bước để có ảnh minh hoạ; t/p là khoá I18N hoặc chữ thường */
  {t:"g1t",p:"g1p"},{t:"x_how2t",p:"g2p"},{t:"g3t",p:"g3p"},{t:"x_how3t",p:"path"},{t:"g5t",p:"g5p"}];
@@ -955,7 +961,7 @@ let SO="def";
 const SORTUI=()=>`<div class="lg" role="group" aria-label="${tr("sort")}"><em>${tr("sort")}</em>${[["def",tr("s_def")],["new",tr("s_new")],["name",tr("s_name")]].map(([k,t])=>`<button class="seg${k===SO?" on":""}" data-so="${k}" aria-pressed="${k===SO}">${t}</button>`).join("")}<button class="seg" id="dr" type="button">${tr("dlreg")}</button></div>`;
 const srt=a=>SO==="new"?[...a].sort((x,y)=>(y.date||"").localeCompare(x.date||"")):SO==="name"?[...a].sort((x,y)=>x.name.localeCompare(y.name,UL)):a;
 const pn=i=>{const ks=[...ALL.keys()],pv=ks.filter(j=>j<i&&cnt(ALL[j][0])).pop(),nx=ks.find(j=>j>i&&cnt(ALL[j][0]));return `<div class="pn">${pv!==undefined?`<a class="gh" href="#/r/${ALL[pv][0]}">← ${esc(ALL[pv][1])}</a>`:"<span></span>"}${nx!==undefined?`<a class="gh" href="#/r/${ALL[nx][0]}">${esc(ALL[nx][1])} →</a>`:""}</div>`};
-function updates(){const A=ADM(),ch=[...CHANGELOG].sort((a,b)=>String(b.d).localeCompare(String(a.d)));return `<h1>${tr("updates")}</h1><p class="lead">${tr("x_upd_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="up-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm cập nhật</button></div>':""}`+ch.map(c=>`<div class="log"><time>${esc(fd(c.d))}</time><h3>${esc(tx(c.t))}</h3><ul>${(c.items||[]).map(i=>`<li>${esc(tx(i))}</li>`).join("")}</ul>${A?`<div class="hl" style="margin:10px 0 0"><button class="cp" data-ad="up-edit" data-i="${CHANGELOG.indexOf(c)}" type="button">Sửa</button><button class="cp" data-ad="up-del" data-i="${CHANGELOG.indexOf(c)}" type="button">Xóa</button></div>`:""}</div>`).join("")+`<h2 class="ih2">${tr("x_upd_recent")}</h2><ul class="ul">${recent(15).map(li).join("")}</ul>`+foot()}
+function updates(){const A=ADM(),ch=[...CHANGELOG].sort((a,b)=>String(b.d).localeCompare(String(a.d)));return `<h1>${tr("updates")}</h1><p class="lead">${tr("x_upd_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="up-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm cập nhật</button></div>':""}`+ch.map(c=>`<div class="log"><time>${esc(fd(c.d))}</time><h3>${esc(l10(c,"t"))}</h3><ul>${itemsOf(c).map(i=>`<li>${esc(i)}</li>`).join("")}</ul>${A?`<div class="hl" style="margin:10px 0 0"><button class="cp" data-ad="up-edit" data-i="${CHANGELOG.indexOf(c)}" type="button">Sửa</button><button class="cp" data-ad="up-tr" data-i="${CHANGELOG.indexOf(c)}" type="button">🌐 Dịch</button><button class="cp" data-ad="up-del" data-i="${CHANGELOG.indexOf(c)}" type="button">Xóa</button></div>`:""}</div>`).join("")+`<h2 class="ih2">${tr("x_upd_recent")}</h2><ul class="ul">${recent(15).map(li).join("")}</ul>`+foot()}
 /* ===== Chế độ quản trị: chỉ hiện khi có token GitHub hợp lệ; mọi thay đổi ghi thẳng vào repo ===== */
 const PV={};const PWH="c3588868b18ffbab5b415842461fa4e55adbb4cbcfb9e2b5016b5e2f35d92756";
 let TOK="";try{TOK=sessionStorage.getItem("gt")||"";localStorage.removeItem("gt")}catch(e){}
@@ -975,12 +981,12 @@ let CTC=null,SHA={};
 const retry409=async f=>{for(let i=0;;i++){try{return await f()}catch(e){if(i<3&&/does not match|409/.test(e.message)){CTC=null;SHA={};await new Promise(r=>setTimeout(r,500));continue}throw e}}};
 async function ct(mut,msg){return retry409(()=>ct1(mut,msg))}
 async function ct1(mut,msg){const ex=CTC?{sha:CTC.sha}:await gh("content.json?ref="+br()).catch(()=>null);let c={};if(CTC)c=JSON.parse(JSON.stringify(CTC.c));else if(ex){try{c=JSON.parse(dec(ex.content))}catch(e){c={}}}
- if(!Array.isArray(c.faq))c.faq=FAQ.map(x=>({q:tx(x.q),a:tx(x.a)}));if(!Array.isArray(c.updates))c.updates=CHANGELOG.map(x=>({...x,t:tx(x.t),items:(x.items||[]).map(tx)}));c.guides=normGuides(c.guides);
+ if(!Array.isArray(c.faq))c.faq=FAQ.map(flatFaq);if(!Array.isArray(c.updates))c.updates=CHANGELOG.map(flatUp);c.guides=normGuides(c.guides);
  mut(c);const rs=await gh("content.json",{method:"PUT",body:JSON.stringify({message:msg,content:enc(JSON.stringify(c,null,2)+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
  CTC=rs.content&&rs.content.sha?{c:JSON.parse(JSON.stringify(c)),sha:rs.content.sha}:null;
  FAQ=c.faq;CHANGELOG=c.updates;GUIDES=c.guides;GL=1;return c}
 function dlg(title,fields,onOk,note){let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
- d.innerHTML=`<form id="dform"><h2>${esc(title)}</h2>${note?`<div class="note">${note}</div>`:""}${fields.map(f=>f.type==="checkbox"?`<label class="fl2" style="margin-bottom:12px"><input type="checkbox" id="df-${f.id}"> ${esc(f.label)}</label>`:`<label class="dl2"><span>${esc(f.label)}</span>${f.type==="textarea"?`<textarea class="fi" id="df-${f.id}" rows="${f.rows||5}"></textarea>`:`<input class="fi" id="df-${f.id}" type="${f.type||"text"}" autocomplete="off">`}</label>`).join("")}<p id="dm" style="min-height:1.4em;font-size:14px"></p><div class="hl" style="margin:0"><button class="go" id="dok" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu</button><button class="cp" id="dno" type="button">Hủy</button></div></form>`;
+ d.innerHTML=`<form id="dform"><h2>${esc(title)}</h2>${note?`<div class="note">${note}</div>`:""}${fields.map(f=>f.type==="select"?`<label class="dl2"><span>${esc(f.label)}</span><select class="fi" id="df-${f.id}">${f.options.map(o=>`<option value="${esc(o[0])}">${esc(o[1])}</option>`).join("")}</select></label>`:f.type==="checkbox"?`<label class="fl2" style="margin-bottom:12px"><input type="checkbox" id="df-${f.id}"> ${esc(f.label)}</label>`:`<label class="dl2"><span>${esc(f.label)}</span>${f.type==="textarea"?`<textarea class="fi" id="df-${f.id}" rows="${f.rows||5}"></textarea>`:`<input class="fi" id="df-${f.id}" type="${f.type||"text"}" autocomplete="off">`}</label>`).join("")}<p id="dm" style="min-height:1.4em;font-size:14px"></p><div class="hl" style="margin:0"><button class="go" id="dok" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu</button><button class="cp" id="dno" type="button">Hủy</button></div></form>`;
  fields.forEach(f=>{const e=$("df-"+f.id);if(f.type==="checkbox")e.checked=!!f.value;else e.value=f.value||""});
  $("dform").onsubmit=e=>e.preventDefault();$("dno").onclick=()=>d.close();d.showModal();
  $("dok").onclick=async()=>{const b=$("dok");b.disabled=true;$("dm").textContent="";try{await onOk(Object.fromEntries(fields.map(f=>[f.id,f.type==="checkbox"?$("df-"+f.id).checked:$("df-"+f.id).value])));d.close();render()}catch(e){$("dm").textContent=e.message;$("dm").style.color="#ff9db0";b.disabled=false}}}
@@ -998,17 +1004,33 @@ function adm(a,i){
   setTimeout(()=>dlg("Nhập token",[{id:"tok",label:"Token GitHub",type:"password"}],async w=>{const k=w.tok.trim();need(k,"Nhập token");TOK=k;
    try{const j=await gh("https://api.github.com/repos/"+SITE.repo);if(j.permissions&&!j.permissions.push)throw new Error("Token này không có quyền ghi vào repo");try{sessionStorage.setItem("gt",k)}catch(e){}}catch(e){TOK="";throw e}admUI()}),0)});
  if(a==="logout"){TOK="";try{localStorage.removeItem("gt");sessionStorage.removeItem("gt")}catch(e){}admUI();render();return}
- if(a==="faq-add")return dlg("Thêm câu hỏi",[{id:"q",label:"Câu hỏi"},{id:"a",label:"Trả lời",type:"textarea",rows:6}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>c.faq.push({q:v.q.trim(),a:v.a.trim()}),"Thêm FAQ")});
- if(a==="faq-edit")return dlg("Sửa câu hỏi",[{id:"q",label:"Câu hỏi",value:tx(FAQ[i].q)},{id:"a",label:"Trả lời",type:"textarea",rows:6,value:tx(FAQ[i].a)}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>{c.faq[i]={q:v.q.trim(),a:v.a.trim()}},"Sửa FAQ")});
+ if(a==="faq-add")return dlg("Thêm câu hỏi",[LF("vi"),{id:"q",label:"Câu hỏi"},{id:"a",label:"Trả lời",type:"textarea",rows:6}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>c.faq.push({q:v.q.trim(),a:v.a.trim(),lang:v.lang}),"Thêm FAQ")});
+ if(a==="faq-edit"){const x=FAQ[i],sl=x.lang||"vi";return dlg("Sửa câu hỏi",[LF(sl),{id:"q",label:"Câu hỏi",value:fxs(x.q,sl)},{id:"a",label:"Trả lời",type:"textarea",rows:6,value:fxs(x.a,sl)}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>{c.faq[i]={...c.faq[i],q:v.q.trim(),a:v.a.trim(),lang:v.lang}},"Sửa FAQ")},"Sửa bản gốc không tự đổi các bản dịch. Muốn cập nhật bản dịch, đóng hộp này rồi bấm 🌐 Dịch.")}
+ if(a==="faq-tr")return openTransItem("faq",i);
+ if(a==="up-tr")return openTransItem("up",i);
  if(a==="faq-del"){if(confirm("Xóa câu hỏi này?"))run(c=>c.faq.splice(i,1),"Xóa FAQ");return}
  if(a==="faq-up"){if(i>0)run(c=>{[c.faq[i-1],c.faq[i]]=[c.faq[i],c.faq[i-1]]},"Sắp xếp FAQ");return}
  if(a==="faq-down"){if(i<FAQ.length-1)run(c=>{[c.faq[i+1],c.faq[i]]=[c.faq[i],c.faq[i+1]]},"Sắp xếp FAQ");return}
- if(a==="up-add")return dlg("Thêm cập nhật",[{id:"d",label:"Ngày",type:"date",value:today()},{id:"t",label:"Tiêu đề"},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>c.updates.push({d:v.d,t:v.t.trim(),items:lines(v.items)}),"Thêm cập nhật")});
- if(a==="up-edit"){const x=CHANGELOG[i];return dlg("Sửa cập nhật",[{id:"d",label:"Ngày",type:"date",value:x.d},{id:"t",label:"Tiêu đề",value:tx(x.t)},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6,value:(x.items||[]).map(tx).join("\n")}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>{c.updates[i]={d:v.d,t:v.t.trim(),items:lines(v.items)}},"Sửa cập nhật")})}
+ if(a==="up-add")return dlg("Thêm cập nhật",[LF("vi"),{id:"d",label:"Ngày",type:"date",value:today()},{id:"t",label:"Tiêu đề"},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>c.updates.push({d:v.d,t:v.t.trim(),items:lines(v.items),lang:v.lang}),"Thêm cập nhật")});
+ if(a==="up-edit"){const x=CHANGELOG[i],sl=x.lang||"vi";return dlg("Sửa cập nhật",[LF(sl),{id:"d",label:"Ngày",type:"date",value:x.d},{id:"t",label:"Tiêu đề",value:fxs(x.t,sl)},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6,value:(x.items||[]).map(v=>fxs(v,sl)).join("\n")}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>{c.updates[i]={...c.updates[i],d:v.d,t:v.t.trim(),items:lines(v.items),lang:v.lang}},"Sửa cập nhật")},"Sửa bản gốc không tự đổi các bản dịch. Muốn cập nhật bản dịch, đóng hộp này rồi bấm 🌐 Dịch.")}
  if(a==="up-del"){if(confirm("Xóa mục cập nhật này?"))run(c=>c.updates.splice(i,1),"Xóa cập nhật");return}}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-ad]");if(b){e.preventDefault();adm(b.dataset.ad,Number(b.dataset.i))}});
 /* ===== Bản dịch thủ công: copy bài + lời nhắc -> dán vào AI -> dán kết quả -> tách vào từng tab -> lưu ===== */
 const TR_ALL=["vi","en","ru","pt"],TR_NAME={vi:"Vietnamese",en:"English",ru:"Russian",pt:"Brazilian Portuguese"},trTargets=g=>TR_ALL.filter(l=>l!==gSL(g));
+function detectLang(t){
+ t=String(t||"").replace(/```[\s\S]*?```/g," ").replace(/`[^`]*`/g," ").replace(/!?\[([^\]]*)\]\([^)]*\)/g,"$1 ").replace(/https?:\/\/\S+/g," ").replace(/\[#[a-z]+\]/g," ");
+ const L=t.match(/\p{L}/gu)||[];if(L.length<20)return null;
+ if((t.match(/[\u0400-\u04FF]/g)||[]).length/L.length>.3)return"ru";
+ const low=t.toLowerCase();
+ if((low.match(/[ăđơưĩũạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/g)||[]).length/L.length>.02)return"vi";
+ const EN=new Set("the and to of is are you for with that this in on it be can your from or if not will have use then when file files they there which what".split(" "));
+ const PT=new Set("que não para uma com você os do da dos das em um por é são se mais como ao na nos nas seu sua ou já também então quando arquivo arquivos pelo pela isso esse essa".split(" "));
+ let en=0,pt=(low.match(/[ãõç]/g)||[]).length*2;
+ for(const w of (low.match(/\p{L}+/gu)||[])){if(EN.has(w))en++;if(PT.has(w))pt++}
+ if(en+pt<3)return null;
+ return pt>en?"pt":"en"}
+const TR_FIXED=new Set();/* chống lặp vô hạn khi tự đổi ngôn ngữ gốc */
+const slSel=(id,cur)=>`<label class="dl2"><span>Ngôn ngữ bản gốc (bạn viết bằng tiếng nào thì chọn tiếng đó, các tab dịch sẽ là 3 ngôn ngữ còn lại)</span><select class="fi" id="${id}">${TR_ALL.map(l=>`<option value="${l}"${l===cur?" selected":""}>${esc(LANG[l])}</option>`).join("")}</select></label>`;
 const stripFm=t=>String(t).replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*\n/,"");
 function trPrompt(g,src,langs){
  return "Translate the following "+TR_NAME[gSL(g)]+" guide article for a Genshin Impact teleport-file website into: "+langs.map(l=>TR_NAME[l]+" ("+l+")").join(", ")+".\n\nRules:\n- Keep the Markdown structure exactly (headings, lists, bold, tables, blockquotes, blank lines).\n- Never change URLs, link targets like (#/files), image paths, inline code, or channel tokens like [#faq].\n- Translate link labels and image alt text. Keep emojis, numbers, file names and the app name Electro Cat.\n- Use the official in-game terminology of each target language for Genshin Impact terms when you know it.\n- Write natural, clear text.\n\nPut the whole answer inside ONE code block (so I can copy it), with no commentary, using exactly these markers:\n"+langs.map(l=>"===LANG:"+l+"===\n===TITLE===\n<title>\n===SLUG===\n<url slug: lowercase Latin letters, digits and hyphens only, transliterate if needed>\n===SUMMARY===\n<summary, may be empty>\n===BODY===\n<markdown body>").join("\n")+"\n\nARTICLE TO TRANSLATE:\n===TITLE===\n"+g.title+"\n===SUMMARY===\n"+(g.summary||"")+"\n===BODY===\n"+src}
@@ -1059,9 +1081,13 @@ async function openTrans(g){
   $("tr-save").onclick=()=>doSave([l])};
  d.style.width="min(820px,calc(100% - 32px))";
  d.addEventListener("close",()=>{d.style.width="";if(S.dirty)render()},{once:true});
- d.innerHTML=`<form id="dform"><h2>🌐 Dịch thành bài riêng: ${esc(g.title)}</h2><div class="note"><b>Cách nhanh:</b> 1) Bấm <b>Copy bài + lời nhắc</b>. 2) Dán vào Claude/ChatGPT. 3) Copy kết quả, dán vào ô bên dưới rồi bấm <b>Tách vào các tab</b>. 4) Đọc lại và bấm Lưu. Mỗi ngôn ngữ được lưu thành <b>một bài hoàn toàn riêng</b> (file riêng, tiêu đề riêng, tóm tắt riêng, đường dẫn riêng), sửa bài này không làm đổi bài kia. Bài gốc viết bằng <b>${esc(SN)}</b>. Người đọc đổi ngôn ngữ trên trang sẽ được chuyển sang bài tương ứng.</div><div class="hl" style="margin:0 0 10px"><button class="go" id="tr-cp" type="button" style="border:0;cursor:pointer;font-family:inherit">📋 Copy bài + lời nhắc (dịch ${TL.length} ngôn ngữ)</button></div><label class="dl2"><span>Dán kết quả dịch vào đây</span><textarea class="fi" id="tr-paste" rows="4" style="min-height:90px" placeholder="Dán nguyên kết quả AI trả về (có các dòng ===LANG:xx===, ===TITLE===, ===SUMMARY===, ===BODY===)"></textarea></label><div class="hl" style="margin:0 0 14px"><button class="cp" id="tr-split" type="button">Tách vào các tab</button></div><div class="lg" id="tr-tabs" role="group" style="margin-bottom:12px">${TL.map(l=>`<button class="seg" type="button" data-l="${l}"></button>`).join("")}</div><div id="tr-panel"></div><p id="tr-msg" style="min-height:1.4em;font-size:14px;margin:10px 0"></p><div class="hl" style="margin:0"><button class="go" id="tr-saveall" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu tất cả</button><button class="cp" id="dno" type="button">Đóng</button></div></form>`;
+ d.innerHTML=`<form id="dform"><h2>🌐 Dịch thành bài riêng: ${esc(g.title)}</h2><div class="note"><b>Cách nhanh:</b> 1) Bấm <b>Copy bài + lời nhắc</b>. 2) Dán vào Claude/ChatGPT. 3) Copy kết quả, dán vào ô bên dưới rồi bấm <b>Tách vào các tab</b>. 4) Đọc lại và bấm Lưu. Mỗi ngôn ngữ được lưu thành <b>một bài hoàn toàn riêng</b> (file riêng, tiêu đề riêng, tóm tắt riêng, đường dẫn riêng), sửa bài này không làm đổi bài kia. Bài gốc viết bằng <b>${esc(SN)}</b>. Người đọc đổi ngôn ngữ trên trang sẽ được chuyển sang bài tương ứng.</div>${slSel("tr-sl",gSL(g))}<div class="hl" style="margin:0 0 10px"><button class="go" id="tr-cp" type="button" style="border:0;cursor:pointer;font-family:inherit">📋 Copy bài + lời nhắc (dịch ${TL.length} ngôn ngữ)</button></div><label class="dl2"><span>Dán kết quả dịch vào đây</span><textarea class="fi" id="tr-paste" rows="4" style="min-height:90px" placeholder="Dán nguyên kết quả AI trả về (có các dòng ===LANG:xx===, ===TITLE===, ===SUMMARY===, ===BODY===)"></textarea></label><div class="hl" style="margin:0 0 14px"><button class="cp" id="tr-split" type="button">Tách vào các tab</button></div><div class="lg" id="tr-tabs" role="group" style="margin-bottom:12px">${TL.map(l=>`<button class="seg" type="button" data-l="${l}"></button>`).join("")}</div><div id="tr-panel"></div><p id="tr-msg" style="min-height:1.4em;font-size:14px;margin:10px 0"></p><div class="hl" style="margin:0"><button class="go" id="tr-saveall" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu tất cả</button><button class="cp" id="dno" type="button">Đóng</button></div></form>`;
  $("dform").onsubmit=e=>e.preventDefault();$("dno").onclick=()=>d.close();
  $("tr-cp").onclick=()=>doCopy(TL);
+ const changeSL=async nl=>{lock(true);try{await ct(c=>{const x=c.guides.find(y=>y.slug===g.slug);if(x)x.lang=nl});const g2=GUIDES.find(y=>y.slug===g.slug);d.close();render();openTrans(g2||g)}catch(x){msg(x.message,1);lock(false)}};
+ $("tr-sl").onchange=async ev=>{const nl=ev.target.value;if(nl===gSL(g))return;
+  if(gsib(g,nl)){alert("Đã có bài "+LANG[nl]+" cùng nhóm với bài này nên không thể đặt bài này thành "+LANG[nl]);ev.target.value=gSL(g);return}
+  lock(true);try{await ct(c=>{const x=c.guides.find(y=>y.slug===g.slug);if(x)x.lang=nl});const g2=GUIDES.find(y=>y.slug===g.slug);d.close();render();openTrans(g2||g)}catch(x){msg(x.message,1);lock(false)}};
  $("tr-saveall").onclick=()=>doSave(TL.filter(l=>{const v=S.v[l];return!v.loading&&!v.saved&&(v.title.trim()||v.body.trim())}));
  $("tr-split").onclick=()=>{const r=trParse($("tr-paste").value,S.cur,TL),ks=Object.keys(r);
   if(!ks.length)return msg("Không tách được. Kết quả cần có các dòng ===LANG:xx===, ===TITLE===, ===SUMMARY===, ===BODY===",1);
@@ -1069,11 +1095,64 @@ async function openTrans(g){
   msg("Đã tách: "+ks.map(l=>LANG[l]).join(", ")+(miss.length?". Thiếu: "+miss.map(l=>LANG[l]).join(", "):". Hãy đọc lại rồi lưu."),miss.length>0)};
  d.querySelectorAll("#tr-tabs .seg").forEach(b=>b.onclick=()=>{S.cur=b.dataset.l;msg("");paint()});
  d.showModal();paint();
- gh(ghp(gpath(g))+"?ref="+br()).then(j=>{S.src=stripFm(dec(j.content));const o=$("tr-o");if(o)o.value=orig()}).catch(e=>msg("Không tải được bài gốc: "+e.message,1));
+ gh(ghp(gpath(g))+"?ref="+br()).then(j=>{S.src=stripFm(dec(j.content));const o=$("tr-o");if(o)o.value=orig();const dt=detectLang(g.title+"\n"+(g.summary||"")+"\n"+S.src);if(dt&&dt!==gSL(g)){const k=g.slug+":"+dt;if(gsib(g,dt)||TR_FIXED.has(k))msg("Nội dung có vẻ viết bằng "+LANG[dt]+" nhưng bài đang đặt gốc là "+LANG[gSL(g)]+". Hãy đổi ở ô «Ngôn ngữ bản gốc» phía trên.",1);else{TR_FIXED.add(k);msg("Đã nhận diện bài viết bằng "+LANG[dt]+", đang đổi ngôn ngữ gốc…");changeSL(dt)}}}).catch(e=>msg("Không tải được bài gốc: "+e.message,1));
  await Promise.all(TL.map(async l=>{if(!S.v[l].loading)return;const e=ex(l);
   try{const j=await gh(ghp(e.file||"Guide/"+e.slug+".md")+"?ref="+br());if(S.v[l].loading)S.v[l]={title:e.title||"",slug:e.slug,summary:e.summary||"",body:stripFm(dec(j.content)),saved:true,loading:false}}
   catch(err){if(S.v[l].loading)S.v[l]={...emp(),title:e.title||"",slug:e.slug,summary:e.summary||""}}
   if(S.cur===l)paint();else tabs()}))}
+/* ===== Dịch FAQ / Cập nhật: copy mục + lời nhắc -> dán vào AI -> dán kết quả -> tách vào các tab -> lưu vào i18n của chính mục đó ===== */
+const LF=v=>({id:"lang",label:"Ngôn ngữ bạn đang viết (bản gốc)",type:"select",options:TR_ALL.map(l=>[l,LANG[l]]),value:v});
+const TI={faq:{arr:()=>FAQ,key:"faq",en:"FAQ entry (a question and its answer)",f:[["q","QUESTION","Câu hỏi","i"],["a","ANSWER","Trả lời","t"]]},
+ up:{arr:()=>CHANGELOG,key:"updates",en:"changelog entry (a title and a list of items)",f:[["t","TITLE","Tiêu đề","i"],["items","ITEMS","Nội dung (mỗi dòng một mục)","t"]]}};
+function tiPrompt(kind,x,langs,val){const T=TI[kind],SL=x.lang||"vi";
+ return "Translate the following "+TR_NAME[SL]+" "+T.en+" for a Genshin Impact teleport-file website (app name: Electro Cat) into: "+langs.map(l=>TR_NAME[l]+" ("+l+")").join(", ")+".\n\nRules:\n- Plain text only, no Markdown.\n- Keep numbers, dates, file names, commands (e.g. certutil, sha256sum), SHA-256, URLs and the app name Electro Cat unchanged.\n- Use the official in-game terminology of each target language for Genshin Impact terms when you know it.\n- Write natural, clear text.\n"+(kind==="up"?"- ITEMS: keep exactly one item per line and the same number of lines as the original.\n":"")+"\nPut the whole answer inside ONE code block (so I can copy it), with no commentary, using exactly these markers:\n"+langs.map(l=>"===LANG:"+l+"===\n"+T.f.map(([k,M])=>"==="+M+"===\n<"+M.toLowerCase()+(k==="items"?", one item per line":"")+">").join("\n")).join("\n")+"\n\nTEXT TO TRANSLATE:\n"+T.f.map(([k,M])=>"==="+M+"===\n"+val(k,SL)).join("\n")}
+function tiParse(t,def,allowed,kind){const T=TI[kind],out={},parts=String(t).replace(/\r/g,"").split(/^[ \t]*===LANG:([a-z]{2})===[ \t]*$/m);
+ const one=c=>{const p=c.split(/^[ \t]*===([A-Z]+)===[ \t]*$/m),m={};for(let j=1;j<p.length;j+=2)m[p[j]]=String(p[j+1]||"").replace(/\s*```\s*$/,"").trim();
+  let n=0;const r={};T.f.forEach(([k,M])=>{if(m[M]!=null){r[k]=m[M];n++}else r[k]=""});return n?r:null};
+ if(parts.length===1){const r=one(parts[0]);if(r&&allowed.includes(def))out[def]=r}
+ else for(let i=1;i<parts.length;i+=2){const l=parts[i],r=one(parts[i+1]||"");if(r&&allowed.includes(l))out[l]=r}
+ return out}
+function openTransItem(kind,i){
+ if(!ADM())return;const T=TI[kind],x=T.arr()[i];if(!x)return;
+ const F=T.f,SL=x.lang||"vi",TL=TR_ALL.filter(l=>l!==SL),SN=LANG[SL],kb=!!I18N[x[F[0][0]]];
+ const val=(k,l)=>k==="items"?(x.items||[]).map(v=>fxs(v,l)).join("\n"):fxs(x[k],l);
+ let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
+ if(d.open)d.close();
+ const S={cur:TL[0],v:{},dirty:false};
+ TL.forEach(l=>{const o=x.i18n&&x.i18n[l],v={saved:!!o};F.forEach(([k])=>{v[k]=o&&o[k]!=null?(k==="items"?[].concat(o[k]).join("\n"):String(o[k])):(kb?val(k,l):"")});S.v[l]=v});
+ const has=l=>F.some(([k])=>S.v[l][k].trim());
+ const mark=l=>S.v[l].saved?"✅":has(l)?"✎":"○";
+ const msg=(t,bad)=>{const m=$("ti-msg");if(m){m.textContent=t;m.style.color=bad?"#ff9db0":"#9be7b0"}};
+ const lock=b=>d.querySelectorAll("button").forEach(e=>{e.disabled=b});
+ const tabs=()=>d.querySelectorAll("#ti-tabs .seg").forEach(b=>{const l=b.dataset.l;b.textContent=mark(l)+" "+LANG[l];b.classList.toggle("on",l===S.cur);b.setAttribute("aria-pressed",String(l===S.cur))});
+ const copy=async t=>{try{await navigator.clipboard.writeText(t);return true}catch(e){const a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";d.appendChild(a);a.select();let ok=false;try{ok=document.execCommand("copy")}catch(e2){}a.remove();return ok}};
+ const doCopy=async langs=>{const ok=await copy(tiPrompt(kind,x,langs,val));msg(ok?"Đã copy. Dán vào Claude/ChatGPT để dịch, rồi copy kết quả dán vào ô bên dưới.":"Không copy được, hãy thử lại",!ok)};
+ const rec=l=>{const v=S.v[l],r={};F.forEach(([k])=>{r[k]=k==="items"?lines(v[k]):v[k].trim()});return r};
+ const doSave=async ls=>{if(!ls.length)return msg("Chưa có bản nào cần lưu",1);
+  for(const l of ls){const v=S.v[l];if(!v[F[0][0]].trim()||(kind==="faq"&&!v.a.trim()))return msg("Bản "+LANG[l]+" cần điền đủ "+(kind==="faq"?"câu hỏi và trả lời":"tiêu đề"),1)}
+  lock(true);msg("Đang lưu "+ls.map(l=>LANG[l]).join(", ")+"…");
+  try{await ct(c=>{const e=c[T.key][i];if(!e)throw new Error("Không tìm thấy mục này, hãy tải lại trang");e.i18n=e.i18n||{};if(!e.lang)e.lang=SL;ls.forEach(l=>{e.i18n[l]=rec(l)})},"Dịch "+(kind==="faq"?"FAQ":"cập nhật")+": "+ls.map(l=>LANG[l]).join(", "));
+   ls.forEach(l=>{S.v[l].saved=true});S.dirty=true;msg("Đã lưu "+ls.map(l=>LANG[l]).join(", ")+". Người xem thấy sau tối đa vài phút.");paint()}
+  catch(e){msg(e.message,1)}lock(false)};
+ const paint=()=>{if(!d.open)return;tabs();const l=S.cur,v=S.v[l],p=$("ti-panel");
+  p.innerHTML=F.map(([k,M,lb,ty])=>`<label class="dl2"><span>${esc(lb)} (${esc(LANG[l])})</span>${ty==="i"?`<input class="fi" id="ti-${k}">`:`<textarea class="fi" id="ti-${k}" rows="${k==="items"?8:6}" style="min-height:${k==="items"?150:110}px"></textarea>`}</label>`).join("")+`<details style="margin-bottom:12px"><summary style="cursor:pointer;font-size:13px;font-weight:600;color:var(--mute)">Xem bản gốc (${esc(SN)})</summary><textarea class="fi" id="ti-o" rows="6" readonly style="min-height:120px;margin-top:8px"></textarea></details><div class="hl" style="margin:0"><button class="go" id="ti-save" type="button" style="border:0;cursor:pointer;font-family:inherit">${v.saved?"Cập nhật":"Lưu"} bản ${esc(LANG[l])}</button><button class="cp" id="ti-cp1" type="button">📋 Copy để dịch riêng bản này</button></div>`;
+  F.forEach(([k])=>{const e=$("ti-"+k);e.value=v[k];e.oninput=ev=>{v[k]=ev.target.value;v.saved=false;tabs()}});
+  $("ti-o").value=F.map(([k,M,lb])=>lb+":\n"+val(k,SL)).join("\n\n");
+  $("ti-cp1").onclick=()=>doCopy([l]);$("ti-save").onclick=()=>doSave([l])};
+ d.style.width="min(760px,calc(100% - 32px))";
+ d.addEventListener("close",()=>{d.style.width="";if(S.dirty)render()},{once:true});
+ d.innerHTML=`<form id="dform"><h2>🌐 Dịch ${kind==="faq"?"câu hỏi":"mục cập nhật"}: ${esc(fxs(x[F[0][0]],SL))}</h2><div class="note"><b>Cách nhanh:</b> 1) Bấm <b>Copy nội dung + lời nhắc</b>. 2) Dán vào Claude/ChatGPT. 3) Copy kết quả, dán vào ô bên dưới rồi bấm <b>Tách vào các tab</b>. 4) Đọc lại và bấm Lưu. Bản dịch được lưu ngay trong mục này (content.json). Bản gốc viết bằng <b>${esc(SN)}</b>; người xem đổi ngôn ngữ sẽ thấy bản dịch tương ứng, thiếu bản nào thì hiện bản gốc.${kb?" Mục này có sẵn chữ dịch của giao diện nên các tab đã được điền sẵn, hãy lưu để giữ lại.":""}</div>${slSel("ti-sl",SL)}<div class="hl" style="margin:0 0 10px"><button class="go" id="ti-cp" type="button" style="border:0;cursor:pointer;font-family:inherit">📋 Copy nội dung + lời nhắc (dịch ${TL.length} ngôn ngữ)</button></div><label class="dl2"><span>Dán kết quả dịch vào đây</span><textarea class="fi" id="ti-paste" rows="4" style="min-height:90px" placeholder="Dán nguyên kết quả AI trả về (có các dòng ===LANG:xx===, ${F.map(f=>"==="+f[1]+"===").join(", ")})"></textarea></label><div class="hl" style="margin:0 0 14px"><button class="cp" id="ti-split" type="button">Tách vào các tab</button></div><div class="lg" id="ti-tabs" role="group" style="margin-bottom:12px">${TL.map(l=>`<button class="seg" type="button" data-l="${l}"></button>`).join("")}</div><div id="ti-panel"></div><p id="ti-msg" style="min-height:1.4em;font-size:14px;margin:10px 0"></p><div class="hl" style="margin:0"><button class="go" id="ti-saveall" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu tất cả</button><button class="cp" id="dno" type="button">Đóng</button></div></form>`;
+ $("dform").onsubmit=e=>e.preventDefault();$("dno").onclick=()=>d.close();
+ $("ti-cp").onclick=()=>doCopy(TL);
+ $("ti-sl").onchange=async ev=>{const nl=ev.target.value;if(nl===SL)return;lock(true);try{await ct(c=>{const q=c[T.key][i];if(q)q.lang=nl});d.close();render();openTransItem(kind,i)}catch(e){msg(e.message,1);lock(false)}};
+ $("ti-saveall").onclick=()=>doSave(TL.filter(l=>!S.v[l].saved&&has(l)));
+ $("ti-split").onclick=()=>{const r=tiParse($("ti-paste").value,S.cur,TL,kind),ks=Object.keys(r);
+  if(!ks.length)return msg("Không tách được. Kết quả cần có các dòng ===LANG:xx=== và "+F.map(f=>"==="+f[1]+"===").join(", "),1);
+  ks.forEach(l=>{S.v[l]={...r[l],saved:false}});const miss=TL.filter(l=>!r[l]);paint();
+  msg("Đã tách: "+ks.map(l=>LANG[l]).join(", ")+(miss.length?". Thiếu: "+miss.map(l=>LANG[l]).join(", "):". Hãy đọc lại rồi lưu."),miss.length>0)};
+ d.querySelectorAll("#ti-tabs .seg").forEach(b=>b.onclick=()=>{S.cur=b.dataset.l;msg("");paint()});
+ d.showModal();paint();
+ if(!kb){const dt=detectLang(F.map(([k])=>val(k,SL)).join("\n"));if(dt&&dt!==SL){const k=kind+i+":"+dt;if(TR_FIXED.has(k))msg("Nội dung có vẻ viết bằng "+LANG[dt]+" nhưng mục này đang đặt gốc là "+LANG[SL]+". Hãy đổi ở ô «Ngôn ngữ bản gốc» phía trên.",1);else{TR_FIXED.add(k);msg("Đã nhận diện nội dung viết bằng "+LANG[dt]+", đang đổi ngôn ngữ gốc…");$("ti-sl").value=dt;$("ti-sl").onchange({target:$("ti-sl")})}}}}
 function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạn cần đăng nhập để viết bài.</p><div class="hl"><button class="go" data-ad="login" type="button" style="border:0;cursor:pointer;font-family:inherit">Đăng nhập</button><a class="gh" href="#/guide">← Hướng dẫn</a></div>`+foot();
  return `<div class="crumb"><a href="#/guide">← Danh sách hướng dẫn</a></div><h1>${s==="_new"?"Bài hướng dẫn mới":"Sửa bài hướng dẫn"}</h1><p class="lead">Bài lưu thẳng vào repo ${esc(SITE.repo)}.</p>
  <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px"><input class="fi" id="e-alias" placeholder="Đường dẫn hiển thị trên link (để trống = lấy theo tiêu đề, vd: Teleport-File-Usage-Guide)" aria-label="Đường dẫn hiển thị" style="margin-top:10px">
@@ -1091,6 +1170,9 @@ async function editInit(s){if(!ADM())return;
  const view=v=>{$("e-w").hidden=v!=="w";$("e-p").hidden=v!=="p";document.querySelectorAll("[data-v]").forEach(x=>x.classList.toggle("on",x.dataset.v===v));
   if(v==="p")$("e-p").innerHTML=`<h1 style="font-size:28px;margin-bottom:16px">${esc(val("e-title"))}</h1><article class="post">${md(ta.value,G+"x.md")}</article>`};
  const g0=GUIDES.find(x=>x.slug===s)||{};
+ let langTouched=false,langTimer=0;
+ const autoLang=()=>{if(langTouched)return;const dl=detectLang(val("e-title")+"\n"+val("e-summary")+"\n"+ta.value);if(dl&&$("e-lang").value!==dl){$("e-lang").value=dl;say("Đã tự nhận diện bài viết bằng "+LANG[dl]+". Nếu sai, hãy chọn lại ở ô Ngôn ngữ bài viết.")}};
+ const autoLangSoon=()=>{clearTimeout(langTimer);langTimer=setTimeout(autoLang,700)};
  $("e-lang").value=g0.lang||"vi";$("e-alias").value=g0.alias||"";$("e-title").value=g0.title||"";$("e-summary").value=g0.summary||"";$("e-date").value=g0.date||today();$("e-order").value=g0.order||"";
  $("e-draft").checked=!!g0.draft&&g0.draft!=="false";$("e-slug").value=st.slug;$("e-slug").disabled=!!st.slug;$("ad-del").hidden=!st.slug;
  const ins=x=>{ta.setRangeText(x,ta.selectionStart,ta.selectionEnd,"end");ta.focus()};
@@ -1138,6 +1220,7 @@ async function editInit(s){if(!ADM())return;
   const mk=x=>fold(x).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");let alias=dispT(val("e-alias"));if(alias===slug)alias="";
   if(alias){const bad=GUIDES.some(x=>x.slug!==slug&&(x.slug===alias||x.alias===alias));if(bad)return say("Đường dẫn «"+alias+"» đã được dùng, hãy đổi tên khác",1)}
   $("e-alias").value=alias;
+  {const dl=detectLang(title+"\n"+ta.value);if(dl&&dl!==val("e-lang")&&confirm("Nội dung có vẻ viết bằng "+LANG[dl]+" nhưng ô «Ngôn ngữ bài viết» đang chọn "+LANG[val("e-lang")]+".\nĐổi ngôn ngữ gốc thành "+LANG[dl]+"? (Bấm Hủy để giữ nguyên)"))$("e-lang").value=dl}
   const g1=GUIDES.find(x=>x.slug===slug)||{},path=g1.file||G+slug+".md";$("ad-save").disabled=true;say("Đang lưu…");
   try{const ex=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(ex&&!st.slug&&!confirm("Đã có bài tên file "+slug+". Ghi đè?"))throw new Error("Đã huỷ");
    await gh(ghp(path),{method:"PUT",body:JSON.stringify({message:"Cập nhật bài: "+title,content:enc(ta.value.trim()+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
@@ -1156,8 +1239,9 @@ async function editInit(s){if(!ADM())return;
  ta.ondrop=e=>{ta.classList.remove("drop");const fs=imgs(e.dataTransfer&&e.dataTransfer.files);if(fs.length){e.preventDefault();upAll(fs)}};
  ta.onkeydown=e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){e.preventDefault();save()}};
  $("ad-save").onclick=save;
+ $("e-lang").onchange=()=>{langTouched=true};ta.addEventListener("input",autoLangSoon);$("e-title").addEventListener("input",autoLangSoon);
  $("ad-del").onclick=async()=>{if(!st.slug||!confirm("Xóa bài này?"))return;try{const gd=GUIDES.find(x=>x.slug===st.slug)||{},path=gd.file||G+st.slug+".md",j=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(j)await gh(ghp(path),{method:"DELETE",body:JSON.stringify({message:"Xóa bài "+st.slug,sha:j.sha,branch:SITE.branch})});await ct(c=>{c.guides=c.guides.filter(g=>g.slug!==st.slug)},"Xóa khỏi danh sách hướng dẫn");go("#/guide",true)}catch(e){say(e.message,1)}};
- if(st.slug){ta.value="Đang tải…";ta.disabled=true;try{const j=await gh(ghp(g0.file||G+st.slug+".md")+"?ref="+br());ta.value=dec(j.content).replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*\n/,"")}catch(e){ta.value="";say("Không mở được nội dung bài: "+e.message,1)}ta.disabled=false}}
+ if(st.slug){ta.value="Đang tải…";ta.disabled=true;try{const j=await gh(ghp(g0.file||G+st.slug+".md")+"?ref="+br());ta.value=dec(j.content).replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*\n/,"")}catch(e){ta.value="";say("Không mở được nội dung bài: "+e.message,1)}ta.disabled=false;autoLang()}}
 if(TOK&&SITE.repo)gh("https://api.github.com/repos/"+SITE.repo).catch(e=>{if(/Token sai/.test(e.message)){TOK="";try{localStorage.removeItem("gt");sessionStorage.removeItem("gt")}catch(x){}admUI();render()}});
 admUI();
 const gu=sl=>String(sl).split("/").map(encodeURIComponent).join("/");
@@ -1279,7 +1363,7 @@ function region(i,k){const [id,n]=ALL[i],all=FILES.filter(f=>f.region===id);
  [...new Set(g.map(f=>f.kind))].sort((a,b)=>ko(a)-ko(b)).forEach(k=>{const s=srt(g.filter(f=>f.kind===k));
   h+=`<section class="blk"><div class="bh"><div><h2>${esc(kn(k))}</h2><p>${esc(I18N["kd_"+k]?tr("kd_"+k):"")}</p></div>${s.length>1?'<button class="sa" type="button">'+tr("selall")+'</button>':""}</div>${s.map(prow).join("")}</section>`});
  return h+pn(i)+foot()}
-function faq(){const A=ADM();return crumb("<a href=\"#/\">Kho File Tele</a>","FAQ")+`<h1>FAQ</h1><p class="lead">${tr("x_faq_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="faq-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm câu hỏi</button></div>':""}<div class="faq">${FAQ.map((x,i)=>`<details><summary>${esc(tx(x.q))}</summary><p>${esc(tx(x.a))}</p>${A?`<div class="hl" style="margin:0 20px 16px"><button class="cp" data-ad="faq-edit" data-i="${i}" type="button">Sửa</button><button class="cp" data-ad="faq-up" data-i="${i}" type="button" aria-label="Lên">↑</button><button class="cp" data-ad="faq-down" data-i="${i}" type="button" aria-label="Xuống">↓</button><button class="cp" data-ad="faq-del" data-i="${i}" type="button">Xóa</button></div>`:""}</details>`).join("")}</div>`+foot()}
+function faq(){const A=ADM();return crumb("<a href=\"#/\">Kho File Tele</a>","FAQ")+`<h1>FAQ</h1><p class="lead">${tr("x_faq_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="faq-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm câu hỏi</button></div>':""}<div class="faq">${FAQ.map((x,i)=>`<details><summary>${esc(l10(x,"q"))}</summary><p>${esc(l10(x,"a"))}</p>${A?`<div class="hl" style="margin:0 20px 16px"><button class="cp" data-ad="faq-edit" data-i="${i}" type="button">Sửa</button><button class="cp" data-ad="faq-tr" data-i="${i}" type="button">🌐 Dịch</button><button class="cp" data-ad="faq-up" data-i="${i}" type="button" aria-label="Lên">↑</button><button class="cp" data-ad="faq-down" data-i="${i}" type="button" aria-label="Xuống">↓</button><button class="cp" data-ad="faq-del" data-i="${i}" type="button">Xóa</button></div>`:""}</details>`).join("")}</div>`+foot()}
 function results(){const words=nz(q).split(/\s+/).filter(Boolean),r=FILES.filter(f=>{const hay=nz([f.name,tx(f.note),f.cat,rn(f.region),(ALL.find(x=>x[0]===f.region)||[])[2],kn(f.kind),(I18N["k_"+f.kind]||[])[0],LANG[f.lang]||""].join(" "));return words.every(w=>hay.includes(w))});
  let h=crumb("<a href=\"#/\">Kho File Tele</a>",tr("search"))+`<h1>${tr("results")}</h1><p class="lead">${esc(tr("rfor",{n:r.length,q}))}</p>`;
  if(!r.length)return h+'<p class="none">'+esc(tr("nonef"))+'</p>'+foot();
