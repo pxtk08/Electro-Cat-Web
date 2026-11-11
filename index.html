@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Electro Cat · Giới thiệu</title>
 <meta name="description" content="Electro Cat Archive - Teleport files for Unicore (Genshin Impact). Select region, download .zip, and import into the app.">
@@ -1280,7 +1280,7 @@ function render(){const R=route();theme(!q&&R.p==="r"?ALL[R.i][0]:"");document.b
  $("mbl").textContent=q?tr("search"):lb;document.title=(SITE.server||"Electro Cat")+" · "+(q?tr("search")+" “"+q+"”":(R.p==="intro"?tr("intro"):lb));
  document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm||(!!R.sec&&a.getAttribute("href")==="#/community/"+R.sec)));
  mgSet(R.p==="community"?true:null);
- if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,community,app:appPage,updates,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);if(R.p==="community"&&!q)commInit();syncBar();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
+ if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,community,app:appPage,updates,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);if(R.p==="community"&&!q)commInit();syncBar();syncGuideRet();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
 function syncBar(){const n=SEL.size;$("bar").hidden=!n;$("bn").textContent=tr("sel",{n});$("bz").textContent=n>1?tr("dln",{n}):tr("dl1");
  document.querySelectorAll(".blk").forEach(b=>{const a=b.querySelector(".sa");if(a)a.textContent=[...b.querySelectorAll("input[data-k]")].every(x=>x.checked)?tr("unselall"):tr("selall")})}
 const crcT=Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;return c>>>0});
@@ -1341,6 +1341,7 @@ const mb=$("mb"),mn=$("menu"),tg=o=>{mn.classList.toggle("on",o);mb.setAttribute
 function mgSet(o){const g=$("mg"),b=$("mgb");if(!g||o===null)return;g.classList.toggle("open",o);b.setAttribute("aria-expanded",o)}
 if($("mgb"))$("mgb").onclick=e=>{e.stopPropagation();mgSet(!$("mg").classList.contains("open"))};
 mb.onclick=e=>{e.stopPropagation();tg(!mn.classList.contains("on"))};
+if($("gr-close"))$("gr-close").onclick=()=>{clearCurGuide();$("gr-bar").hidden=true};
 mn.onclick=e=>{if(e.target.closest("a"))tg(false)};
 document.addEventListener("click",e=>{if(!mn.contains(e.target)&&e.target!==mb&&!mb.contains(e.target))tg(false)});
 function applyStatic(){document.documentElement.lang=UL;ALL.forEach(a=>{if(!a[2])a[2]=a[1];a[1]=I18N["rn_"+a[0]]?tr("rn_"+a[0]):a[2]});const M={"#/":"intro","#/files":"files","#/community":"community","#/app":"app","#/updates":"updates","#/guide":"guide","#/faq":"faq","#/report":"report","#/about":"about"};
