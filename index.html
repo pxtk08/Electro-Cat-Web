@@ -959,7 +959,7 @@ function updates(){const A=ADM(),ch=[...CHANGELOG].sort((a,b)=>String(b.d).local
 /* ===== Chế độ quản trị: chỉ hiện khi có token GitHub hợp lệ; mọi thay đổi ghi thẳng vào repo ===== */
 const PV={};const PWH="c3588868b18ffbab5b415842461fa4e55adbb4cbcfb9e2b5016b5e2f35d92756";
 let TOK="";try{TOK=sessionStorage.getItem("gt")||"";localStorage.removeItem("gt")}catch(e){}
-const ADM=()=>!!TOK,br=()=>encodeURIComponent(SITE.branch),gSL=g=>g.lang||"vi",gpath=g=>g.file||"Guide/"+g.slug+".md",gT=g=>g.title,gU=g=>g.alias||g.slug,gS=g=>g.summary,gGrp=g=>g.grp||g.slug,gfind=sl=>GUIDES.find(x=>x.slug===sl||x.alias===sl),gsib=(g,l)=>GUIDES.find(x=>x!==g&&gGrp(x)===gGrp(g)&&gSL(x)===l),
+const ADM=()=>!!TOK,br=()=>encodeURIComponent(SITE.branch),gSL=g=>g.lang||"vi",gpath=g=>g.file||"Guide/"+g.slug+".md",gurl=g=>RAW+gpath(g)+"?r="+(g.rev||0)+(TOK?"&t="+Date.now():""),gT=g=>g.title,gU=g=>g.alias||g.slug,gS=g=>g.summary,gGrp=g=>g.grp||g.slug,gfind=sl=>GUIDES.find(x=>x.slug===sl||x.alias===sl),gsib=(g,l)=>GUIDES.find(x=>x!==g&&gGrp(x)===gGrp(g)&&gSL(x)===l),
 /* Mỗi ngôn ngữ là một bài riêng. Dữ liệu cũ (i18n lồng trong bài gốc) được tách thành bài riêng khi tải; slug + file cũ giữ nguyên nên link cũ vẫn chạy. */
 normGuides=a=>{a=Array.isArray(a)?a:[];const out=[],used=new Set();a.forEach(g=>{used.add(g.slug);if(g.alias)used.add(g.alias)});
  a.forEach(g=>{const {i18n,...b}=g;out.push(b);if(i18n&&typeof i18n==="object")Object.keys(i18n).forEach(l=>{const m=i18n[l];if(!m||l===gSL(g))return;let s=String(m.slug||"").trim()||g.slug+"-"+l;if(used.has(s)&&s!==g.slug)s=g.slug+"-"+l;if(used.has(s))s+="-"+l;used.add(s);
@@ -1043,8 +1043,8 @@ async function openTrans(g){
    await gh(ghp(p.path),{method:"PUT",body:JSON.stringify({message:"Bài "+LANG[l]+": "+v.title.trim(),content:enc(v.body.trim()+"\n"),branch:SITE.branch,...(old?{sha:old.sha}:{})})})}
   await ct(c=>{const s=c.guides.find(x=>x.slug===g.slug);if(s&&!s.grp)s.grp=GP;
    ls.forEach(l=>{const v=S.v[l],p=plan[l],k=c.guides.findIndex(x=>x.slug===p.slug);
-    if(k>=0)c.guides[k]={...c.guides[k],title:v.title.trim(),summary:v.summary.trim()};
-    else c.guides.push({slug:p.slug,title:v.title.trim(),alias:"",lang:l,summary:v.summary.trim(),date:g.date||today(),order:g.order||0,draft:!!g.draft,grp:GP})})},"Thêm bài "+ls.map(l=>LANG[l]).join(", ")+": "+g.title);
+    if(k>=0)c.guides[k]={...c.guides[k],title:v.title.trim(),summary:v.summary.trim(),rev:Date.now()};
+    else c.guides.push({slug:p.slug,title:v.title.trim(),alias:"",lang:l,summary:v.summary.trim(),date:g.date||today(),order:g.order||0,draft:!!g.draft,grp:GP,rev:Date.now()})})},"Thêm bài "+ls.map(l=>LANG[l]).join(", ")+": "+g.title);
   ls.forEach(l=>{S.v[l].saved=true});S.dirty=true};
  const doSave=async ls=>{if(!ls.length)return msg("Chưa có bản nào cần lưu",1);lock(true);msg("Đang lưu "+ls.map(l=>LANG[l]).join(", ")+"…");try{await saveLangs(ls);msg("Đã lưu "+ls.map(l=>LANG[l]).join(", ")+" thành bài riêng. Người xem thấy sau tối đa vài phút.");paint()}catch(x){msg(x.message,1)}lock(false)};
  const orig=()=>g.title+"\n"+(g.summary||"")+"\n\n"+(S.src===null?"Đang tải…":S.src);
@@ -1139,7 +1139,7 @@ async function editInit(s){if(!ADM())return;
   const g1=GUIDES.find(x=>x.slug===slug)||{},path=g1.file||G+slug+".md";$("ad-save").disabled=true;say("Đang lưu…");
   try{const ex=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(ex&&!st.slug&&!confirm("Đã có bài tên file "+slug+". Ghi đè?"))throw new Error("Đã huỷ");
    await gh(ghp(path),{method:"PUT",body:JSON.stringify({message:"Cập nhật bài: "+title,content:enc(ta.value.trim()+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
-   const e={slug,title,alias,lang:val("e-lang"),summary:one(val("e-summary")),date:val("e-date"),order:Number(val("e-order"))||0,draft:$("e-draft").checked};
+   const e={slug,title,alias,lang:val("e-lang"),summary:one(val("e-summary")),date:val("e-date"),order:Number(val("e-order"))||0,draft:$("e-draft").checked,rev:Date.now()};
    await ct(c=>{const k=c.guides.findIndex(g=>g.slug===slug);if(k>=0)c.guides[k]={...c.guides[k],...e};else c.guides.push(e)},"Cập nhật danh sách hướng dẫn");
    st.slug=slug;$("e-slug").value=slug;$("e-slug").disabled=true;$("ad-del").hidden=false;
    say("Đã lưu"+(e.draft?" (nháp, chỉ bạn thấy)":"")+". Người xem thấy bản mới sau tối đa vài phút.")}catch(x){say(x.message,1)}
@@ -1217,7 +1217,7 @@ function post(sl){const g=gfind(sl),bc=t=>crumb("<a href=\"#/\">Kho File Tele</a
  if(g){setCurGuide(sl,gT(g));syncGuideRet()}
  const back='<div class="pn"><a class="gh" href="#/guide">← '+tr("x_back_guides")+'</a></div>';
  
- fetch(RAW+gpath(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
+ fetch(gurl(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
   const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g));
   document.title=(SITE.server||"Electro Cat")+" · "+gT(g);
   setCurGuide(sl,gT(g));syncGuideRet();
@@ -1470,7 +1470,7 @@ try{
 applyStatic();render();
 const RER=()=>{if(route().p!=="edit")render()};
 fetch(RAW+"manifest.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(m=>{const d=fromManifest(m);if(d.length){FILES=d;try{localStorage.setItem("ec_manifest",JSON.stringify(m))}catch(e){}RER()}}).catch(()=>{if(SITE.repo&&!FILES.length){FILES=[];RER();lv(tr("x_loadfail"))}});
-fetch(RAW+"content.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(c=>{applyContent(c);try{localStorage.setItem("ec_content",JSON.stringify(c))}catch(e){}RER()}).catch(()=>{GL=1;RER()});
+fetch(RAW+"content.json?t="+Math.floor(Date.now()/60000),{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(c=>{applyContent(c);try{localStorage.setItem("ec_content",JSON.stringify(c))}catch(e){}RER()}).catch(()=>{GL=1;RER()});
 let topBtn=document.getElementById("top-btn");
 if(!topBtn){topBtn=document.createElement("button");topBtn.id="top-btn";topBtn.className="top-btn";topBtn.type="button";topBtn.setAttribute("aria-label",tr("scroll_top"));topBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>';topBtn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});document.body.appendChild(topBtn)}
 const spb=document.getElementById("spb");let tick=0;
