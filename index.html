@@ -19,7 +19,7 @@
 <meta name="theme-color" id="tc" content="#18121f">
 <meta name="color-scheme" content="dark">
 <!-- CSP: nếu file tải nằm ở domain khác, thêm domain đó vào connect-src -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://api.anthropic.com https://*.supabase.co; object-src 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://*.supabase.co; object-src 'none'; base-uri 'none'">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Electro Cat Archive","description":"Teleport files for Unicore (Genshin Impact). Select region, download .zip, and import into the app.","author":{"@type":"Person","name":"pxtk.08"},"inLanguage":["vi","en","ru","pt"]}</script>
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/pxtk08/Electro-Cat-Web/main/icon.ico">
 <!-- canonical: thay URL bên dưới bằng URL deploy thực tế -->
@@ -987,7 +987,7 @@ function adm(a,i){
   sessionStorage.removeItem("pwn");sessionStorage.removeItem("pwx");
   setTimeout(()=>dlg("Nhập token",[{id:"tok",label:"Token GitHub",type:"password"}],async w=>{const k=w.tok.trim();need(k,"Nhập token");TOK=k;
    try{const j=await gh("https://api.github.com/repos/"+SITE.repo);if(j.permissions&&!j.permissions.push)throw new Error("Token này không có quyền ghi vào repo");try{sessionStorage.setItem("gt",k)}catch(e){}}catch(e){TOK="";throw e}admUI()}),0)});
- if(a==="logout"){TOK="";try{localStorage.removeItem("gt");sessionStorage.removeItem("gt");sessionStorage.removeItem("ck")}catch(e){}admUI();render();return}
+ if(a==="logout"){TOK="";try{localStorage.removeItem("gt");sessionStorage.removeItem("gt")}catch(e){}admUI();render();return}
  if(a==="faq-add")return dlg("Thêm câu hỏi",[{id:"q",label:"Câu hỏi"},{id:"a",label:"Trả lời",type:"textarea",rows:6}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>c.faq.push({q:v.q.trim(),a:v.a.trim()}),"Thêm FAQ")});
  if(a==="faq-edit")return dlg("Sửa câu hỏi",[{id:"q",label:"Câu hỏi",value:tx(FAQ[i].q)},{id:"a",label:"Trả lời",type:"textarea",rows:6,value:tx(FAQ[i].a)}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>{c.faq[i]={q:v.q.trim(),a:v.a.trim()}},"Sửa FAQ")});
  if(a==="faq-del"){if(confirm("Xóa câu hỏi này?"))run(c=>c.faq.splice(i,1),"Xóa FAQ");return}
@@ -997,60 +997,58 @@ function adm(a,i){
  if(a==="up-edit"){const x=CHANGELOG[i];return dlg("Sửa cập nhật",[{id:"d",label:"Ngày",type:"date",value:x.d},{id:"t",label:"Tiêu đề",value:tx(x.t)},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6,value:(x.items||[]).map(tx).join("\n")}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>{c.updates[i]={d:v.d,t:v.t.trim(),items:lines(v.items)}},"Sửa cập nhật")})}
  if(a==="up-del"){if(confirm("Xóa mục cập nhật này?"))run(c=>c.updates.splice(i,1),"Xóa cập nhật");return}}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-ad]");if(b){e.preventDefault();adm(b.dataset.ad,Number(b.dataset.i))}});
-/* ===== Dịch tự động bài hướng dẫn bằng Claude API (chỉ quản trị) ===== */
-const TR_ALL=["vi","en","ru","pt"],TR_NAME={vi:"Vietnamese",en:"English",ru:"Russian",pt:"Brazilian Portuguese"},trTargets=g=>TR_ALL.filter(l=>l!==gSL(g)),TR_MODEL="claude-sonnet-5-5";
+/* ===== Bản dịch thủ công: copy bài + lời nhắc -> dán vào AI -> dán kết quả -> tách vào từng tab -> lưu ===== */
+const TR_ALL=["vi","en","ru","pt"],TR_NAME={vi:"Vietnamese",en:"English",ru:"Russian",pt:"Brazilian Portuguese"},trTargets=g=>TR_ALL.filter(l=>l!==gSL(g));
 const stripFm=t=>String(t).replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*\n/,"");
-async function trCall(l,title,summary,body,src){
- let key="";try{key=sessionStorage.getItem("ck")||""}catch(e){}
- if(!key)throw new Error("Chưa có API key");
- const sys="You translate "+TR_NAME[src]+" guide articles for a Genshin Impact teleport-file website into "+TR_NAME[l]+". Rules: keep the Markdown structure exactly (headings, lists, bold, tables, blockquotes, blank lines); never change URLs, link targets, image paths, inline code, or channel tokens like [#faq]; translate link labels and image alt text; keep emojis, numbers and file names; keep proper nouns and the app name Electro Cat; use the official in-game terminology of the target language for Genshin Impact terms when you know it; write natural, clear text. Output ONLY in this exact format, with no commentary:\n===TITLE===\n<title>\n===SUMMARY===\n<summary, may be empty>\n===BODY===\n<markdown body>";
- const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:TR_MODEL,max_tokens:12000,system:sys,messages:[{role:"user",content:"===TITLE===\n"+title+"\n===SUMMARY===\n"+summary+"\n===BODY===\n"+body}]})});
- const j=await r.json().catch(()=>({}));
- if(!r.ok){if(r.status===401){try{sessionStorage.removeItem("ck")}catch(e){}throw new Error("API key sai hoặc hết hạn, bấm Đóng rồi mở lại để nhập key mới")}throw new Error((j.error&&j.error.message)||"Lỗi "+r.status)}
- if(j.stop_reason==="max_tokens")throw new Error("Bài quá dài nên bản dịch bị cắt, hãy chia bài ngắn hơn");
- const out=(j.content||[]).map(b=>b.type==="text"?b.text:"").join("");
- const m=out.match(/===TITLE===\s*([\s\S]*?)\s*===SUMMARY===\s*([\s\S]*?)\s*===BODY===\s*([\s\S]*)$/);
- if(!m)throw new Error("Kết quả dịch sai định dạng, hãy bấm Dịch lại");
- return{title:m[1].trim(),summary:m[2].trim(),body:m[3].trim()}}
+function trPrompt(g,src,langs){
+ return "Translate the following "+TR_NAME[gSL(g)]+" guide article for a Genshin Impact teleport-file website into: "+langs.map(l=>TR_NAME[l]+" ("+l+")").join(", ")+".\n\nRules:\n- Keep the Markdown structure exactly (headings, lists, bold, tables, blockquotes, blank lines).\n- Never change URLs, link targets like (#/files), image paths, inline code, or channel tokens like [#faq].\n- Translate link labels and image alt text. Keep emojis, numbers, file names and the app name Electro Cat.\n- Use the official in-game terminology of each target language for Genshin Impact terms when you know it.\n- Write natural, clear text.\n\nPut the whole answer inside ONE code block (so I can copy it), with no commentary, using exactly these markers:\n"+langs.map(l=>"===LANG:"+l+"===\n===TITLE===\n<title>\n===SUMMARY===\n<summary, may be empty>\n===BODY===\n<markdown body>").join("\n")+"\n\nARTICLE TO TRANSLATE:\n===TITLE===\n"+g.title+"\n===SUMMARY===\n"+(g.summary||"")+"\n===BODY===\n"+src}
+function trParse(t,def,allowed){
+ t=String(t).replace(/\r/g,"");const out={},parts=t.split(/^[ \t]*===LANG:([a-z]{2})===[ \t]*$/m);
+ const one=c=>{const m=c.match(/===TITLE===\s*([\s\S]*?)\s*===SUMMARY===\s*([\s\S]*?)\s*===BODY===\s*([\s\S]*)$/);return m?{title:m[1].trim(),summary:m[2].trim(),body:m[3].replace(/\s*```\s*$/,"").trim()}:null};
+ if(parts.length===1){const r=one(parts[0]);if(r&&allowed.includes(def))out[def]=r}
+ else for(let i=1;i<parts.length;i+=2){const l=parts[i],r=one(parts[i+1]||"");if(r&&allowed.includes(l))out[l]=r}
+ return out}
 async function openTrans(g){
  if(!ADM())return;
- const TL=trTargets(g);
- let key="";try{key=sessionStorage.getItem("ck")||""}catch(e){}
- if(!key)return dlg("Nhập Claude API key",[{id:"k",label:"API key (bắt đầu bằng sk-ant-)",type:"password"}],async v=>{const k=v.k.trim();if(!/^sk-ant-/.test(k))throw new Error("Key không đúng định dạng");try{sessionStorage.setItem("ck",k)}catch(e){throw new Error("Trình duyệt không cho lưu key tạm")}setTimeout(()=>openTrans(g),0)},"Key chỉ lưu tạm trong tab này (mất khi đóng tab hoặc bấm Thoát), không ghi vào repo. Lấy key tại console.anthropic.com.");
+ const TL=trTargets(g),SN=LANG[gSL(g)];
  let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
  if(d.open)d.close();
- const S={cur:TL[0],v:{},dirty:false};
- const mark=l=>{const v=S.v[l];return!v||v.loading?"⏳":v.error?"⚠️":v.saved?"✅":"✎"};
+ const S={cur:TL[0],v:{},dirty:false,src:null},emp=()=>({title:"",summary:"",body:"",saved:false,loading:false});
+ TL.forEach(l=>{S.v[l]=emp();S.v[l].loading=!!(g.i18n&&g.i18n[l])});
+ const mark=l=>{const v=S.v[l];return v.loading?"⏳":v.saved?"✅":(v.title||v.body)?"✎":"○"};
  const msg=(t,bad)=>{const m=$("tr-msg");if(m){m.textContent=t;m.style.color=bad?"#ff9db0":"#9be7b0"}};
  const tabs=()=>d.querySelectorAll("#tr-tabs .seg").forEach(b=>{const l=b.dataset.l;b.textContent=mark(l)+" "+LANG[l];b.classList.toggle("on",l===S.cur);b.setAttribute("aria-pressed",String(l===S.cur))});
- let src=null;const getSrc=async()=>src!==null?src:(src=stripFm(dec((await gh(ghp("Guide/"+g.slug+".md")+"?ref="+br())).content)));
+ const copy=async t=>{try{await navigator.clipboard.writeText(t);return true}catch(e){const x=document.createElement("textarea");x.value=t;x.style.cssText="position:fixed;opacity:0";d.appendChild(x);x.select();let ok=false;try{ok=document.execCommand("copy")}catch(e2){}x.remove();return ok}};
+ const doCopy=async langs=>{if(S.src===null)return msg("Đang tải bài gốc, đợi vài giây rồi bấm lại",1);const ok=await copy(trPrompt(g,S.src,langs));msg(ok?"Đã copy. Dán vào Claude/ChatGPT để dịch, rồi copy kết quả dán vào ô bên dưới.":"Không copy được, hãy thử lại",!ok)};
  const save=async l=>{const v=S.v[l];if(!v.title.trim()||!v.body.trim())throw new Error("Cần có tiêu đề và nội dung");
   const path="Guide/"+g.slug+"."+l+".md",ex=await gh(ghp(path)+"?ref="+br()).catch(()=>null);
   await gh(ghp(path),{method:"PUT",body:JSON.stringify({message:"Bản dịch "+LANG[l]+": "+g.title,content:enc(v.body.trim()+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
   await ct(c=>{const k=c.guides.find(x=>x.slug===g.slug);if(!k)throw new Error("Không thấy bài trong danh sách");k.i18n={...(k.i18n||{}),[l]:{title:v.title.trim(),summary:v.summary.trim()}}},"Cập nhật bản dịch "+LANG[l]+": "+g.title);
   v.saved=true};
+ const orig=()=>g.title+"\n"+(g.summary||"")+"\n\n"+(S.src===null?"Đang tải…":S.src);
  const paint=()=>{if(!d.open)return;tabs();const l=S.cur,v=S.v[l],p=$("tr-panel");
-  if(!v||v.loading){p.innerHTML='<p class="lead">Đang dịch sang '+esc(LANG[l])+"…</p>";return}
-  if(v.error){p.innerHTML=`<p class="none">${esc(v.error)}</p><div class="hl"><button class="go" id="tr-re" type="button" style="border:0;cursor:pointer;font-family:inherit">Dịch lại</button></div>`;$("tr-re").onclick=()=>run(l);return}
-  p.innerHTML=`<label class="dl2"><span>Tiêu đề (${esc(LANG[l])})</span><input class="fi" id="tr-t" value="${esc(v.title)}"></label><label class="dl2"><span>Tóm tắt</span><input class="fi" id="tr-s" value="${esc(v.summary)}"></label><label class="dl2"><span>Nội dung</span><textarea class="fi" id="tr-b" rows="16" style="min-height:300px"></textarea></label><div class="hl" style="margin:0"><button class="go" id="tr-save" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu bản ${esc(LANG[l])}</button><button class="cp" id="tr-re" type="button">Dịch lại</button></div>`;
-  $("tr-b").value=v.body;
+  if(v.loading){p.innerHTML='<p class="lead">Đang tải bản đã lưu…</p>';return}
+  p.innerHTML=`<label class="dl2"><span>Tiêu đề (${esc(LANG[l])})</span><input class="fi" id="tr-t" value="${esc(v.title)}"></label><label class="dl2"><span>Tóm tắt</span><input class="fi" id="tr-s" value="${esc(v.summary)}"></label><label class="dl2"><span>Nội dung</span><textarea class="fi" id="tr-b" rows="16" style="min-height:300px"></textarea></label><details style="margin-bottom:12px"><summary style="cursor:pointer;font-size:13px;font-weight:600;color:var(--mute)">Xem bản gốc (${esc(SN)})</summary><textarea class="fi" id="tr-o" rows="10" readonly style="min-height:180px;margin-top:8px"></textarea></details><div class="hl" style="margin:0"><button class="go" id="tr-save" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu bản ${esc(LANG[l])}</button><button class="cp" id="tr-cp1" type="button">📋 Copy để dịch riêng bản này</button></div>`;
+  $("tr-b").value=v.body;$("tr-o").value=orig();
   const ed=(id,k)=>{$(id).oninput=e=>{v[k]=e.target.value;v.saved=false;tabs()}};ed("tr-t","title");ed("tr-s","summary");ed("tr-b","body");
-  $("tr-re").onclick=()=>run(l);
+  $("tr-cp1").onclick=()=>doCopy([l]);
   $("tr-save").onclick=async e=>{const b=e.currentTarget;b.disabled=true;msg("Đang lưu…");try{await save(l);S.dirty=true;msg("Đã lưu bản "+LANG[l]+". Người xem thấy sau tối đa vài phút.");tabs()}catch(x){msg(x.message,1)}b.disabled=false}};
- const run=async l=>{S.v[l]={loading:true};if(S.cur===l)paint();else tabs();
-  try{const body=await getSrc();S.v[l]={...await trCall(l,g.title,g.summary||"",body,gSL(g)),saved:false}}catch(e){S.v[l]={error:e.message}}
-  if(S.cur===l)paint();else tabs()};
- const loadSaved=async l=>{S.v[l]={loading:true};
-  try{const j=await gh(ghp("Guide/"+g.slug+"."+l+".md")+"?ref="+br()),m=g.i18n[l];S.v[l]={title:m.title||g.title,summary:m.summary||"",body:stripFm(dec(j.content)),saved:true};if(S.cur===l)paint();else tabs()}
-  catch(e){await run(l)}};
  d.style.width="min(820px,calc(100% - 32px))";
  d.addEventListener("close",()=>{d.style.width="";if(S.dirty)render()},{once:true});
- d.innerHTML=`<form id="dform"><h2>🌐 Dịch tự động</h2><div class="note">Bản dịch do AI tạo. Hãy đọc lại, sửa nếu cần rồi bấm Lưu cho từng ngôn ngữ. Bài gốc viết bằng <b>${esc(LANG[gSL(g)])}</b>. Nếu sau này sửa bài gốc, hãy dịch lại.</div><div class="lg" id="tr-tabs" role="group" style="margin-bottom:12px">${TL.map(l=>`<button class="seg" type="button" data-l="${l}"></button>`).join("")}</div><div id="tr-panel"></div><p id="tr-msg" style="min-height:1.4em;font-size:14px;margin:10px 0"></p><div class="hl" style="margin:0"><button class="cp" id="tr-all" type="button">Dịch lại cả 3</button><button class="cp" id="dno" type="button">Đóng</button></div></form>`;
+ d.innerHTML=`<form id="dform"><h2>🌐 Bản dịch: ${esc(g.title)}</h2><div class="note"><b>Cách nhanh:</b> 1) Bấm <b>Copy bài + lời nhắc</b>. 2) Dán vào Claude/ChatGPT. 3) Copy kết quả, dán vào ô bên dưới rồi bấm <b>Tách vào các tab</b>. 4) Đọc lại và bấm Lưu từng tab. Bài gốc viết bằng <b>${esc(SN)}</b>. Nếu sau này sửa bài gốc, hãy dịch lại.</div><div class="hl" style="margin:0 0 10px"><button class="go" id="tr-cp" type="button" style="border:0;cursor:pointer;font-family:inherit">📋 Copy bài + lời nhắc (dịch ${TL.length} ngôn ngữ)</button></div><label class="dl2"><span>Dán kết quả dịch vào đây</span><textarea class="fi" id="tr-paste" rows="4" style="min-height:90px" placeholder="Dán nguyên kết quả AI trả về (có các dòng ===LANG:xx===, ===TITLE===, ===SUMMARY===, ===BODY===)"></textarea></label><div class="hl" style="margin:0 0 14px"><button class="cp" id="tr-split" type="button">Tách vào các tab</button></div><div class="lg" id="tr-tabs" role="group" style="margin-bottom:12px">${TL.map(l=>`<button class="seg" type="button" data-l="${l}"></button>`).join("")}</div><div id="tr-panel"></div><p id="tr-msg" style="min-height:1.4em;font-size:14px;margin:10px 0"></p><div class="hl" style="margin:0"><button class="cp" id="dno" type="button">Đóng</button></div></form>`;
  $("dform").onsubmit=e=>e.preventDefault();$("dno").onclick=()=>d.close();
- $("tr-all").onclick=()=>{if(confirm("Dịch lại sẽ thay nội dung đang hiển thị (chưa lưu) của cả 3 ngôn ngữ. Tiếp tục?"))Promise.all(TL.map(run))};
+ $("tr-cp").onclick=()=>doCopy(TL);
+ $("tr-split").onclick=()=>{const r=trParse($("tr-paste").value,S.cur,TL),ks=Object.keys(r);
+  if(!ks.length)return msg("Không tách được. Kết quả cần có các dòng ===LANG:xx===, ===TITLE===, ===SUMMARY===, ===BODY===",1);
+  ks.forEach(l=>{S.v[l]={...r[l],saved:false,loading:false}});const miss=TL.filter(l=>!r[l]);paint();
+  msg("Đã tách: "+ks.map(l=>LANG[l]).join(", ")+(miss.length?". Thiếu: "+miss.map(l=>LANG[l]).join(", "):". Hãy đọc lại rồi lưu từng tab."),miss.length>0)};
  d.querySelectorAll("#tr-tabs .seg").forEach(b=>b.onclick=()=>{S.cur=b.dataset.l;msg("");paint()});
  d.showModal();paint();
- await Promise.all(TL.map(l=>g.i18n&&g.i18n[l]?loadSaved(l):run(l)))}
+ gh(ghp("Guide/"+g.slug+".md")+"?ref="+br()).then(j=>{S.src=stripFm(dec(j.content));const o=$("tr-o");if(o)o.value=orig()}).catch(e=>msg("Không tải được bài gốc: "+e.message,1));
+ await Promise.all(TL.map(async l=>{if(!S.v[l].loading)return;
+  try{const j=await gh(ghp("Guide/"+g.slug+"."+l+".md")+"?ref="+br()),m=g.i18n[l];if(S.v[l].loading)S.v[l]={title:m.title||"",summary:m.summary||"",body:stripFm(dec(j.content)),saved:true,loading:false}}
+  catch(e){if(S.v[l].loading)S.v[l]=emp()}
+  if(S.cur===l)paint();else tabs()}))}
 function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạn cần đăng nhập để viết bài.</p><div class="hl"><button class="go" data-ad="login" type="button" style="border:0;cursor:pointer;font-family:inherit">Đăng nhập</button><a class="gh" href="#/guide">← Hướng dẫn</a></div>`+foot();
  return `<div class="crumb"><a href="#/guide">← Danh sách hướng dẫn</a></div><h1>${s==="_new"?"Bài hướng dẫn mới":"Sửa bài hướng dẫn"}</h1><p class="lead">Bài lưu thẳng vào repo ${esc(SITE.repo)}.</p>
  <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px">
@@ -1196,7 +1194,7 @@ function post(sl){const g=GUIDES.find(x=>x.slug===sl),bc=t=>crumb("<a href=\"#/\
   const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g,L2));
   document.title=(SITE.server||"Electro Cat")+" · "+gT(g);
   setCurGuide(g.slug,gT(g));syncGuideRet();
-  $("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a><button class="cp" id="gtr-btn" type="button">🌐 Dịch tự động</button></div>`:""}`+back+foot();if(ADM()&&$("gtr-btn"))$("gtr-btn").onclick=()=>openTrans(g)})
+  $("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a><button class="cp" id="gtr-btn" type="button">🌐 Bản dịch</button></div>`:""}`+back+foot();if(ADM()&&$("gtr-btn"))$("gtr-btn").onclick=()=>openTrans(g)})
  .catch(()=>{if(route().s===sl)$("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1><p class="none">${tr("x_post_fail")}</p>`+back+foot()});
  return bc(gT(g))+`<h1>${esc(gT(g))}</h1><p class="lead">${tr("x_loading")}</p>`}
 function guide(){if(!GL)return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_loading")}</p>`;
