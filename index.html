@@ -468,6 +468,7 @@ h1:focus{outline:0}
 .fg{display:grid;grid-template-columns:160px 100px minmax(0,1fr) auto;gap:10px;margin:10px 0 16px;align-items:center}@media(max-width:700px){.fg{grid-template-columns:1fr 1fr}}
 .fl2{display:inline-flex;align-items:center;gap:8px;color:var(--mute);font-size:14px;font-weight:600}
 .tb{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}.tb .cp{min-height:38px;padding:0 12px}
+textarea.fi.drop{border-color:var(--pink);box-shadow:0 0 0 3px #ff8fb855}
 textarea.fi{min-height:440px;font:14px/1.65 ui-monospace,Consolas,monospace;resize:vertical}
 .lk{margin-left:12px;background:none;border:0;color:var(--mute);opacity:.25;cursor:pointer;vertical-align:middle;padding:4px}.lk:hover,.lk:focus-visible{opacity:.9}.lk svg{display:inline-block;width:14px;height:14px}
 .apill{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--pink);border-radius:999px;padding:6px 8px 6px 16px;font-size:13px;font-weight:600;box-shadow:var(--glow)}
@@ -1057,7 +1058,7 @@ function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạ
  <div class="fg"><input class="fi" id="e-date" type="date" aria-label="Ngày"><input class="fi" id="e-order" type="number" min="0" placeholder="Thứ tự" aria-label="Thứ tự"><input class="fi" id="e-slug" placeholder="tên-file (tự tạo từ tiêu đề)" aria-label="Tên file"><label class="fl2"><input type="checkbox" id="e-draft"> Nháp</label></div>
  <div class="lg"><button class="seg on" data-v="w" type="button">Viết</button><button class="seg" data-v="p" type="button">Xem trước</button></div>
  <div id="e-w"><div class="tb" id="e-tb">${[["h2","H2"],["h3","H3"],["b","B"],["i","I"],["c","&lt;/&gt;"],["a","Link"],["ch","📌 Gán kênh"],["ul","• Danh sách"],["ol","1. Danh sách"],["q","Trích dẫn"],["hr","—"],["img","Chèn ảnh"]].map(([k,t])=>`<button class="cp" type="button" data-t="${k}">${t}</button>`).join("")}</div>
- <textarea class="fi" id="e-body" spellcheck="false" placeholder="Viết nội dung bằng Markdown. Dán ảnh (Ctrl+V) để tải ảnh lên luôn."></textarea><input type="file" id="e-img" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden></div>
+ <textarea class="fi" id="e-body" spellcheck="false" placeholder="Viết nội dung bằng Markdown. Dán ảnh (Ctrl+V) hoặc kéo thả ảnh vào đây để tải lên luôn."></textarea><input type="file" id="e-img" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden></div>
  <div id="e-p" hidden></div>
  <div class="hl"><button class="go" id="ad-save" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu &amp; đăng</button><button class="cp" id="ad-del" type="button" hidden>Xóa bài</button></div>
  <p class="note" id="am">Ctrl+S để lưu nhanh.</p></section>`+foot()}
@@ -1108,7 +1109,7 @@ async function editInit(s){if(!ADM())return;
  async function up(f){const m=f.name.match(/\.(png|jpe?g|gif|webp)$/i);if(!m)return say("Chỉ nhận ảnh png, jpg, gif, webp",1);if(f.size>5*1048576)return say("Ảnh quá lớn (tối đa 5MB)",1);
   say("Đang tải ảnh lên…");const du=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result));r.onerror=rej;r.readAsDataURL(f)});
   const nm=fold(f.name.replace(/\.[^.]+$/,"")).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"anh",fn=nm+"-"+Date.now().toString(36)+"."+m[1].toLowerCase();
-  try{await gh(ghp(G+"img/"+fn),{method:"PUT",body:JSON.stringify({message:"Thêm ảnh "+fn,content:du.split(",")[1],branch:SITE.branch})});PV["img/"+fn]=du;ins("\n![mô tả ảnh](img/"+fn+")\n");say("Đã tải ảnh lên. Người xem thấy ảnh sau vài phút.")}catch(e){say(e.message,1)}}
+  try{await gh(ghp(G+"img/"+fn),{method:"PUT",body:JSON.stringify({message:"Thêm ảnh "+fn,content:du.split(",")[1],branch:SITE.branch})});PV["img/"+fn]=du;{const s0=ta.selectionStart,alt="mô tả ảnh";ta.setRangeText("\n!["+alt+"](img/"+fn+")\n",s0,ta.selectionEnd,"end");ta.setSelectionRange(s0+3,s0+3+alt.length);ta.focus()}say("Đã tải ảnh lên. Người xem thấy ảnh sau vài phút.")}catch(e){say(e.message,1)}}
  async function save(){const one=x=>String(x).replace(/\s+/g," ").trim(),title=one(val("e-title"));if(!title)return say("Nhập tiêu đề trước",1);
   let slug=st.slug;if(!slug){slug=fold(val("e-slug")||title).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");if(!slug)return say("Tên file không hợp lệ",1)}
   const path=G+slug+".md";$("ad-save").disabled=true;say("Đang lưu…");
@@ -1122,7 +1123,11 @@ async function editInit(s){if(!ADM())return;
  document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>view(b.dataset.v));
  $("e-tb").onclick=e=>{const b=e.target.closest("[data-t]");if(b)T[b.dataset.t]()};
  $("e-img").onchange=async()=>{for(const f of [...$("e-img").files])await up(f);$("e-img").value=""};
- ta.onpaste=e=>{const f=[...(e.clipboardData?.files||[])].find(x=>x.type.startsWith("image/"));if(f){e.preventDefault();up(f)}};
+ const imgs=l=>[...(l||[])].filter(x=>x.type.startsWith("image/")),upAll=async fs=>{for(const f of fs)await up(f)};
+ ta.onpaste=e=>{const fs=imgs(e.clipboardData&&e.clipboardData.files);if(fs.length){e.preventDefault();upAll(fs)}};
+ ta.ondragover=e=>{if([...((e.dataTransfer&&e.dataTransfer.types)||[])].includes("Files")){e.preventDefault();ta.classList.add("drop")}};
+ ta.ondragleave=()=>ta.classList.remove("drop");
+ ta.ondrop=e=>{ta.classList.remove("drop");const fs=imgs(e.dataTransfer&&e.dataTransfer.files);if(fs.length){e.preventDefault();upAll(fs)}};
  ta.onkeydown=e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){e.preventDefault();save()}};
  $("ad-save").onclick=save;
  $("ad-del").onclick=async()=>{if(!st.slug||!confirm("Xóa bài này?"))return;try{const path=G+st.slug+".md",j=await gh(ghp(path)+"?ref="+br()).catch(()=>null);if(j)await gh(ghp(path),{method:"DELETE",body:JSON.stringify({message:"Xóa bài "+st.slug,sha:j.sha,branch:SITE.branch})});for(const l of TR_ALL){const pj=await gh(ghp(G+st.slug+"."+l+".md")+"?ref="+br()).catch(()=>null);if(pj)await gh(ghp(G+st.slug+"."+l+".md"),{method:"DELETE",body:JSON.stringify({message:"Xóa bản dịch "+l+": "+st.slug,sha:pj.sha,branch:SITE.branch})})}await ct(c=>{c.guides=c.guides.filter(g=>g.slug!==st.slug)},"Xóa khỏi danh sách hướng dẫn");go("#/guide",true)}catch(e){say(e.message,1)}};
