@@ -1278,17 +1278,24 @@ function syncGuideRet(){
   b.hidden=false;
   const l=$("gr-lbl"),t=$("gr-title"),a=$("gr-back"),bt=$("gr-btn-txt");
   if(l)l.textContent=tr("ret_reading");
-  if(t)t.textContent=cur.title;
+  if(t){const gg=gfind(cur.slug);t.textContent=gg?gT(gg):cur.title}
   if(a)a.setAttribute("href","#/guide/"+gu(cur.slug));
   if(bt)bt.textContent=tr("ret_back");
  }else{b.hidden=true}
 }
+/* Chip điều hướng: tự đổi nhãn theo ngôn ngữ giao diện (UL) */
+const CHR={"#/":["🏠","intro"],"#/guide":["📖","guide"],"#/faq":["❓","faq"],"#/app":["📱","app"],"#/files":["📦","files"],"#/community":["🤝","community"],"#/community/dl":["⬇️","cm_sdl"],"#/community/up":["⬆️","cm_sup"],"#/updates":["📢","updates"],"#/report":["🚨","report"],"#/about":["ℹ️","about"]};
+const CH_ALIAS=["tải app","báo lỗi","tải file","đăng file","kho file chính"];
+const chNorm=x=>String(x).replace(/&amp;/g,"&").replace(/^[^·]*·\s*/u,"").replace(/^[\p{Extended_Pictographic}\uFE0F\s]+/u,"").trim().toLowerCase();
+function chL(u,label,force){const r=CHR[u];if(!r)return label;const e=I18N[r[1]]||[],t=chNorm(label);
+ if(!force&&!e.some(v=>v&&chNorm(v)===t)&&!CH_ALIAS.includes(t))return label;
+ return r[0]+" · "+esc(tr(r[1]))}
 function md(t,base){
  const il=x=>{x=esc(x).replace(/`([^`]+)`/g,"<code>$1</code>");
   x=x.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,(_,a,u)=>{const r=asrc(u,base);return r?`<img src="${r}" alt="${a}" loading="lazy">`:a});
-  x=x.replace(/\[#([a-zA-Z0-9_\-\.]+)\]/g,(_,k)=>{const m=CH_MAP[k.toLowerCase()];if(m){const ext=/^https?:\/\//.test(m[1]);return `<a href="${m[1]}" class="ch-pill"${ext?' target="_blank" rel="noopener"':""}>${m[0]}</a>`}return `[#${k}]`});
+  x=x.replace(/\[#([a-zA-Z0-9_\-\.]+)\]/g,(_,k)=>{const m=CH_MAP[k.toLowerCase()];if(m){const ext=/^https?:\/\//.test(m[1]),cust=/-files/.test(k);return `<a href="${m[1]}" class="ch-pill"${ext?' target="_blank" rel="noopener"':""}>${cust?m[0]:chL(m[1],m[0],true)}</a>`}return `[#${k}]`});
   x=x.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(_,a,u)=>{
-   if(u.startsWith("#/"))return `<a href="${u}" class="ch-pill">${a}</a>`;
+   if(u.startsWith("#/"))return `<a href="${u}" class="ch-pill">${chL(u,a)}</a>`;
    if(/^https?:\/\//.test(u)){const isD=/discord\.(gg|com)/.test(u);return `<a href="${u}"${isD?' class="ch-pill"':""} target="_blank" rel="noopener">${a}</a>`}
    return a});
   return x.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(^|[^*])\*([^*\s][^*]*)\*/g,"$1<em>$2</em>")};
@@ -1303,16 +1310,14 @@ function md(t,base){
   const b=[];while(i<L.length&&L[i].trim()&&!/^(```|#{1,4}\s|>|(-{3,}|\*{3,})\s*$)/.test(L[i])&&!LI.test(L[i]))b.push(L[i++]);
   if(!b.length)b.push(L[i++]);o+=`<p>${il(b.join(" "))}</p>`}
  return o}
-function post(sl){const g=gfind(sl),bc=t=>crumb("<a href=\"#/\">Kho File Tele</a>","<a href=\"#/guide\">Hướng dẫn</a>",esc(t));
+function post(sl){const g=gfind(sl),bc=t=>crumb("<a href=\"#/\">Kho File Tele</a>","<a href=\"#/guide\">"+tr("guide")+"</a>",esc(t));
  if(!g||(g.draft&&!ADM()))return GL?nf():`<h1>${tr("guide")}</h1><p class="lead">${tr("x_loading")}</p>`;
  {const want=gU(g);if(sl!==want){sl=want;CUR="guide/"+want;try{history.replaceState(null,"","#/guide/"+gu(want))}catch(e){}}}
- if(g){setCurGuide(sl,gT(g));syncGuideRet()}
  const back='<div class="pn"><a class="gh" href="#/guide">← '+tr("x_back_guides")+'</a></div>';
  
  fetch(gurl(g),{cache:"no-cache"}).then(r=>r.ok?r.text():Promise.reject()).then(t=>{if(route().s!==sl)return;
   const body=md(t.replace(/^\uFEFF/,"").replace(/^---\r?\n[\s\S]*?\r?\n---\s*\n?/,"").replace(/^\s*#\s+.*\n/,""),gpath(g));
   document.title=(SITE.server||"Electro Cat")+" · "+gT(g);
-  setCurGuide(sl,gT(g));syncGuideRet();
   $("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1>${g.date?`<p class="lead">${esc(fd(g.date))}</p>`:""}<article class="post">${body}</article>${ADM()?`<div class="hl"><a class="gh" href="#/edit/guide/${gu(g.slug)}">Sửa bài</a><button class="cp" id="gtr-btn" type="button">🌐 Dịch thành bài riêng</button></div>`:""}`+back+foot();if(ADM()&&$("gtr-btn"))$("gtr-btn").onclick=()=>openTrans(g)})
  .catch(()=>{if(route().s===sl)$("main").innerHTML=bc(gT(g))+`<h1>${esc(gT(g))}</h1><p class="none">${tr("x_post_fail")}</p>`+back+foot()});
  return bc(gT(g))+`<h1>${esc(gT(g))}</h1><p class="lead">${tr("x_loading")}</p>`}
@@ -1511,7 +1516,9 @@ function fromManifest(m){const day=String(m.version||"").slice(0,10);
  return(m.files||[]).map(x=>{const sg=String(x.path).split("/"),fn=sg[sg.length-1],c=classify(fn),kb=Math.max(1,Math.round((x.size||0)/1024));
   const un=c.err?{region:"Unofficial",kind:"Other",lang:"",note:"x_manote"}:{...c,note:""};
   return{...un,file:(sg[0].toLowerCase()==="data"&&sg.length>1?sg.slice(1):sg).join("/"),name:fn.replace(/\.zip$/i,""),pts:+(x.pts??x.points??x.count)||0,size:kb<1024?kb+" KB":(kb/1024).toFixed(1)+" MB",bytes:x.size||0,date:String(x.updated||m.version||"").slice(0,10),cat:"",ver:"",gv:SITE.gameVer,sha:x.sha256||"",url:RAW+sg.map(encodeURIComponent).join("/")}})}
-function go(h,push){CUR=String(h).replace(/^#\/?/,"");SEL.clear();q="";$("sq").value="";if(push){try{history.pushState(null,"",h)}catch(e){}}render();if(!route().k)scrollTo(0,0);const h1=document.querySelector("#main h1");if(h1){h1.tabIndex=-1;h1.focus({preventScroll:true})}}
+let PILLNAV=false;
+document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest(".post a.ch-pill");if(!a||!/^#\//.test(a.getAttribute("href")||""))return;const R=route();if(R.p!=="post")return;const g=gfind(R.s);if(!g)return;setCurGuide(R.s,gT(g));PILLNAV=true;setTimeout(()=>{PILLNAV=false},400)},true);
+function go(h,push){if(!PILLNAV){try{sessionStorage.removeItem("ec_cg")}catch(e){}}PILLNAV=false;CUR=String(h).replace(/^#\/?/,"");SEL.clear();q="";$("sq").value="";if(push){try{history.pushState(null,"",h)}catch(e){}}render();if(!route().k)scrollTo(0,0);const h1=document.querySelector("#main h1");if(h1){h1.tabIndex=-1;h1.focus({preventScroll:true})}}
 window.addEventListener("hashchange",()=>go(location.hash));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(sq.value){sq.value="";q="";if($("sq-clr"))$("sq-clr").hidden=true;render();sq.blur();return}const o=mn.classList.contains("on");tg(false);if(o)mb.focus()}else if(e.key==="/"&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();sq.focus()}});
 document.addEventListener("change",e=>{const sl=e.target.closest("select[data-rs]");if(sl){go("#/r/"+sl.value,true);return}const c=e.target.closest("input[data-k]");if(c){c.checked?SEL.add(c.dataset.k):SEL.delete(c.dataset.k);syncBar()}});
