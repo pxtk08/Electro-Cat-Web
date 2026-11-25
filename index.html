@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Electro Cat · Giới thiệu</title>
 <meta name="description" content="Electro Cat Archive - Teleport files for Unicore (Genshin Impact). Select region, download .zip, and import into the app.">
@@ -826,12 +826,22 @@ k_cu:[`File cũ`,`Old files`,`Старые файлы`,`Arquivos antigos`],
 k_tele:[`Điểm Tele`,`Teleport points`,`Точки телепорта`,`Pontos de teleporte`],
 k_oculi:[`Thần Đồng`,`Oculi`,`Окули`,`Oculi`],
 k_Other:[`Khác`,`Other`,`Другое`,`Outros`],
+k_mora:[`Mora`,`Mora`,`Мора`,`Mora`],
+k_material:[`Nguyên liệu`,`Materials`,`Материалы`,`Materiais`],
+k_boss:[`Boss`,`Boss`,`Боссы`,`Chefes`],
+k_fishing:[`Câu cá`,`Fishing`,`Рыбалка`,`Pesca`],
+k_misc:[`Khác`,`Misc`,`Разное`,`Diversos`],
 kd_tong:[`Bản Unsplit: toàn bộ điểm của vùng gộp trong một file.`,`Unsplit version: all points of the region in a single file.`,`Версия Unsplit: все точки региона в одном файле.`,`Versão Unsplit: todos os pontos da região em um único arquivo.`],
 kd_le:[`Bản Split: điểm được tách theo nhóm (Rương, Đánh Quái…) bên trong file.`,`Split version: points are grouped by category (Chests, Combat…) inside the file.`,`Версия Split: точки разделены по категориям (Сундуки, Бои…) внутри файла.`,`Versão Split: os pontos são separados por categoria (Baús, Combate…) dentro do arquivo.`],
 kd_cu:[`Bản cũ, hoặc tên file không ghi Split/Unsplit.`,`Older version, or the file name doesn't say Split/Unsplit.`,`Старая версия или в имени файла нет Split/Unsplit.`,`Versão antiga, ou o nome do arquivo não indica Split/Unsplit.`],
 kd_tele:[`Toàn bộ điểm tele.`,`All teleport points.`,`Все точки телепорта.`,`Todos os pontos de teleporte.`],
 kd_oculi:[`Các điểm Thần Đồng.`,`Oculi locations.`,`Расположение окули.`,`Locais dos Oculi.`],
 kd_Other:[`Do cộng đồng đóng góp, chưa được kiểm chứng. Hãy dùng thận trọng.`,`Contributed by the community and not verified. Use with caution.`,`Вклад сообщества, не проверено. Используйте с осторожностью.`,`Contribuição da comunidade, não verificado. Use com cuidado.`],
+kd_mora:[`Toàn bộ điểm Mora của mọi vùng.`,`All Mora spots across regions.`,`Все точки моры во всех регионах.`,`Todos os pontos de Mora de todas as regiões.`],
+kd_material:[`Nguyên liệu nâng cấp và tài nguyên từ mọi vùng.`,`Ascension materials and resources from all regions.`,`Материалы возвышения и ресурсы со всех регионов.`,`Materiais de ascensão e recursos de todas as regiões.`],
+kd_boss:[`Vị trí boss của mọi vùng.`,`Boss locations across regions.`,`Локации боссов во всех регионах.`,`Locais de chefes de todas as regiões.`],
+kd_fishing:[`Điểm câu cá của mọi vùng.`,`Fishing spots across regions.`,`Точки рыбалки во всех регионах.`,`Pontos de pesca de todas as regiões.`],
+kd_misc:[`Các mục linh tinh khác, không thuộc vùng nào.`,`Miscellaneous items not tied to a region.`,`Разное, не привязанное к региону.`,`Itens diversos não ligados a uma região.`],
 c_ruong:[`Rương`,`Chests`,`Сундуки`,`Baús`],
 c_danh_quai:[`Đánh Quái`,`Combat`,`Бои`,`Combate`],
 c_khieu_chien:[`Khiêu Chiến`,`Challenges`,`Испытания`,`Desafios`],
@@ -899,12 +909,13 @@ rn_AncientSacredMountain:[`Núi Thánh Viễn Cổ`,`Ancient Sacred Mountain`,`�
 rn_TempleOfSpace:[`Thần Điện Không Gian`,`Temple of Space`,`Храм Пространства`,`Templo do Espaço`],
 rn_FrostMoon:[`Sương Nguyệt`,`Frostmoon`,`Морозная Луна`,`Lua Gélida`],
 rn_TeleportOculi:[`Điểm Tele Và Thần Đồng`,`Teleport Points & Oculi`,`Точки телепорта и окули`,`Pontos de teleporte e Oculi`],
+rn_Other:[`Khác`,`Other`,`Другое`,`Outros`],
 discord_badge:[`Tham gia cộng đồng Discord`,`Join Discord Community`,`Присоединяйтесь к Discord`,`Junte-se ao Discord`]
 };
 const tr=(k,v)=>{const e=I18N[k];if(!e)return k;let x=e[UI_LANGS.indexOf(UL)]||e[1]||e[0];if(v)for(const a in v)x=x.split("{"+a+"}").join(v[a]);return x};
 /* ====== CHỈNH Ở ĐÂY ======
  Đường dẫn file tự ghép theo thư mục giống app:  <Vùng>/<ngôn ngữ>/<tong|le|cu>/<file>
- Mục Tele & Thần Đồng: TeleportOculi/<tele|oculi>/<file>   |   Không chính thức: Unofficial/<nhóm>/<file>
+ Mục Tele & Thần Đồng: TeleportOculi/<tele|oculi>/<file>   |   Mục phụ khác (mora, material, boss, fishing, misc): Other/<loại>/<file>   |   Không chính thức: Unofficial/<nhóm>/<file>
  Thêm file = thêm một dòng F(vùng, loại, ngôn ngữ, tên file, tên hiển thị, số điểm, dung lượng, ngày, nhóm, ghi chú).
  Các dòng bên dưới chỉ là DỮ LIỆU MẪU, hãy thay bằng file thật. */
 const SITE={server:"Electro Cat",repo:"pxtk08/Electro-Cat-App-Data",branch:"main",dir:"", /* repo GitHub dạng "tenchu/tenrepo": trang tự đọc files.json và tải file từ raw.githubusercontent.com; dir = thư mục con chứa file (nếu có) */
@@ -929,9 +940,9 @@ let FAQ=[
  {q:"faq1q",a:"path"},{q:"faq2q",a:"faq2a"},{q:"faq3q",a:"faq3a"},{q:"faq4q",a:"faq4a"},{q:"faq5q",a:"faq5a"},{q:"faq6q",a:"faq6a"}
 ];
 /* Thứ tự và tên hiển thị: [id thư mục, tên hiển thị] */
-const ALL=[["Mondstadt","Mondstadt"],["Liyue","Liyue"],["Inazuma","Inazuma"],["Sumeru","Sumeru"],["Fontaine","Fontaine"],["Natlan","Natlan"],["NodKrai","Nod Krai"],["Dragonspine","Long Tích Tuyết Sơn"],["Chasm","Khu Mỏ Ngầm"],["Enkanomiya","Enkanomiya"],["SeaOfBygoneEras","Biển Kỷ Nguyên Cũ"],["ChenyuVale","Trầm Ngọc Cốc"],["AncientSacredMountain","Núi Thánh Viễn Cổ"],["TempleOfSpace","Thần Điện Không Gian"],["FrostMoon","Sương Nguyệt"],["Snezhnaya","Snezhnaya"],["TeleportOculi","Điểm Tele Và Thần Đồng"]];
-const KIND={tong:"File tổng",le:"File chia lẻ",cu:"File cũ",tele:"Điểm Tele",oculi:"Thần Đồng",Other:"Khác"},KORD=["tong","le","cu","tele","oculi"];
-const LANG={vi:"Tiếng Việt",en:"English",ru:"Русский",pt:"Português"};
+const ALL=[["Mondstadt","Mondstadt"],["Liyue","Liyue"],["Inazuma","Inazuma"],["Sumeru","Sumeru"],["Fontaine","Fontaine"],["Natlan","Natlan"],["NodKrai","Nod Krai"],["Dragonspine","Long Tích Tuyết Sơn"],["Chasm","Khu Mỏ Ngầm"],["Enkanomiya","Enkanomiya"],["SeaOfBygoneEras","Biển Kỷ Nguyên Cũ"],["ChenyuVale","Trầm Ngọc Cốc"],["AncientSacredMountain","Núi Thánh Viễn Cổ"],["TempleOfSpace","Thần Điện Không Gian"],["FrostMoon","Sương Nguyệt"],["Snezhnaya","Snezhnaya"],["TeleportOculi","Điểm Tele Và Thần Đồng"],["Other","Khác"]];
+const KIND={tong:"File tổng",le:"File chia lẻ",cu:"File cũ",tele:"Điểm Tele",oculi:"Thần Đồng",mora:"Mora",material:"Nguyên liệu",boss:"Boss",fishing:"Câu cá",misc:"Khác",Other:"Khác"},KORD=["tong","le","cu","tele","oculi","mora","material","boss","fishing","misc"];
+const LANG={vi:"Tiếng Việt",en:"English",ru:"Русский",pt:"Português",zh:"中文",ja:"日本語",ko:"한국어",hi:"हिन्दी"};
 const F=(region,kind,lang,file,name,pts,size,date,cat,note)=>({region,kind,lang,file,name,pts,size,date,cat,note,ver:"v1.0",gv:SITE.gameVer,sha:""});
 const CATS=[["ruong","Rương"],["danh-quai","Đánh Quái"],["khieu-chien","Khiêu Chiến"],["tien-linh","Tiên Linh"],["giai-do","Giải Đố"]];
 const MON=l=>[F("Mondstadt","tong",l,"tong.json","Mondstadt - File tổng",0,"20 KB","2026-11-10","","Gộp toàn bộ điểm của vùng."),
@@ -949,7 +960,7 @@ const RAW=SITE.repo?"https://raw.githubusercontent.com/"+SITE.repo+"/"+SITE.bran
 const url=f=>f.url||RAW+[f.region,f.lang,f.kind,f.file].filter(Boolean).join("/");
 const FOLDER='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
 const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
-let q="";let CUR=location.hash.replace(/^#\/?/,"");const SEL=new Set(),LS=(()=>{try{return JSON.parse(localStorage.getItem("tl")||"{}")}catch(e){return{}}})(),LORD=["vi","en","ru","pt"];
+let q="";let CUR=location.hash.replace(/^#\/?/,"");const SEL=new Set(),LS=(()=>{try{return JSON.parse(localStorage.getItem("tl")||"{}")}catch(e){return{}}})(),LORD=["vi","en","ru","pt","zh","ja","ko","hi"];
 const KDESC={tong:"Bản Unsplit: toàn bộ điểm của vùng gộp trong một file.",le:"Bản Split: điểm được tách theo nhóm (Rương, Đánh Quái…) bên trong file.",cu:"Bản cũ, hoặc tên file không ghi Split/Unsplit.",tele:"Toàn bộ điểm tele.",oculi:"Các điểm Thần Đồng.",Other:"Do cộng đồng đóng góp, chưa được kiểm chứng. Hãy dùng thận trọng."};
 const NEW_DAYS=1,isNew=f=>{if(!f.date)return false;const[y,m,d]=String(f.date).split("-").map(Number),n=new Date(),a=new Date(y,m-1,d),b=new Date(n.getFullYear(),n.getMonth(),n.getDate()),k=Math.round((b-a)/864e5);return k>=0&&k<=NEW_DAYS};
 function lv(t){const e=$("live");e.textContent="";setTimeout(()=>e.textContent=t,50)}
@@ -1162,7 +1173,7 @@ function openTransItem(kind,i){
 function editPage(s){if(!ADM())return `<h1>Quản trị</h1><p class="lead">Bạn cần đăng nhập để viết bài.</p><div class="hl"><button class="go" data-ad="login" type="button" style="border:0;cursor:pointer;font-family:inherit">Đăng nhập</button><a class="gh" href="#/guide">← Hướng dẫn</a></div>`+foot();
  return `<div class="crumb"><a href="#/guide">← Danh sách hướng dẫn</a></div><h1>${s==="_new"?"Bài hướng dẫn mới":"Sửa bài hướng dẫn"}</h1><p class="lead">Bài lưu thẳng vào repo ${esc(SITE.repo)}.</p>
  <section><input class="fi" id="e-title" placeholder="Tiêu đề bài" aria-label="Tiêu đề"><input class="fi" id="e-summary" placeholder="Tóm tắt một câu (hiện ở danh sách)" aria-label="Tóm tắt" style="margin-top:10px"><input class="fi" id="e-alias" placeholder="Đường dẫn hiển thị trên link (để trống = lấy theo tiêu đề, vd: Teleport-File-Usage-Guide)" aria-label="Đường dẫn hiển thị" style="margin-top:10px">
- <label class="dl2" style="margin-top:10px"><span>Ngôn ngữ bài viết (bản gốc), chọn đúng thứ tiếng bạn đang viết trong ô bên dưới</span><select class="fi" id="e-lang" aria-label="Ngôn ngữ bài viết">${Object.keys(LANG).map(k=>`<option value="${k}">${esc(LANG[k])}</option>`).join("")}</select></label>
+ <label class="dl2" style="margin-top:10px"><span>Ngôn ngữ bài viết (bản gốc), chọn đúng thứ tiếng bạn đang viết trong ô bên dưới</span><select class="fi" id="e-lang" aria-label="Ngôn ngữ bài viết">${TR_ALL.map(k=>`<option value="${k}">${esc(LANG[k])}</option>`).join("")}</select></label>
  <div class="fg"><input class="fi" id="e-date" type="date" aria-label="Ngày"><input class="fi" id="e-order" type="number" min="0" placeholder="Thứ tự" aria-label="Thứ tự"><input class="fi" id="e-slug" placeholder="tên-file (tự tạo từ tiêu đề)" aria-label="Tên file"><label class="fl2"><input type="checkbox" id="e-draft"> Nháp</label></div>
  <div class="lg"><button class="seg on" data-v="w" type="button">Viết</button><button class="seg" data-v="p" type="button">Xem trước</button></div>
  <div id="e-w"><div class="tb" id="e-tb">${[["h2","H2"],["h3","H3"],["b","B"],["i","I"],["c","&lt;/&gt;"],["a","Link"],["ch","📌 Gán kênh"],["ul","• Danh sách"],["ol","1. Danh sách"],["q","Trích dẫn"],["hr","—"],["img","Chèn ảnh"]].map(([k,t])=>`<button class="cp" type="button" data-t="${k}">${t}</button>`).join("")}</div>
@@ -1504,14 +1515,53 @@ async function dlZip(L){const list=L||[...SEL].map(u=>FILES.find(f=>url(f)===u))
 async function saveUrl(u,n){try{const r=await fetch(u);if(!r.ok)throw 0;const a=document.createElement("a");a.href=URL.createObjectURL(await r.blob());a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}catch(e){lv(tr("x_direct"));open(u,"_blank","noopener")}}
 let GUIDES=[],GL=0;
 const fold=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/gi,"d").toLowerCase();
-/* Bảng nhận diện lấy từ importer.js của app (thêm ChenyuVale cho khớp danh sách vùng của trang) */
-const RALIAS={Mondstadt:["mondstadt"],Dragonspine:["dragonspine"],Liyue:["liyue"],Inazuma:["inazuma"],Sumeru:["sumeru"],Fontaine:["fontaine"],Natlan:["natlan"],NodKrai:["nodkrai"],Snezhnaya:["snezhnaya"],Enkanomiya:["enkanomiya"],Chasm:["chasm","vucdasau","khumongam"],SeaOfBygoneEras:["seaofbygoneeras","bienkynguyencu"],AncientSacredMountain:["ancientsacredmountain","nuithanhvienco"],TempleOfSpace:["templeofspace","thandienkhonggian"],FrostMoon:["frostmoon","suongnguyet"],ChenyuVale:["chenyuvale","tramngoccoc"]};
-const LPAT=[["vi",/\b(vietnamese|tieng viet|vn|vi)\b/],["en",/\b(english|tieng anh|en)\b/],["ru",/\b(russian|tieng nga|ru)\b/],["pt",/\b(portuguese|tieng bo dao nha|pt)\b/]];
-function classify(fn){const f=fold(fn.replace(/\.zip$/i,"")),oc=/oculus|oculi|than dong/.test(f),te=/teleport|\btele\b|diem tele/.test(f);
- if(oc&&te)return{err:1};if(oc)return{region:"TeleportOculi",kind:"oculi",lang:""};if(te)return{region:"TeleportOculi",kind:"tele",lang:""};
- const cp=f.replace(/[^a-z0-9]/g,""),hit=Object.keys(RALIAS).filter(id=>RALIAS[id].some(a=>cp.includes(a)));if(hit.length!==1)return{err:1};
- const ls=LPAT.filter(([,re])=>re.test(f)).map(([l])=>l);if(ls.length!==1)return{err:1};
- return{region:hit[0],lang:ls[0],kind:/unsplit/.test(f)?"tong":/split/.test(f)?"le":"cu"}}
+/* Bảng nhận diện lấy từ importer.js của app (thêm ChenyuVale cho khớp danh sách vùng của trang).
+   Tên bản địa hoá vi/en/zh/ja/ko/pt/ru/hi: khi sửa bảng ở đây thì sửa cả importer.js. Tiếng Hindi theo bản dịch cộng đồng. */
+const RALIAS={Mondstadt:["mondstadt","蒙德","モンド","몬드","Мондштадт","मोंडस्टेड"],
+ Dragonspine:["dragonspine","Long Tích Tuyết Sơn","龙脊雪山","ドラゴンスパイン","드래곤 스파인","Espinha do Dragão","Драконий хребет","Драконьего хребта","ड्रैगनस्पाइन"],
+ Liyue:["liyue","璃月","리월","Ли Юэ","लियूए"],
+ Inazuma:["inazuma","稻妻","稲妻","이나즈마","Инадзума","Инадзумы","इनाज़ुमा"],
+ Sumeru:["sumeru","须弥","スメール","수메르","Сумеру","सुमेरु"],
+ Fontaine:["fontaine","枫丹","フォンテーヌ","폰타인","Фонтейн","फ़ॉन्टेन"],
+ Natlan:["natlan","纳塔","ナタ","나타","Натлан","नाटलान"],
+ NodKrai:["nodkrai"],
+ Snezhnaya:["snezhnaya","至冬","スネージナヤ","스네즈나야","Снежная","Снежной","स्नेज़्नाया"],
+ Enkanomiya:["enkanomiya"],Chasm:["chasm","vucdasau","khumongam"],
+ SeaOfBygoneEras:["seaofbygoneeras","bienkynguyencu","旧日之海","往日の海","지난날의 바다","Mar Antigo","Море древности","Моря древности","गुज़रे ज़माने का समुद्र"],
+ AncientSacredMountain:["ancientsacredmountain","nuithanhvienco","远古圣山","古の聖山","태고의 신성한 산","Montanha Sagrada Antiga","Древняя Священная гора","Древней Священной горы","प्राचीन पवित्र पर्वत"],
+ TempleOfSpace:["templeofspace","thandienkhonggian"],FrostMoon:["frostmoon","suongnguyet"],ChenyuVale:["chenyuvale","tramngoccoc"]};
+const OCALIAS=["oculus","oculi","than dong","crimson agate","ma nao do tham","plume of purifying light","tinh quang vu",
+ "神瞳","玉髓","净光翎","神の瞳","玉髄","浄光の羽根","신의 눈동자","옥수","깃털","Calcedônia Carmesim","Plumas da Luz Purificadora",
+ "окул","агат","Оперенье очищающего света","कुलस","एगेट","पंख"];
+/* 1) tên ngôn ngữ ghi rõ trong tên file */
+const LPAT=[["vi",/\b(vietnamese|tieng viet|vn|vi)\b/],["en",/\b(english|tieng anh|en)\b/],["ru",/\b(russian|tieng nga|ru)\b/],["pt",/\b(portuguese|tieng bo dao nha|pt)\b/],
+ ["zh",/\b(chinese|tieng trung)\b/],["ja",/\b(japanese|tieng nhat)\b/],["ko",/\b(korean|tieng han)\b/],["hi",/\b(hindi|tieng hindi)\b/]];
+/* 2) hệ chữ. 稲 髄 浄 là dạng chữ Hán chỉ tiếng Nhật dùng */
+const SCRIPTS=[["ko",/\p{Script=Hangul}/u],["ru",/\p{Script=Cyrillic}/u],["hi",/\p{Script=Devanagari}/u],["ja",/[\p{Script=Hiragana}\p{Script=Katakana}稲髄浄]/u]];
+/* 3) chữ Latin: từ khoá riêng (so trên chuỗi đã bỏ dấu) */
+const LWORDS=[["vi",/than dong|toan bo|tinh quang vu|ma nao|long tich tuyet son|nui thanh vien co|bien ky nguyen cu/],
+ ["pt",/\bcompleto\b|calcedonia|espinha do dragao|\bplumas\b|montanha sagrada antiga|\bmar antigo\b|culus d[eoa]\b/],
+ ["en",/\bfull\b|crimson agate|plume of purifying light/]];
+/* Chuẩn hoá để so khớp: giữ chữ và dấu kết hợp của mọi hệ chữ (matra Hindi, dakuten Nhật), ghép lại Hangul sau fold() */
+const norm=s=>fold(s).normalize("NFC").replace(/़/g,""),squash=s=>norm(s).replace(/[^\p{L}\p{M}\p{N}]/gu,"");
+const RKEYS=Object.entries(RALIAS).map(([id,a])=>[id,a.map(squash)]),OKEYS=OCALIAS.map(squash);
+/* Mục phụ không thuộc vùng nào (lấy từ importer.js của app): mora, material, boss, fishing, misc */
+const OTHER_PATTERNS=[["mora",/\bmora\b/],["material",/\b(material|nguyen lieu|ascension|talent|weapon mat)\b/],["boss",/\bboss\b/],["fishing",/\bfishing\b/],["misc",/\b(misc|miscellaneous)\b/]];
+function langOf(raw,f){const pick=t=>t.filter(([,re])=>re.test(raw)).map(([l])=>l);
+ let ls=LPAT.filter(([,re])=>re.test(f)).map(([l])=>l);if(ls.length)return ls.length===1?ls[0]:"";
+ ls=pick(SCRIPTS);if(ls.length)return ls.length===1?ls[0]:"";
+ if(/\p{Script=Han}/u.test(raw))return"zh";
+ ls=LWORDS.filter(([,re])=>re.test(f)).map(([l])=>l);if(ls.length)return ls.length===1?ls[0]:"";
+ return/oculus|oculi/.test(f)?"en":""}
+function classify(fn){const raw=fn.replace(/\.zip$/i,"").normalize("NFC"),f=norm(raw),cp=squash(raw),oc=OKEYS.some(k=>cp.includes(k)),te=/teleport|\btele\b|diem tele/.test(f);
+ if(oc&&te)return{err:1};
+ const hit=RKEYS.filter(([,a])=>a.some(k=>cp.includes(k))).map(([id])=>id);
+ if(hit.length===1){const lang=langOf(raw,f);if(lang)return{region:hit[0],lang,kind:oc?"oculi":/unsplit/.test(f)?"tong":/split/.test(f)?"le":"cu"}}
+ else if(hit.length>1)return{err:1};
+ if(te)return{region:"TeleportOculi",kind:"tele",lang:""};
+ if(oc)return{region:"TeleportOculi",kind:"oculi",lang:""};
+ for(const [k,re] of OTHER_PATTERNS){if(re.test(f))return{region:"Other",kind:k,lang:""}}
+ return{err:1}}
 function fromManifest(m){const day=String(m.version||"").slice(0,10);
  return(m.files||[]).map(x=>{const sg=String(x.path).split("/"),fn=sg[sg.length-1],c=classify(fn),kb=Math.max(1,Math.round((x.size||0)/1024));
   const un=c.err?{region:"Unofficial",kind:"Other",lang:"",note:"x_manote"}:{...c,note:""};
