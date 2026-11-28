@@ -19,7 +19,7 @@
 <meta name="theme-color" id="tc" content="#18121f">
 <meta name="color-scheme" content="dark">
 <!-- CSP: nếu file tải nằm ở domain khác, thêm domain đó vào connect-src -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com https://*.supabase.co; object-src 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.github.com; object-src 'none'; base-uri 'none'">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Electro Cat Archive","description":"Teleport files for Unicore (Genshin Impact). Select region, download .zip, and import into the app.","author":{"@type":"Person","name":"pxtk.08"},"inLanguage":["vi","en","ru","pt"]}</script>
 <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/pxtk08/Electro-Cat-Web/main/icon.ico">
 <!-- canonical: thay URL bên dưới bằng URL deploy thực tế -->
@@ -284,7 +284,6 @@ footer{border-top-color:#ffffff14}
 .ul .rgn{flex:none;font-size:12px;font-weight:700;letter-spacing:.2px;padding:5px 10px;border-radius:8px;background:var(--pink2);color:var(--on);border:1px solid color-mix(in srgb,var(--pink) 45%,transparent);white-space:nowrap}
 .ul .fnm{color:#fff;font-weight:600;min-width:0}
 .ul .dl{min-height:36px;font-size:14px;padding:0 14px}
-.log{border-top:1px solid #ffffff14;padding:20px 0}.log h3{font-size:17px;font-weight:700}.log time{color:var(--pink);font-size:13px;font-weight:600}.log ul{margin:8px 0 0 20px;color:var(--mute)}
 .note{background:#ffffff08;border:1px solid #ffffff1c;border-radius:14px;padding:14px 18px;color:var(--mute);font-size:15px;margin:16px 0}
 .pre{white-space:pre-wrap;font:14px/1.6 ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--mute);margin:12px 0}
 .fl{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px}.fl a{color:var(--pink2);text-decoration:none;font-weight:600}.fl a:hover{color:var(--pink)}
@@ -430,10 +429,6 @@ body:before,body:after{opacity:.2}
   .row .act .dl{flex:1.4!important;min-height:44px!important;padding:0 12px!important;font-size:14px!important;justify-content:center!important;border-radius:12px!important}
   .row .act .cp{flex:1!important;min-height:44px!important;padding:0 10px!important;font-size:13.5px!important;justify-content:center!important;border-radius:12px!important}
 
-  /* Form đăng bài cộng đồng */
-  .cmf{padding:14px;border-radius:14px}
-  .cmf input,.cmf select,.cmf textarea{font-size:15px;min-height:42px;padding:8px 10px}
-  .cmc{padding:16px 14px;border-radius:16px}
 
   /* Tab cuộn ngang ảnh giao diện app */
   .gt-row{-webkit-overflow-scrolling:touch;padding:4px 4px 12px!important;gap:8px!important}
@@ -534,79 +529,6 @@ html[data-rp=on] .hero h1{color:var(--text)}
 .ic-first{margin-top:24px;text-align:center;color:var(--mute)}.ic-first a{color:var(--pink);font-weight:600;text-decoration:none}.ic-first a:hover{text-decoration:underline}
 @media(max-width:860px){.icg{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.icg{grid-template-columns:1fr}.ic.w2{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){.ic:hover{transform:none}}
-.cmf{display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
-.cmf label{display:grid;gap:6px;font-weight:600;font-size:14px;color:var(--mute)}
-.cmf input,.cmf select,.cmf textarea{font:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;width:100%;box-sizing:border-box}
-.cmf input[type="file"]{font-size:14px;color:var(--mute);background:color-mix(in srgb,var(--card) 60%,var(--bg));border:1px dashed color-mix(in srgb,var(--pink) 40%,var(--line));border-radius:12px;padding:8px 10px;min-height:48px;cursor:pointer;display:flex;align-items:center;transition:border-color .2s,background .2s,box-shadow .2s}
-.cmf input[type="file"]:hover{border-color:var(--pink);background:color-mix(in srgb,var(--pink) 8%,var(--panel))}
-.cmf input[type="file"]:focus{outline:0;border-color:var(--pink);box-shadow:0 0 0 3px color-mix(in srgb,var(--pink) 20%,transparent)}
-.cmf input[type="file"]::file-selector-button{margin-right:14px;padding:8px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:#ffffff14;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:transform .16s,background .16s,border-color .16s,box-shadow .16s}
-.cmf input[type="file"]::-webkit-file-upload-button{margin-right:14px;padding:8px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:#ffffff14;color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:transform .16s,background .16s,border-color .16s,box-shadow .16s}
-.cmf input[type="file"]::file-selector-button:hover,.cmf input[type="file"]::-webkit-file-upload-button:hover{background:color-mix(in srgb,var(--pink) 25%,#ffffff18);border-color:var(--pink);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px color-mix(in srgb,var(--pink) 30%,transparent)}
-.cmf input[type="file"]::file-selector-button:active,.cmf input[type="file"]::-webkit-file-upload-button:active{transform:scale(.97)}
-.cmf textarea{min-height:96px;resize:vertical}
-.cmf .cm2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:560px){.cmf .cm2{grid-template-columns:1fr}}
-.cmf .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.cmf button{border:0;cursor:pointer;font-family:inherit;justify-self:start}
-.cmf button:disabled{opacity:.6;cursor:wait}
-#cm-msg{font-size:15px;color:var(--mute);min-height:1.4em}
-.cmc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
-.cmc h3{margin:0;font-size:18px}.cmc p{color:var(--mute);margin:8px 0;white-space:pre-wrap;word-break:break-word}
-.cmh{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
-.cmh small,.cmm{color:var(--mute);font-size:13px}.cmm{margin-bottom:10px}
-.cmc{position:relative;overflow:hidden;margin-bottom:16px;padding:22px 24px 20px;border-radius:20px;border:1px solid #ffffff1a;background:linear-gradient(145deg,color-mix(in srgb,var(--pink2) 14%,var(--card)),color-mix(in srgb,var(--pink) 6%,var(--panel)) 60%);box-shadow:inset 0 1px 1px #ffffff24,0 14px 36px #0006,0 0 0 1px color-mix(in srgb,var(--pink) 8%,transparent);transition:transform .22s cubic-bezier(.16,1,.3,1),border-color .2s,box-shadow .2s;animation:rowin .38s cubic-bezier(.16,1,.3,1) both}
-.cmc:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad)}
-.cmc:after{content:"";position:absolute;right:-90px;top:-110px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pink) 22%,transparent),transparent 70%);pointer-events:none}
-.cmc:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--pink) 45%,transparent);box-shadow:inset 0 1px 1px #ffffff2e,0 20px 44px #0007,0 0 28px color-mix(in srgb,var(--pink) 16%,transparent)}
-.cmc>*{position:relative;z-index:1}
-.cmc .cmh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
-.cmr{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--grad);color:var(--on);box-shadow:var(--glow)}
-.cmr:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--on);opacity:.7}
-.cmc time{font-size:13px;font-weight:600;color:var(--mute)}
-.cmc h3{font-size:clamp(20px,3.2vw,25px);font-weight:800;letter-spacing:-.015em;line-height:1.25;color:#fff;word-break:break-word}
-.cmc p{margin:8px 0 0;font-size:16px;color:var(--mute);white-space:pre-wrap;word-break:break-word}
-.cmc .cmm{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
-.cmm i{display:inline-flex;align-items:center;gap:6px;font-style:normal;font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:8px;background:var(--chip);color:var(--mute)}
-.cmm i svg{width:13px;height:13px;color:var(--pink)}
-.cmfile{display:flex;align-items:center;gap:14px;margin-top:18px;padding:12px 14px;border-radius:16px;text-decoration:none;color:#fff;background:#0000002e;border:1px solid #ffffff1c;transition:background .18s,border-color .18s,transform .16s,box-shadow .18s}
-.cmfile:hover{background:color-mix(in srgb,var(--pink) 10%,#0000002e);border-color:var(--pink);box-shadow:var(--glow)}
-.cmfile:active{transform:scale(.985)}
-.cmi{position:relative;flex-shrink:0;width:46px;height:54px;display:grid;place-items:center;color:var(--pink2)}
-.cmi svg{position:absolute;inset:0;width:100%;height:100%;padding:3px;filter:drop-shadow(0 4px 10px color-mix(in srgb,var(--pink2) 35%,transparent))}
-.cmi b{position:relative;margin-top:14px;font-size:9px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--pink2);color:var(--on);padding:1px 5px;border-radius:4px}
-.cmn{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.cmn strong{font-size:16px;font-weight:700;color:var(--pink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .16s}
-.cmfile:hover .cmn strong{color:var(--pink)}
-.cmn small{font-size:13px;color:var(--mute)}
-.cmd{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--grad);color:var(--on);box-shadow:var(--glow);transition:transform .16s,box-shadow .16s}
-.cmd svg{width:22px;height:22px}
-.cmfile:hover .cmd{transform:translateY(-1px);box-shadow:0 8px 24px color-mix(in srgb,var(--pink) 40%,transparent)}
-.cmfile:hover .cmd svg{animation:cmbounce .7s ease infinite}
-@keyframes cmbounce{50%{transform:translateY(3px)}}
-@media(max-width:560px){.cmc{padding:18px 16px}.cmd{width:42px;height:42px}}
-@media(prefers-reduced-motion:reduce){.cmc,.cmfile:hover .cmd svg{animation:none}.cmc:hover{transform:none}}
-.menu .mgr{position:relative;display:flex;align-items:stretch}
-.menu .mgr>a{flex:1;padding-right:52px}
-.menu .mgb{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:10px;border:0;background:none;color:var(--mute);cursor:pointer;display:grid;place-items:center;z-index:2;transition:background .16s,color .16s}
-.menu .mgb:hover{background:#ffffff14;color:#fff}
-.menu .mgb svg{width:18px;height:18px;transition:transform .25s cubic-bezier(.16,1,.3,1)}
-.menu .mg.open .mgb{color:var(--pink)}
-.menu .mg.open .mgb svg{transform:rotate(180deg)}
-.menu .msub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .26s cubic-bezier(.16,1,.3,1)}
-.menu .mg.open .msub{grid-template-rows:1fr}
-.menu .msub>div{overflow:hidden;min-height:0;margin-left:22px;padding-left:10px;border-left:1px solid #ffffff1f;visibility:hidden;transition:visibility 0s .26s}
-.menu .mg.open .msub>div{visibility:visible;transition-delay:0s}
-.menu .msub a{justify-content:flex-start;gap:10px;min-height:40px;padding:8px 12px;margin-top:4px;font-size:14px;font-weight:600}
-.menu .msub a:first-child{margin-top:6px}.menu .msub a:last-child{margin-bottom:6px}
-.menu .msub a svg{width:16px;height:16px;color:var(--pink);flex-shrink:0}
-.menu .msub a:hover:before,.menu .msub a.on:before{display:none}
-.menu .msub a.on{color:var(--pink);background:color-mix(in srgb,var(--pink) 12%,transparent)}
-#cm-up,#cm-dl{scroll-margin-top:90px}
-@media(prefers-reduced-motion:reduce){.menu .msub,.menu .mgb svg{transition:none}}
-.cmtabs{margin:18px 0 4px}.cmtabs .seg{display:inline-flex;align-items:center;text-decoration:none}.cmtabs .seg.on{box-shadow:var(--glow)}#cm-up,#cm-dl{margin-top:28px}
-.cmc{--grad:linear-gradient(135deg,color-mix(in srgb,var(--pink) 78%,#fff),var(--pink) 55%,var(--pink2));--glow:0 6px 22px color-mix(in srgb,var(--pink) 28%,transparent);--chip:color-mix(in srgb,var(--pink) 18%,var(--panel))}
-.cmi{color:var(--pink)}.cmi svg{filter:drop-shadow(0 4px 10px color-mix(in srgb,var(--pink) 35%,transparent))}.cmi b{background:var(--pink)}.cmn strong{color:var(--pink)}.cmfile:hover .cmn strong{color:#fff}
 .gr-bar{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:38;width:max-content;max-width:min(680px,calc(100% - 24px));background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid color-mix(in srgb,var(--pink) 50%,transparent);border-radius:999px;padding:6px 10px 6px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px #000a,var(--glow);animation:grin .24s cubic-bezier(.16,1,.3,1)}
 @keyframes grin{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translate(-50%,0)}}
 .gr-ic{font-size:16px;line-height:1;flex-shrink:0}
@@ -645,7 +567,7 @@ html[data-rp=on] .hero h1{color:var(--text)}
   <select class="ulsel" id="ul" aria-hidden="true"><option value="vi">Tiếng Việt</option><option value="en">English</option><option value="ru">Русский</option><option value="pt">Português</option></select>
  </div>
  </div></header>
-<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><div class="mg" id="mg"><div class="mgr"><a href="#/community">Kho File Cộng Đồng</a><button type="button" class="mgb" id="mgb" aria-expanded="false" aria-controls="msub" aria-label="Mở rộng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div><div class="msub" id="msub"><div><a href="#/community/dl" data-t="cm_sdl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span>Tải file</span></a><a href="#/community/up" data-t="cm_sup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5M7 9l5-5 5 5M5 20h14"/></svg><span>Đăng file</span></a></div></div></div><a href="#/updates">Cập nhật</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a></nav>
+<nav class="menu" id="menu" aria-label="Mục lục"><div class="mh">Mục lục</div><a href="#/">Giới thiệu</a><a href="#/guide">Hướng dẫn</a><a href="#/faq">FAQ</a><a href="#/app">App</a><a href="#/files">Kho File</a><a href="#/report">Báo lỗi / Đóng góp</a><a href="#/about">Credit &amp; miễn trừ</a></nav>
 <div class="scrim" id="scrim" aria-hidden="true"></div>
 <div class="sr" id="live" aria-live="polite"></div>
 <div class="rp" id="rp" hidden></div>
@@ -670,7 +592,6 @@ ic_files:[`Chọn vùng, tải file điểm tele sẵn dùng (.zip) để nhập
 ic_app:[`Tải Electro Cat App, công cụ nhập các file này để dùng trong game.`,`Get Electro Cat App, the tool that imports these files for use in the game.`,`Скачайте Electro Cat App — инструмент для импорта этих файлов в игру.`,`Baixe o Electro Cat App, a ferramenta que importa esses arquivos para o jogo.`],
 ic_guide:[`Hướng dẫn từng bước: cài app, nhập file và xử lý khi gặp vấn đề.`,`Step-by-step guides: install the app, import files and fix common problems.`,`Пошаговые руководства: установка, импорт файлов и решение проблем.`,`Guias passo a passo: instalar o app, importar arquivos e resolver problemas.`],
 ic_faq:[`Câu trả lời nhanh cho những thắc mắc hay gặp.`,`Quick answers to the most common questions.`,`Быстрые ответы на частые вопросы.`,`Respostas rápidas para as dúvidas mais comuns.`],
-ic_upd:[`Lịch sử thay đổi: file mới, bản sửa và cập nhật của trang.`,`Changelog: new files, fixes and site updates.`,`История изменений: новые файлы, исправления и обновления сайта.`,`Histórico de mudanças: novos arquivos, correções e atualizações do site.`],
 ic_rep:[`Gặp file lỗi hoặc điểm sai? Gửi báo cáo để được sửa.`,`Found a broken file or a wrong point? Send a report so it can be fixed.`,`Нашли битый файл или неверную точку? Отправьте отчёт.`,`Encontrou um arquivo com erro ou ponto errado? Envie um relatório.`],
 ic_about:[`Người làm ra trang này và những ai đã đóng góp.`,`Who made this site and who contributed.`,`Кто создал сайт и кто внёс вклад.`,`Quem fez este site e quem contribuiu.`],
 ic_open:[`Mở`,`Open`,`Открыть`,`Abrir`],
@@ -679,40 +600,8 @@ ic_first2:[`Bắt đầu từ Hướng dẫn`,`Start with the Guide`,`Начни
 toc:[`Mục lục`,`Contents`,`Содержание`,`Índice`],
 intro:[`Giới thiệu`,`Introduction`,`Введение`,`Introdução`],
 files:[`Kho File`,`File Library`,`Хранилище файлов`,`Biblioteca de arquivos`],
-updates:[`Cập nhật`,`Updates`,`Обновления`,`Atualizações`],
 guide:[`Hướng dẫn`,`Guide`,`Руководство`,`Guia`],
 faq:[`FAQ`,`FAQ`,`FAQ`,`FAQ`],
-community:[`Kho File Cộng Đồng`,`Community File Library`,`Хранилище файлов сообщества`,`Biblioteca da comunidade`],
-x_comm_lead:[`Bài đăng và file do cộng đồng chia sẻ. Ai cũng có thể đăng, bài sẽ hiện sau khi được duyệt.`,`Posts and files shared by the community. Anyone can post; posts appear after review.`,`Публикации и файлы сообщества. Любой может поделиться, файлы появятся после проверки.`,`Publicações e arquivos da comunidade. Qualquer um pode enviar; aparecem após revisão.`],
-x_comm_note:[`Chỉ nhận file .zip hoặc .json, tối đa 10 MB. Hãy tự kiểm tra file bạn tải về từ cộng đồng.`,`Only .zip or .json files up to 10 MB. Check any community file yourself before using it.`,`Только файлы .zip или .json до 10 МБ. Проверяйте файлы сообщества самостоятельно перед использованием.`,`Apenas arquivos .zip ou .json até 10 MB. Verifique você mesmo os arquivos da comunidade antes de usar.`],
-cm_new:[`Đăng bài mới`,`New post`,`Новая публикация`,`Nova publicação`],
-cm_remind:[`Nhắc nhở`,`Reminder`,`Напоминание`,`Lembrete`],
-cm_ping:[`Sau khi bạn đăng file, hãy ping tôi trong {d} để tôi chủ động duyệt bài nhé.`,`After uploading your file, please ping me in the {d} so I can review and approve it.`,`После отправки файла, пожалуйста, пинганите меня на {d}, чтобы я быстрее проверил его.`,`Após enviar o arquivo, por favor me mencione no {d} para que eu aprove sua publicação.`],
-cm_discord_server:[`server Discord`,`Discord server`,`сервере Discord`,`servidor do Discord`],
-cm_name:[`Tên bài`,`Title`],
-cm_desc:[`Mô tả`,`Description`],
-cm_author:[`Tên người đăng (tuỳ chọn)`,`Your name (optional)`],
-cm_region:[`Vùng`,`Region`],
-cm_lang:[`Ngôn ngữ`,`Language`],
-cm_other:[`Khác`,`Other`],
-cm_file:[`File (.zip hoặc .json, tối đa 10 MB)`,`File (.zip or .json, max 10 MB)`],
-cm_send:[`Đăng bài`,`Post`],
-cm_list:[`Bài của cộng đồng`,`Community posts`],
-cm_none:[`Chưa có bài nào được duyệt.`,`No approved posts yet.`],
-cm_load:[`Đang tải bài…`,`Loading posts…`],
-cm_err:[`Không tải được danh sách bài. Thử lại sau nhé.`,`Could not load posts. Please try again later.`],
-cm_nocfg:[`Tính năng đăng bài chưa được bật.`,`Posting is not enabled yet.`],
-cm_dl:[`Tải`,`Download`],
-cm_sdl:[`Tải file`,`Download files`],
-cm_sup:[`Đăng file`,`Upload a file`],
-cm_exp:[`Mở rộng`,`Expand`],
-cm_ok:[`Đã gửi! Bài sẽ hiện sau khi được duyệt.`,`Sent! Your post will appear after review.`],
-cm_bad:[`Gửi thất bại, thử lại sau nhé.`,`Failed to send, please try again.`],
-cm_needname:[`Nhập tên bài.`,`Enter a title.`],
-cm_needfile:[`Chọn file .zip hoặc .json.`,`Choose a .zip or .json file.`],
-cm_big:[`File quá lớn, tối đa 10 MB.`,`File too large, max 10 MB.`],
-cm_wait:[`Đợi một chút rồi đăng tiếp nhé.`,`Please wait a moment before posting again.`],
-cm_sending:[`Đang gửi…`,`Sending…`],
 report:[`Báo lỗi / Đóng góp`,`Report / Contribute`,`Сообщить об ошибке / Помочь`,`Reportar / Contribuir`],
 about:[`Credit & miễn trừ`,`Credits & disclaimer`,`Авторы и отказ от ответственности`,`Créditos e aviso legal`],
 nf:[`Không tìm thấy`,`Not found`,`Не найдено`,`Não encontrado`],
@@ -817,7 +706,6 @@ ifact:[`Hiện có {n} file ở {m} mục.`,`{n} files in {m} sections.`,`{n} ф
 ifact2:[`Hiện có {n} file ở {m} mục, cập nhật gần nhất {d}.`,`{n} files in {m} sections, last updated {d}.`,`{n} файлов в {m} разделах, последнее обновление: {d}.`,`{n} arquivos em {m} seções, última atualização em {d}.`],
 howto:[`Cách dùng`,`How to use`,`Как пользоваться`,`Como usar`],
 newup:[`Mới cập nhật`,`Recently updated`,`Недавние обновления`,`Atualizados recentemente`],
-seelog:[`Xem nhật ký cập nhật →`,`See the update log →`,`Журнал обновлений →`,`Ver o histórico de atualizações →`],
 havef:[`Đã có file`,`Available now`,`Уже доступно`,`Já disponíveis`],
 moresoon:[`{n} mục nữa sắp có`,`{n} more coming soon`,`Ещё {n} скоро`,`Mais {n} em breve`],
 k_tong:[`File tổng`,`Full file`,`Полный файл`,`Arquivo completo`],
@@ -873,12 +761,8 @@ faq4a:[`Nếu file có mã SHA-256, bấm nút SHA-256 để chép mã rồi so 
 faq5q:[`File cũ còn dùng được không?`,`Can I still use old files?`,`Можно ли ещё использовать старые файлы?`,`Os arquivos antigos ainda podem ser usados?`],
 faq5a:[`File cũ được giữ lại để dùng khi cần. Nên ưu tiên bản mới nhất và đọc ghi chú của file để biết khác biệt.`,`Old files are kept for when you need them. Prefer the newest version and read the file's note to see what changed.`,`Старые файлы сохранены на случай, если они понадобятся. Лучше использовать новейшую версию и прочитать примечание к файлу, чтобы узнать, что изменилось.`,`Os arquivos antigos são mantidos para quando precisar. Prefira a versão mais recente e leia a nota do arquivo para saber o que mudou.`],
 faq6q:[`Làm sao biết có file mới?`,`How do I know when there are new files?`,`Как узнать о новых файлах?`,`Como saber se há arquivos novos?`],
-faq6a:[`Xem mục Cập nhật: có nhật ký thay đổi và danh sách file mới nhất. Tải bản mới rồi thay file cũ.`,`Check the Updates page: it has a change log and the list of the newest files. Download the new version and replace the old file.`,`Загляните в раздел «Обновления»: там журнал изменений и список новых файлов. Скачайте новую версию и замените старый файл.`,`Veja a página Atualizações: há um histórico de mudanças e a lista dos arquivos mais recentes. Baixe a nova versão e substitua o arquivo antigo.`],
+faq6a:[`Mở mục Kho File: các file mới nhất nằm ở "Mới cập nhật" trên trang Giới thiệu, và file mới có nhãn Mới. Tải bản mới rồi thay file cũ.`,`Open the File Library: the newest files are listed under "Recently updated" on the Intro page, and new files carry a New tag. Download the new version and replace the old file.`,`Откройте «Файлы»: новейшие файлы указаны в блоке «Недавно обновлено» на главной странице, у новых файлов есть метка «Новое». Скачайте новую версию и замените старый файл.`,`Abra a Biblioteca de arquivos: os mais recentes aparecem em «Atualizados recentemente» na página inicial, e os novos têm a etiqueta Novo. Baixe a nova versão e substitua o arquivo antigo.`],
 cr1:[`Tác giả của tất cả file tele trên trang này`,`Author of all the tele files on this site`,`Автор всех tele-файлов на этом сайте`,`Autor de todos os arquivos de tele deste site`],
-cl1t:[`Ra mắt Kho File Tele`,`Tele File Library launched`,`Запуск Хранилища Tele-файлов`,`Lançamento da Biblioteca de arquivos Tele`],
-cl1i1:[`Thêm file Mondstadt, Liyue và Điểm Tele (dữ liệu mẫu, hãy thay bằng nội dung thật).`,`Added the Mondstadt, Liyue and Teleport Points files (sample data, replace with real content).`,`Добавлены файлы Mondstadt, Liyue и точки телепорта (примерные данные, замените настоящим содержимым).`,`Adicionados os arquivos de Mondstadt, Liyue e Pontos de teleporte (dados de exemplo, substitua por conteúdo real).`],
-x_upd_lead:[`Nhật ký thay đổi và các file mới nhất.`,`Change log and the newest files.`,`Журнал изменений и новейшие файлы.`,`Histórico de mudanças e os arquivos mais recentes.`],
-x_upd_recent:[`File cập nhật gần đây`,`Recently updated files`,`Недавно обновлённые файлы`,`Arquivos atualizados recentemente`],
 x_faq_lead:[`Những câu hỏi thường gặp.`,`Frequently asked questions.`,`Частые вопросы.`,`Perguntas frequentes.`],
 x_guide_lead0:[`Từ chọn file đến nhập vào app.`,`From picking a file to importing it into the app.`,`От выбора файла до импорта в приложение.`,`Da escolha do arquivo até a importação no app.`],
 x_guide_lead:[`Chọn một bài để xem.`,`Pick an article to read.`,`Выберите статью для чтения.`,`Escolha um artigo para ler.`],
@@ -924,7 +808,7 @@ const SITE={server:"Electro Cat",repo:"pxtk08/Electro-Cat-App-Data",branch:"main
  contact:"", /* vd "Liên hệ: Discord abc#1234" */
  path:"", /* điền đường dẫn thư mục tele của server, để trống sẽ hiện câu chung */
  gameVer:"", /* vd "6.1" -> mỗi file hiện chip "Game 6.1" */
- app:"https://github.com/pxtk08/Electro-Cat-App/releases/latest",appRepo:"pxtk08/Electro-Cat-App",appPage:"https://github.com/pxtk08/Electro-Cat-App",appShots:[] /* ảnh giao diện app: ["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/screens/1.png", ...] hoặc data:image/... */,discord:"https://discord.gg/yZXXvqutAS",sbUrl:"https://gocjhsauaegmayqofiuw.supabase.co" /* dán Project URL Supabase, vd https://abcxyz.supabase.co */,sbKey:"sb_publishable_pln-2avkXsysmdpJ6vyT3g_jSrUu5bH",form:"",github:"",video:"" /* điền link thật thì nút mới hiện; để trống hoặc còn "ten-..." thì tự ẩn */};
+ app:"https://github.com/pxtk08/Electro-Cat-App/releases/latest",appRepo:"pxtk08/Electro-Cat-App",appPage:"https://github.com/pxtk08/Electro-Cat-App",appShots:[] /* ảnh giao diện app: ["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/screens/1.png", ...] hoặc data:image/... */,discord:"https://discord.gg/yZXXvqutAS",form:"",github:"",video:"" /* điền link thật thì nút mới hiện; để trống hoặc còn "ten-..." thì tự ẩn */};
 const SHOTS=["https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%201.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%202.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%203.png","https://raw.githubusercontent.com/pxtk08/Electro-Cat-App/main/Screenshot%204.png"];
 /* Mã SHA-256 (tuỳ chọn): bọc dòng F(...) trong Object.assign(F(...),{sha:"<mã từ sha256sum>"}) -> hiện nút SHA-256 */
 const tx=s=>s==="path"&&SITE.path?SITE.path:(I18N[s]?tr(s):s);
@@ -932,9 +816,7 @@ const tx=s=>s==="path"&&SITE.path?SITE.path:(I18N[s]?tr(s):s);
 const fxs=(s,l)=>{if(s==="path"&&SITE.path)return SITE.path;const e=I18N[s];return e?(e[UI_LANGS.indexOf(l)]||e[1]||e[0]):s};
 const l10=(x,k)=>{const t=x.i18n&&x.i18n[UL]&&x.i18n[UL][k];return t?String(t):tx(x[k])};
 const itemsOf=x=>{const t=x.i18n&&x.i18n[UL]&&x.i18n[UL].items;return(Array.isArray(t)&&t.length?t:(x.items||[])).map(tx)};
-const OL=["en","ru","pt"],flatFaq=x=>{const kb=!!I18N[x.q],o={q:fxs(x.q,"vi"),a:fxs(x.a,"vi"),lang:"vi"};if(kb)o.i18n=Object.fromEntries(OL.map(l=>[l,{q:fxs(x.q,l),a:fxs(x.a,l)}]));return o},
-flatUp=x=>{const kb=!!I18N[x.t],o={...x,t:fxs(x.t,"vi"),items:(x.items||[]).map(v=>fxs(v,"vi")),lang:"vi"};if(kb)o.i18n=Object.fromEntries(OL.map(l=>[l,{t:fxs(x.t,l),items:(x.items||[]).map(v=>fxs(v,l))}]));return o};
-let CHANGELOG=[{d:"2026-11-10",t:"cl1t",items:["cl1i1"]}];
+const OL=["en","ru","pt"],flatFaq=x=>{const kb=!!I18N[x.q],o={q:fxs(x.q,"vi"),a:fxs(x.a,"vi"),lang:"vi"};if(kb)o.i18n=Object.fromEntries(OL.map(l=>[l,{q:fxs(x.q,l),a:fxs(x.a,l)}]));return o};
 const GUIDE=[ /* thêm img:"duong-dan-anh.png" vào từng bước để có ảnh minh hoạ; t/p là khoá I18N hoặc chữ thường */
  {t:"g1t",p:"g1p"},{t:"x_how2t",p:"g2p"},{t:"g3t",p:"g3p"},{t:"x_how3t",p:"path"},{t:"g5t",p:"g5p"}];
 const CREDITS=[["pxtk.08","cr1"]];
@@ -969,7 +851,7 @@ function lv(t){const e=$("live");e.textContent="";setTimeout(()=>e.textContent=t
 const prow=(f,sl)=>{const k=url(f);return `<div class="row pk" data-row="${esc(fk(f))}"><label class="pl"><input type="checkbox" data-k="${esc(k)}"${SEL.has(k)?" checked":""}><span class="bx" aria-hidden="true"></span><div><h3>${esc(f.name)}</h3>${f.note?`<p>${esc(tx(f.note))}</p>`:""}<div class="meta">${isNew(f)?'<i class="nw">'+tr("new")+'</i>':""}${sl&&f.lang?`<i class="l">${esc(LANG[f.lang]||f.lang)}</i>`:""}${f.cat?`<i class="l">${esc(cn(f.cat))}</i>`:""}${f.pts?`<i>${f.pts} ${tr("pts")}</i>`:""}<i>${esc(f.size)}</i>${f.ver?`<i>${esc(f.ver)}</i>`:""}${f.gv?`<i>${esc(tr("game",{v:f.gv}))}</i>`:""}<i>${esc(fd(f.date))}</i></div></div></label>
 <div class="act"><a class="dl" href="${esc(k)}" download aria-label="${esc(tr("dlof",{n:f.name}))}">${tr("dl")}</a><button class="cp" data-u="${esc(k)}" aria-label="${esc(tr("cplk",{n:f.name}))}">${tr("link")}</button>${f.sha?`<button class="cp" data-h="${esc(f.sha)}" title="${esc(f.sha)}">SHA-256</button>`:""}</div></div>`};
 const crumb=(...p)=>{p=p.slice(1);return p.length<2?"":`<nav class="crumb" aria-label="breadcrumb">${p.map((x,i)=>(i?"<span>/</span>":"")+x).join("")}</nav>`};
-const foot=()=>`<footer><div class="fl"><a href="#/guide">${tr("guide")}</a><a href="#/updates">${tr("updates")}</a><a href="#/report">${esc(tr("report"))}</a><a href="#/about">${esc(tr("about"))}</a></div>${ok(SITE.contact)?esc(SITE.contact):""}${ADM()?"":'<button class="lk" type="button" data-ad="login" aria-label="Quản trị" title="Quản trị"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>'}</footer>`;
+const foot=()=>`<footer><div class="fl"><a href="#/guide">${tr("guide")}</a><a href="#/report">${esc(tr("report"))}</a><a href="#/about">${esc(tr("about"))}</a></div>${ok(SITE.contact)?esc(SITE.contact):""}${ADM()?"":'<button class="lk" type="button" data-ad="login" aria-label="Quản trị" title="Quản trị"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>'}</footer>`;
 const ok=u=>u&&!/ten-|\.\.\./.test(u),fd=d=>String(d||"").split("-").reverse().join("/"),nz=t=>String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").toLowerCase();
 const rn=id=>(ALL.find(x=>x[0]===id)||[0,id])[1];
 const recent=n=>[...FILES].sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,n);
@@ -980,7 +862,6 @@ let SO="def";
 const SORTUI=()=>`<div class="lg" role="group" aria-label="${tr("sort")}"><em>${tr("sort")}</em>${[["def",tr("s_def")],["new",tr("s_new")],["name",tr("s_name")]].map(([k,t])=>`<button class="seg${k===SO?" on":""}" data-so="${k}" aria-pressed="${k===SO}">${t}</button>`).join("")}<button class="seg" id="dr" type="button">${tr("dlreg")}</button></div>`;
 const srt=a=>SO==="new"?[...a].sort((x,y)=>(y.date||"").localeCompare(x.date||"")):SO==="name"?[...a].sort((x,y)=>x.name.localeCompare(y.name,UL)):a;
 const pn=()=>"";
-function updates(){const A=ADM(),ch=[...CHANGELOG].sort((a,b)=>String(b.d).localeCompare(String(a.d)));return `<h1>${tr("updates")}</h1><p class="lead">${tr("x_upd_lead")}</p>${A?'<div class="hl"><button class="go" data-ad="up-add" type="button" style="border:0;cursor:pointer;font-family:inherit">+ Thêm cập nhật</button></div>':""}`+ch.map(c=>`<div class="log"><time>${esc(fd(c.d))}</time><h3>${esc(l10(c,"t"))}</h3><ul>${itemsOf(c).map(i=>`<li>${esc(i)}</li>`).join("")}</ul>${A?`<div class="hl" style="margin:10px 0 0"><button class="cp" data-ad="up-edit" data-i="${CHANGELOG.indexOf(c)}" type="button">Sửa</button><button class="cp" data-ad="up-tr" data-i="${CHANGELOG.indexOf(c)}" type="button">🌐 Dịch</button><button class="cp" data-ad="up-del" data-i="${CHANGELOG.indexOf(c)}" type="button">Xóa</button></div>`:""}</div>`).join("")+`<h2 class="ih2">${tr("x_upd_recent")}</h2><ul class="ul">${recent(15).map(li).join("")}</ul>`+foot()}
 /* ===== Chế độ quản trị: chỉ hiện khi có token GitHub hợp lệ; mọi thay đổi ghi thẳng vào repo ===== */
 const PV={};const PWH="c3588868b18ffbab5b415842461fa4e55adbb4cbcfb9e2b5016b5e2f35d92756";
 let TOK="";try{TOK=sessionStorage.getItem("gt")||"";localStorage.removeItem("gt")}catch(e){}
@@ -995,15 +876,15 @@ const enc=x=>{const u=new TextEncoder().encode(x);let t="";for(let i=0;i<u.lengt
 const ghp=x=>x.split("/").map(encodeURIComponent).join("/");
 async function gh(path,opt={}){const r=await fetch(path.startsWith("http")?path:"https://api.github.com/repos/"+SITE.repo+"/contents/"+path,{...opt,cache:"no-store",headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK,...(opt.body?{"Content-Type":"application/json"}:{})}});
  const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(r.status===401?"Token sai hoặc đã hết hạn":r.status===403?"Token không đủ quyền (cần Contents: Read and write)":(j.message||"Lỗi "+r.status));return j}
-function applyContent(c){if(Array.isArray(c.faq))FAQ=c.faq;if(Array.isArray(c.updates))CHANGELOG=c.updates;GUIDES=normGuides(c.guides);GL=1;if(route().p!=="edit")render()}
+function applyContent(c){if(Array.isArray(c.faq))FAQ=c.faq;GUIDES=normGuides(c.guides);GL=1;if(route().p!=="edit")render()}
 let CTC=null,SHA={};
 const retry409=async f=>{for(let i=0;;i++){try{return await f()}catch(e){if(i<3&&/does not match|409/.test(e.message)){CTC=null;SHA={};await new Promise(r=>setTimeout(r,500));continue}throw e}}};
 async function ct(mut,msg){return retry409(()=>ct1(mut,msg))}
 async function ct1(mut,msg){const ex=CTC?{sha:CTC.sha}:await gh("content.json?ref="+br()).catch(()=>null);let c={};if(CTC)c=JSON.parse(JSON.stringify(CTC.c));else if(ex){try{c=JSON.parse(dec(ex.content))}catch(e){c={}}}
- if(!Array.isArray(c.faq))c.faq=FAQ.map(flatFaq);if(!Array.isArray(c.updates))c.updates=CHANGELOG.map(flatUp);c.guides=normGuides(c.guides);
+ if(!Array.isArray(c.faq))c.faq=FAQ.map(flatFaq);c.guides=normGuides(c.guides);
  mut(c);const rs=await gh("content.json",{method:"PUT",body:JSON.stringify({message:msg,content:enc(JSON.stringify(c,null,2)+"\n"),branch:SITE.branch,...(ex?{sha:ex.sha}:{})})});
  CTC=rs.content&&rs.content.sha?{c:JSON.parse(JSON.stringify(c)),sha:rs.content.sha}:null;
- FAQ=c.faq;CHANGELOG=c.updates;GUIDES=c.guides;GL=1;return c}
+ FAQ=c.faq;GUIDES=c.guides;GL=1;return c}
 function dlg(title,fields,onOk,note){let d=$("dlg");if(!d){d=document.createElement("dialog");d.id="dlg";document.body.appendChild(d)}
  d.innerHTML=`<form id="dform"><h2>${esc(title)}</h2>${note?`<div class="note">${note}</div>`:""}${fields.map(f=>f.type==="select"?`<label class="dl2"><span>${esc(f.label)}</span><select class="fi" id="df-${f.id}">${f.options.map(o=>`<option value="${esc(o[0])}">${esc(o[1])}</option>`).join("")}</select></label>`:f.type==="checkbox"?`<label class="fl2" style="margin-bottom:12px"><input type="checkbox" id="df-${f.id}"> ${esc(f.label)}</label>`:`<label class="dl2"><span>${esc(f.label)}</span>${f.type==="textarea"?`<textarea class="fi" id="df-${f.id}" rows="${f.rows||5}"></textarea>`:`<input class="fi" id="df-${f.id}" type="${f.type||"text"}" autocomplete="off">`}</label>`).join("")}<p id="dm" style="min-height:1.4em;font-size:14px"></p><div class="hl" style="margin:0"><button class="go" id="dok" type="button" style="border:0;cursor:pointer;font-family:inherit">Lưu</button><button class="cp" id="dno" type="button">Hủy</button></div></form>`;
  fields.forEach(f=>{const e=$("df-"+f.id);if(f.type==="checkbox")e.checked=!!f.value;else e.value=f.value||""});
@@ -1026,13 +907,10 @@ function adm(a,i){
  if(a==="faq-add")return dlg("Thêm câu hỏi",[LF("vi"),{id:"q",label:"Câu hỏi"},{id:"a",label:"Trả lời",type:"textarea",rows:12}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>c.faq.push({q:v.q.trim(),a:v.a.trim(),lang:v.lang}),"Thêm FAQ")},'Mẹo định dạng: Enter để xuống dòng, để trống một dòng để tách đoạn, bắt đầu dòng bằng "- " để tạo gạch đầu dòng, bọc **chữ** để in đậm.');
  if(a==="faq-edit"){const x=FAQ[i],sl=x.lang||"vi";return dlg("Sửa câu hỏi",[LF(sl),{id:"q",label:"Câu hỏi",value:fxs(x.q,sl)},{id:"a",label:"Trả lời",type:"textarea",rows:12,value:fxs(x.a,sl)}],v=>{need(v.q,"Nhập câu hỏi");return ct(c=>{c.faq[i]={...c.faq[i],q:v.q.trim(),a:v.a.trim(),lang:v.lang}},"Sửa FAQ")},"Mẹo định dạng: Enter để xuống dòng, để trống một dòng để tách đoạn, bắt đầu dòng bằng "- " để tạo gạch đầu dòng, bọc **chữ** để in đậm.<br>Sửa bản gốc không tự đổi các bản dịch. Muốn cập nhật bản dịch, đóng hộp này rồi bấm 🌐 Dịch.")}
  if(a==="faq-tr")return openTransItem("faq",i);
- if(a==="up-tr")return openTransItem("up",i);
  if(a==="faq-del"){if(confirm("Xóa câu hỏi này?"))run(c=>c.faq.splice(i,1),"Xóa FAQ");return}
  if(a==="faq-up"){if(i>0)run(c=>{[c.faq[i-1],c.faq[i]]=[c.faq[i],c.faq[i-1]]},"Sắp xếp FAQ");return}
  if(a==="faq-down"){if(i<FAQ.length-1)run(c=>{[c.faq[i+1],c.faq[i]]=[c.faq[i],c.faq[i+1]]},"Sắp xếp FAQ");return}
- if(a==="up-add")return dlg("Thêm cập nhật",[LF("vi"),{id:"d",label:"Ngày",type:"date",value:today()},{id:"t",label:"Tiêu đề"},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>c.updates.push({d:v.d,t:v.t.trim(),items:lines(v.items),lang:v.lang}),"Thêm cập nhật")});
- if(a==="up-edit"){const x=CHANGELOG[i],sl=x.lang||"vi";return dlg("Sửa cập nhật",[LF(sl),{id:"d",label:"Ngày",type:"date",value:x.d},{id:"t",label:"Tiêu đề",value:fxs(x.t,sl)},{id:"items",label:"Nội dung (mỗi dòng một mục)",type:"textarea",rows:6,value:(x.items||[]).map(v=>fxs(v,sl)).join("\n")}],v=>{need(v.t,"Nhập tiêu đề");return ct(c=>{c.updates[i]={...c.updates[i],d:v.d,t:v.t.trim(),items:lines(v.items),lang:v.lang}},"Sửa cập nhật")},"Sửa bản gốc không tự đổi các bản dịch. Muốn cập nhật bản dịch, đóng hộp này rồi bấm 🌐 Dịch.")}
- if(a==="up-del"){if(confirm("Xóa mục cập nhật này?"))run(c=>c.updates.splice(i,1),"Xóa cập nhật");return}}
+}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-ad]");if(b){e.preventDefault();adm(b.dataset.ad,Number(b.dataset.i))}});
 /* ===== Bản dịch thủ công: copy bài + lời nhắc -> dán vào AI -> dán kết quả -> tách vào từng tab -> lưu ===== */
 const TR_ALL=["vi","en","ru","pt"],TR_NAME={vi:"Vietnamese",en:"English",ru:"Russian",pt:"Brazilian Portuguese"},trTargets=g=>TR_ALL.filter(l=>l!==gSL(g));
@@ -1121,8 +999,8 @@ async function openTrans(g){
   if(S.cur===l)paint();else tabs()}))}
 /* ===== Dịch FAQ / Cập nhật: copy mục + lời nhắc -> dán vào AI -> dán kết quả -> tách vào các tab -> lưu vào i18n của chính mục đó ===== */
 const LF=v=>({id:"lang",label:"Ngôn ngữ bạn đang viết (bản gốc)",type:"select",options:TR_ALL.map(l=>[l,LANG[l]]),value:v});
-const TI={faq:{arr:()=>FAQ,key:"faq",en:"FAQ entry (a question and its answer)",f:[["q","QUESTION","Câu hỏi","i"],["a","ANSWER","Trả lời","t"]]},
- up:{arr:()=>CHANGELOG,key:"updates",en:"changelog entry (a title and a list of items)",f:[["t","TITLE","Tiêu đề","i"],["items","ITEMS","Nội dung (mỗi dòng một mục)","t"]]}};
+const TI={faq:{arr:()=>FAQ,key:"faq",en:"FAQ entry (a question and its answer)",f:[["q","QUESTION","Câu hỏi","i"],["a","ANSWER","Trả lời","t"]]}};
+
 function tiPrompt(kind,x,langs,val){const T=TI[kind],SL=x.lang||"vi";
  return "Translate the following "+TR_NAME[SL]+" "+T.en+" for a Genshin Impact teleport-file website (app name: Electro Cat) into: "+langs.map(l=>TR_NAME[l]+" ("+l+")").join(", ")+".\n\nRules:\n- Plain text only, no Markdown.\n- Keep numbers, dates, file names, commands (e.g. certutil, sha256sum), SHA-256, URLs and the app name Electro Cat unchanged.\n- Use the official in-game terminology of each target language for Genshin Impact terms when you know it.\n- Write natural, clear text.\n"+(kind==="up"?"- ITEMS: keep exactly one item per line and the same number of lines as the original.\n":"")+"\nPut the whole answer inside ONE code block (so I can copy it), with no commentary, using exactly these markers:\n"+langs.map(l=>"===LANG:"+l+"===\n"+T.f.map(([k,M])=>"==="+M+"===\n<"+M.toLowerCase()+(k==="items"?", one item per line":"")+">").join("\n")).join("\n")+"\n\nTEXT TO TRANSLATE:\n"+T.f.map(([k,M])=>"==="+M+"===\n"+val(k,SL)).join("\n")}
 function tiParse(t,def,allowed,kind){const T=TI[kind],out={},parts=String(t).replace(/\r/g,"").split(/^[ \t]*===LANG:([a-z]{2})===[ \t]*$/m);
@@ -1205,10 +1083,6 @@ async function editInit(s){if(!ADM())return;
    ["❓ · FAQ","#/faq","Hỏi đáp thường gặp"],
    ["📱 · App","#/app","Electro Cat App"],
    ["📦 · Kho File","#/files","Kho File chính"],
-   ["🤝 · Kho File Cộng Đồng","#/community","File do cộng đồng chia sẻ"],
-   ["⬇️ · Tải file","#/community/dl","Kho Cộng Đồng · Tải file"],
-   ["⬆️ · Đăng file","#/community/up","Kho Cộng Đồng · Đăng file"],
-   ["📢 · Cập nhật","#/updates","Lịch sử thay đổi"],
    ["🚨 · Báo lỗi / Đóng góp","#/report","Mẫu báo lỗi"],
    ["ℹ️ · Credit & miễn trừ","#/about","Credit và miễn trừ trách nhiệm"],
    ["💬 · Discord",SITE.discord||"https://discord.gg/yZXXvqutAS","Server Discord"]
@@ -1267,19 +1141,14 @@ const gu=sl=>String(sl).split("/").map(encodeURIComponent).join("/");
 const asrc=(u,base)=>{u=u.replace(/&amp;/g,"&");if(PV[u])return esc(PV[u]);try{const h=new URL(u,new URL(RAW+base,location.href));return h.protocol==="https:"||h.origin===location.origin?esc(h.href):""}catch(e){return""}};
 const CH_MAP={
  "teleport-files-by-pxtk08":["📦 · teleport-files-by-pxtk08","#/files"],
- "share-teleport-files-here":["🤝 · share-teleport-files-here","#/community"],
  "files":["📦 Kho File","#/files"],
- "community":["🤝 Kho File Cộng Đồng","#/community"],
  "app":["📱 Tải App","#/app"],
  "faq":["❓ FAQ","#/faq"],
  "discord":["💬 Discord",SITE.discord||"https://discord.gg/yZXXvqutAS"],
- "updates":["📢 Cập nhật","#/updates"],
  "report":["🚨 Báo lỗi","#/report"],
  "guide":["📖 Hướng dẫn","#/guide"],
  "about":["ℹ️ Credit & miễn trừ","#/about"],
  "home":["🏠 Giới thiệu","#/"],
- "dl":["⬇️ Tải file","#/community/dl"],
- "up":["⬆️ Đăng file","#/community/up"]
 };
 const setCurGuide=(slug,title)=>{try{sessionStorage.setItem("ec_cg",JSON.stringify({slug,title,t:Date.now()}))}catch(e){}};
 const getCurGuide=()=>{try{const s=sessionStorage.getItem("ec_cg");return s?JSON.parse(s):null}catch(e){return null}};
@@ -1297,7 +1166,7 @@ function syncGuideRet(){
  }else{b.hidden=true}
 }
 /* Chip điều hướng: tự đổi nhãn theo ngôn ngữ giao diện (UL) */
-const CHR={"#/":["🏠","intro"],"#/guide":["📖","guide"],"#/faq":["❓","faq"],"#/app":["📱","app"],"#/files":["📦","files"],"#/community":["🤝","community"],"#/community/dl":["⬇️","cm_sdl"],"#/community/up":["⬆️","cm_sup"],"#/updates":["📢","updates"],"#/report":["🚨","report"],"#/about":["ℹ️","about"]};
+const CHR={"#/":["🏠","intro"],"#/guide":["📖","guide"],"#/faq":["❓","faq"],"#/app":["📱","app"],"#/files":["📦","files"],"#/report":["🚨","report"],"#/about":["ℹ️","about"]};
 const CH_ALIAS=["tải app","báo lỗi","tải file","đăng file","kho file chính"];
 const chNorm=x=>String(x).replace(/&amp;/g,"&").replace(/^[^·]*·\s*/u,"").replace(/^[\p{Extended_Pictographic}\uFE0F\s]+/u,"").trim().toLowerCase();
 function chL(u,label,force){const r=CHR[u];if(!r)return label;const e=I18N[r[1]]||[],t=chNorm(label);
@@ -1343,38 +1212,9 @@ function guide0(){return `<h1>${tr("guide")}</h1><p class="lead">${tr("x_guide_l
 function about(){return `<h1>${esc(tr("about"))}</h1><p class="lead">${tr("x_about_lead")}</p><ul class="ul">${CREDITS.map(c=>`<li><span class="t">${esc(c[0])}</span><small>${esc(tx(c[1]))}</small></li>`).join("")}</ul><div class="note">${tr("x_about_note")}</div>`+foot()}
 function report(){const L=[["Discord",SITE.discord],["Form",SITE.form],["GitHub",SITE.github]].filter(x=>ok(x[1])),T=tr("x_tpl");
  return `<h1>${esc(tr("report"))}</h1><p class="lead">${tr("x_rep_lead")}</p><div class="pre">${esc(T)}</div><div class="hl"><button class="go" type="button" data-t="${esc(T)}" style="border:0;cursor:pointer;font-family:inherit">${tr("x_rep_copy")}</button>${L.map(x=>`<a class="gh" href="${esc(x[1])}" target="_blank" rel="noopener">${x[0]} ↗</a>`).join("")}</div>`+foot()}
-const CM={rows:null,err:false},CM_EXT=["zip","json"],CM_MAX=10*1048576;
-const cmOn=()=>/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(SITE.sbUrl||"")&&!!SITE.sbKey;
-const cmHd=()=>({apikey:SITE.sbKey});
-const cmSize=n=>n>=1048576?(n/1048576).toFixed(1)+" MB":Math.max(1,Math.round(n/1024))+" KB";
-function rcol(id){const p=RP[id],c=p?p.c:RC[id];if(!c)return"";const n=parseInt(c.slice(1),16),r=(n>>16)/255,g=(n>>8&255)/255,b=(n&255)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn,lum=.2126*r+.7152*g+.0722*b;let h=0,sa=0;if(d){sa=d/(1-Math.abs(2*l-1));h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h=(h*60+360)%360}
- const c2=p?p.c2:`hsl(${(h+315)%360} ${Math.min(sa*100,90)}% ${Math.max(l*100,62)}%)`;return `--pink:${c};--pink2:${c2};--on:${lum>.45?"#2a1633":"#fff"}`}
-function cmList(){if(!cmOn())return `<p class="none">${tr("cm_nocfg")}</p>`;if(CM.err)return `<p class="none">${tr("cm_err")}</p>`;if(CM.rows===null)return `<p class="lead">${tr("cm_load")}</p>`;if(!CM.rows.length)return `<p class="none">${tr("cm_none")}</p>`;
- return CM.rows.filter(r=>/^[\w.-]+$/.test(r.file_path||"")).map(r=>{const dl=SITE.sbUrl+"/storage/v1/object/public/community-files/"+r.file_path+"?download="+encodeURIComponent(r.file_name||r.file_path),d=String(r.created_at||"").slice(0,10);
-  const ex=((r.file_name||r.file_path).split(".").pop()||"file").slice(0,4).toUpperCase(),fn=r.file_name||r.file_path;
-  const chips=[r.lang&&`<i>${esc(String(r.lang).toUpperCase())}</i>`,r.author&&`<i class="au"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>${esc(r.author)}</i>`].filter(Boolean).join("");
-  const rn=(ALL.find(a=>a[0]===r.region)||[])[1]||r.region,rs=rcol(r.region);
-  return `<article class="cmc"${rs?` style="${rs}"`:""}><div class="cmh">${r.region?`<span class="cmr">${esc(rn)}</span>`:"<span></span>"}<time>${esc(fd(d))}</time></div><h3>${esc(r.name)}</h3>${r.description?`<p>${esc(r.description)}</p>`:""}${chips?`<div class="cmm">${chips}</div>`:""}<a class="cmfile" href="${esc(dl)}" rel="noopener" aria-label="${esc(tr("cm_dl"))}: ${esc(fn)}"><span class="cmi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M11 11h2M11 14h2M11 17h2" stroke-width="2.6"/></svg><b>${esc(ex)}</b></span><span class="cmn"><strong>${esc(fn)}</strong>${r.file_size?`<small>${esc(cmSize(r.file_size))}</small>`:""}</span><span class="cmd" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span></a></article>`}).join("")}
-async function cmLoad(){if(!cmOn()||CM.rows)return;try{const r=await fetch(SITE.sbUrl+"/rest/v1/community_posts?select=id,created_at,name,description,region,lang,author,file_path,file_name,file_size&approved=eq.true&order=created_at.desc&limit=100",{headers:cmHd()});if(!r.ok)throw 0;CM.rows=await r.json();CM.err=false}catch(e){CM.err=true;CM.rows=[]}const el=$("cm-list");if(el)el.innerHTML=cmList()}
-async function cmSend(f){const msg=$("cm-msg"),say=(t,e)=>{msg.textContent=t;msg.style.color=e?"#ff9db0":""},btn=f.querySelector("button");
- if(f.website.value)return;const name=f.cname.value.trim(),file=f.cfile.files[0];
- if(!name)return say(tr("cm_needname"),1);
- const ext=file?file.name.split(".").pop().toLowerCase():"";if(!file||!CM_EXT.includes(ext))return say(tr("cm_needfile"),1);
- if(file.size>CM_MAX)return say(tr("cm_big"),1);
- let last=0;try{last=+localStorage.getItem("cmlast")||0}catch(e){}if(Date.now()-last<60000)return say(tr("cm_wait"),1);
- btn.disabled=true;say(tr("cm_sending"));
- try{const path=Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8)+"."+ext;
-  let r=await fetch(SITE.sbUrl+"/storage/v1/object/community-files/"+path,{method:"POST",headers:{...cmHd(),"Content-Type":ext==="zip"?"application/zip":"application/json"},body:file});if(!r.ok)throw 0;
-  r=await fetch(SITE.sbUrl+"/rest/v1/community_posts",{method:"POST",headers:{...cmHd(),"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify({name:name.slice(0,80),description:f.cdesc.value.trim().slice(0,1000)||null,region:f.cregion.value||null,lang:f.clang.value||null,author:f.cauthor.value.trim().slice(0,40)||null,file_path:path,file_name:file.name.slice(0,120),file_size:file.size,approved:false})});if(!r.ok)throw 0;
-  try{localStorage.setItem("cmlast",String(Date.now()))}catch(e){}f.reset();say(tr("cm_ok"))}catch(e){say(tr("cm_bad"),1)}btn.disabled=false}
-function commInit(){const f=$("cm-form");if(f)f.onsubmit=e=>{e.preventDefault();cmSend(f)};cmLoad()}
-function community(){const ro=ALL.map(([id,n])=>`<option value="${esc(id)}">${esc(n)}</option>`).join("")+`<option value="">${tr("cm_other")}</option>`,lo=["vi","en","ru","pt"].map(l=>`<option value="${l}">${l.toUpperCase()}</option>`).join("")+`<option value="">${tr("cm_other")}</option>`;
- const sec=route().sec==="up"?"up":"dl",tabs=`<div class="lg cmtabs" role="navigation">${[["dl","cm_sdl"],["up","cm_sup"]].map(([k,t])=>`<a class="seg${sec===k?" on":""}"${sec===k?' aria-current="page"':""} href="#/community/${k}">${tr(t)}</a>`).join("")}</div>`;
- const dLink=`<a href="${esc(SITE.discord)}" target="_blank" rel="noopener" style="color:var(--pink);font-weight:700;text-decoration:underline">${esc(tr("cm_discord_server"))}</a>`;
- return crumb("<a href=\"#/\">Kho File Tele</a>",esc(tr("community")))+`<h1>${tr("community")}</h1><p class="lead">${tr("x_comm_lead")}</p>`+tabs+`<div class="note">${tr("x_comm_note")}</div>`+(sec==="up"?(cmOn()?`<h2 class="ih2" id="cm-up">${tr("cm_new")}</h2><div class="note" style="margin:10px 0 16px;border-color:color-mix(in srgb,var(--pink) 35%,transparent);background:color-mix(in srgb,var(--pink) 8%,transparent)">💡 <strong>${tr("cm_remind")}:</strong> ${tr("cm_ping",{d:dLink})}</div><form class="cmf" id="cm-form" autocomplete="off"><label>${tr("cm_name")}<input name="cname" maxlength="80" required></label><label>${tr("cm_desc")}<textarea name="cdesc" maxlength="1000"></textarea></label><div class="cm2"><label>${tr("cm_region")}<select name="cregion">${ro}</select></label><label>${tr("cm_lang")}<select name="clang">${lo}</select></label></div><label>${tr("cm_author")}<input name="cauthor" maxlength="40"></label><label>${tr("cm_file")}<input name="cfile" type="file" accept=".zip,.json"></label><input class="hp" name="website" tabindex="-1" aria-hidden="true"><button class="go" type="submit">${tr("cm_send")}</button><div id="cm-msg" role="status"></div></form>`:`<p class="none">${tr("cm_nocfg")}</p>`):`<h2 class="ih2" id="cm-dl">${tr("cm_list")}</h2><div id="cm-list">${cmList()}</div>`)+foot()}
 function nf(){return `<h1>${tr("x_nf_t")}</h1><p class="lead">${tr("x_nf_p")}</p><div class="hl"><a class="go" href="#/files">${tr("enter")}</a><a class="gh" href="#/">${tr("x_nf_back")}</a></div>`+foot()}
-function route(){const h=CUR,P={faq:"faq",app:"app",files:"home",community:"community",updates:"updates",guide:"guide",report:"report",about:"about"};
- if(h.startsWith("edit/guide/")){let t=h.slice(11);try{t=decodeURIComponent(t)}catch(e){}return{p:"edit",s:t}}if(h.startsWith("guide/")){let t=h.slice(6);try{t=decodeURIComponent(t)}catch(e){}return{p:"post",s:t}}if(h==="community/dl"||h==="community/up")return{p:"community",sec:h.slice(10)};if(h==="community")return{p:"community",sec:"dl"};if(P[h])return{p:P[h]};if(h===""||h==="/")return{p:"intro"};
+function route(){const h=CUR,P={faq:"faq",app:"app",files:"home",guide:"guide",report:"report",about:"about"};
+ if(h.startsWith("edit/guide/")){let t=h.slice(11);try{t=decodeURIComponent(t)}catch(e){}return{p:"edit",s:t}}if(h.startsWith("guide/")){let t=h.slice(6);try{t=decodeURIComponent(t)}catch(e){}return{p:"post",s:t}}if(P[h])return{p:P[h]};if(h===""||h==="/")return{p:"intro"};
  if(h.startsWith("r/")){let t=h.slice(2);try{t=decodeURIComponent(t)}catch(e){}const i=ALL.findIndex(x=>x[0]===t.split("/")[0]);if(i>=0)return{p:"r",i,k:t.includes("/")?t:""}}return{p:"nf"}}
 function home(){return crumb("<a href=\"#/\">Kho File Tele</a>")+`<h1>${FOLDER}${tr("files")}</h1><p class="lead">${esc(tr("home_lead",{s:SITE.server}))}</p>
  <div class="grid">${ALL.map(([id,n],i)=>cnt(id)?`<a class="card" href="#/r/${id}"><span>${i+1}. ${esc(n)}</span><em>${tr("nfiles",{n:cnt(id)})}</em>${CHEV}</a>`:"").join("")}</div>${(()=>{const sn=ALL.filter(([id])=>!cnt(id)).map(a=>a[1]);return sn.length?`<p class="soonline"><b>${tr("soon")}:</b> ${esc(sn.join(", "))}</p>`:""})()}<div class="hl"><button class="gh" id="da" type="button" style="cursor:pointer;font-family:inherit">${tr("dlall",{n:FILES.length})}</button></div>`+foot()}
@@ -1407,9 +1247,8 @@ function intro(){const have=ALL.filter(([id])=>cnt(id)),ds=FILES.map(f=>f.date).
  const DCI='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>';
  const C=[["#/files","files","ic_files",'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',"w2 f"],
   ["#/app","app","ic_app",'<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',""],
-  ["#/guide","guide","ic_guide",'<path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h13"/>',""],
+  ["#/guide","guide","ic_guide",'<path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zm0 0a2 2 0 0 0 2 2h13"/>',"w2"],
   ["#/faq","faq","ic_faq",'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/>',""],
-  ["#/updates","updates","ic_upd",'<path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/>',""],
   ["#/report","report","ic_rep",'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',""],
   ["#/about","about","ic_about",'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',"w2"]];
  return `<section class="hero"><div class="hin"><h1>${tr("hero_t")} <span style="display:block;width:fit-content;margin:6px auto 0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">${esc(SITE.server)}</span></h1>
@@ -1417,7 +1256,7 @@ function intro(){const have=ALL.filter(([id])=>cnt(id)),ds=FILES.map(f=>f.date).
  <div class="iact"><a class="go" href="#/files">${tr("enter")}</a><a class="gh" href="#/app">${tr("app")}</a><a class="gh gh-dc" href="${esc(SITE.discord)}" target="_blank" rel="noopener">${DCI}<span>Discord</span></a></div>
  <p class="ifact">${esc(last?tr("ifact2",{n:FILES.length,m:have.length,d:last.split("-").reverse().join("/")}):tr("ifact",{n:FILES.length,m:have.length}))}</p></div></section>
  <section class="ics"><h2 class="ih2" style="margin-top:0">${tr("ic_h")}</h2><div class="icg">${C.map(([h,k,d,p,c])=>`<a class="ic ${c}" href="${h}"><i class="ic-i">${I(p)}</i><h3>${tr(k)}${k==="files"&&FILES.length?`<em>${tr("nfiles",{n:FILES.length})}</em>`:""}</h3><p>${tr(d)}</p><span class="ic-go">${tr("ic_open")} →</span></a>`).join("")}</div>
- ${recent(5).length?`<h2 class="ih2">${tr("newup")}</h2><ul class="ul">${recent(5).map(li).join("")}</ul><p class="ic-first" style="margin-top:12px;text-align:left"><a href="#/updates">${tr("seelog")}</a></p>`:""}<p class="ic-first">${tr("ic_first")} <a href="#/guide">${tr("ic_first2")} →</a></p></section>`+foot()}
+ ${recent(5).length?`<h2 class="ih2">${tr("newup")}</h2><ul class="ul">${recent(5).map(li).join("")}</ul>`:""}<p class="ic-first">${tr("ic_first")} <a href="#/guide">${tr("ic_first2")} →</a></p></section>`+foot()}
 
 /* Lấy bản release mới nhất của app từ GitHub, gắn link tải .exe trực tiếp vào nút; lỗi thì giữ link trang releases */
 let APPREL=null;
@@ -1466,7 +1305,7 @@ function appPage(){const dl=ok(SITE.app)?SITE.app:"",sh=SHOTS.filter(Boolean);
  ${sh.length?`<h2 class="ih2">${tr("app_sh")}</h2><p class="lead" style="margin-bottom:18px">${tr("app_shp")}</p>${gallery(sh)}`:""}
  ${dl?`<div class="hn-cta app-end"><div class="hn-tx"><b>${tr("app_end_t")}</b><span>${tr("app_end_p")}</span></div>${btn.replace('app-dl','app-dl hn-app')}</div>`:""}`+foot()}
 
-const PG={intro:["Giới thiệu","#/"],home:["Kho File","#/files"],community:["Kho File Cộng Đồng","#/community"],app:["App","#/app"],faq:["FAQ","#/faq"],updates:["Cập nhật","#/updates"],guide:["Hướng dẫn","#/guide"],post:["Hướng dẫn","#/guide"],report:["Báo lỗi / Đóng góp","#/report"],about:["Credit & miễn trừ","#/about"],edit:["Hướng dẫn","#/guide"],nf:["Không tìm thấy",""]};
+const PG={intro:["Giới thiệu","#/"],home:["Kho File","#/files"],app:["App","#/app"],faq:["FAQ","#/faq"],guide:["Hướng dẫn","#/guide"],post:["Hướng dẫn","#/guide"],report:["Báo lỗi / Đóng góp","#/report"],about:["Credit & miễn trừ","#/about"],edit:["Hướng dẫn","#/guide"],nf:["Không tìm thấy",""]};
 const RC={Mondstadt:"#5fd6c0",Dragonspine:"#9ad7ff",Liyue:"#f0b94d",Inazuma:"#b58cff",Sumeru:"#8fd14f",Fontaine:"#4fa8ff",Natlan:"#ff7a45",NodKrai:"#9FA8F2",Snezhnaya:"#8fa8ff",Enkanomiya:"#7C8FD8",Chasm:"#c9835a",WindrestPeak:"#5DCB6B",ChenyuVale:"#4fd1a1",SeaOfBygoneEras:"#43BDEB",AncientSacredMountain:"#E63946",TempleOfSpace:"#E5373F",FrostMoon:"#9DBFE4"};
 /* bảng đầy đủ: c = màu chính, c2 = màu phụ, d = [nền, panel, card, viền, chữ, chữ phụ] */
 const RP={
@@ -1489,9 +1328,8 @@ function theme(id){const H=document.documentElement,st=H.style,p=RP[id],c=p?p.c:
 function render(){const R=route();theme(!q&&R.p==="r"?ALL[R.i][0]:"");document.body.dataset.p=q?"search":R.p;rp(R);
  const lb=R.p==="r"?ALL[R.i][1]:pgl(R.p),hm=R.p==="r"?"#/files":(PG[R.p]||[])[1];
  $("mbl").textContent=q?tr("search"):lb;document.title=(SITE.server||"Electro Cat")+" · "+(q?tr("search")+" “"+q+"”":(R.p==="intro"?tr("intro"):lb));
- document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm||(!!R.sec&&a.getAttribute("href")==="#/community/"+R.sec)));
- mgSet(R.p==="community"?true:null);
- if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,community,app:appPage,updates,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);if(R.p==="community"&&!q)commInit();syncBar();syncGuideRet();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
+ document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>a.classList.toggle("on",a.getAttribute("href")===hm));
+ if(R.p!=="r"&&!q)SEL.clear();$("main").innerHTML=q?results():({r:()=>region(R.i,R.k),post:()=>post(R.s),edit:()=>editPage(R.s),faq,home,app:appPage,guide,report,about,nf,intro}[R.p])();if(R.p==="edit"&&!q)editInit(R.s);syncBar();syncGuideRet();if(q)lv(tr("found",{n:document.querySelectorAll("#main .row").length}));if(!q&&R.k)focusRow(R.k);if(R.p==="app"&&!q)appRel()}
 function syncBar(){const n=SEL.size;$("bar").hidden=!n;$("bn").textContent=tr("sel",{n});$("bz").textContent=n>1?tr("dln",{n}):tr("dl1");
  document.querySelectorAll(".blk").forEach(b=>{const a=b.querySelector(".sa");if(a)a.textContent=[...b.querySelectorAll("input[data-k]")].every(x=>x.checked)?tr("unselall"):tr("selall")})}
 const crcT=Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;return c>>>0});
@@ -1627,15 +1465,13 @@ document.addEventListener("click",e=>{const t=e.target;
 const sq=$("sq"),sqClr=$("sq-clr");sq.oninput=()=>{q=sq.value.trim();if(sqClr)sqClr.hidden=!sq.value;render();if(q)scrollTo(0,0)};
 if(sqClr)sqClr.onclick=()=>{sq.value="";q="";sqClr.hidden=true;render();sq.focus()};
 const mb=$("mb"),mn=$("menu"),tg=o=>{mn.classList.toggle("on",o);mb.setAttribute("aria-expanded",o);const m=$("main");if(m)m.inert=!!o;if(o)mn.querySelector("a").focus()};
-function mgSet(o){const g=$("mg"),b=$("mgb");if(!g||o===null)return;g.classList.toggle("open",o);b.setAttribute("aria-expanded",o)}
-if($("mgb"))$("mgb").onclick=e=>{e.stopPropagation();mgSet(!$("mg").classList.contains("open"))};
 mb.onclick=e=>{e.stopPropagation();tg(!mn.classList.contains("on"))};
 if($("gr-close"))$("gr-close").onclick=()=>{clearCurGuide();$("gr-bar").hidden=true};
 mn.onclick=e=>{if(e.target.closest("a"))tg(false)};
 document.addEventListener("click",e=>{if(!mn.contains(e.target)&&e.target!==mb&&!mb.contains(e.target))tg(false)});
-function applyStatic(){document.documentElement.lang=UL;ALL.forEach(a=>{if(!a[2])a[2]=a[1];a[1]=I18N["rn_"+a[0]]?tr("rn_"+a[0]):a[2]});const M={"#/":"intro","#/files":"files","#/community":"community","#/app":"app","#/updates":"updates","#/guide":"guide","#/faq":"faq","#/report":"report","#/about":"about"};
+function applyStatic(){document.documentElement.lang=UL;ALL.forEach(a=>{if(!a[2])a[2]=a[1];a[1]=I18N["rn_"+a[0]]?tr("rn_"+a[0]):a[2]});const M={"#/":"intro","#/files":"files","#/app":"app","#/guide":"guide","#/faq":"faq","#/report":"report","#/about":"about"};
  document.querySelectorAll('#menu a[href^="#/"]').forEach(a=>{const k=M[a.getAttribute("href")];if(k)a.textContent=tr(k)});
- document.querySelectorAll("#menu [data-t]").forEach(a=>{const sp=a.querySelector("span");if(sp)sp.textContent=tr(a.dataset.t)});const gb2=$("mgb");if(gb2)gb2.setAttribute("aria-label",tr("cm_exp"));
+ document.querySelectorAll("#menu [data-t]").forEach(a=>{const sp=a.querySelector("span");if(sp)sp.textContent=tr(a.dataset.t)});
  mn.setAttribute("aria-label",tr("toc"));mn.querySelector(".mh").textContent=tr("toc");mb.setAttribute("aria-label",tr("toc"));
  sq.placeholder=tr("sph");sq.setAttribute("aria-label",tr("sl"));$("bx").textContent=tr("unsel");
  document.querySelector('meta[name=description]').content=tr("desc");const og=document.querySelector('meta[property="og:description"]');if(og)og.content=tr("ogd");
