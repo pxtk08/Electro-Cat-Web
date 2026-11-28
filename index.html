@@ -1256,7 +1256,7 @@ function intro(){const have=ALL.filter(([id])=>cnt(id)),ds=FILES.map(f=>f.date).
  <div class="iact"><a class="go" href="#/files">${tr("enter")}</a><a class="gh" href="#/app">${tr("app")}</a><a class="gh gh-dc" href="${esc(SITE.discord)}" target="_blank" rel="noopener">${DCI}<span>Discord</span></a></div>
  <p class="ifact">${esc(last?tr("ifact2",{n:FILES.length,m:have.length,d:last.split("-").reverse().join("/")}):tr("ifact",{n:FILES.length,m:have.length}))}</p></div></section>
  <section class="ics"><h2 class="ih2" style="margin-top:0">${tr("ic_h")}</h2><div class="icg">${C.map(([h,k,d,p,c])=>`<a class="ic ${c}" href="${h}"><i class="ic-i">${I(p)}</i><h3>${tr(k)}${k==="files"&&FILES.length?`<em>${tr("nfiles",{n:FILES.length})}</em>`:""}</h3><p>${tr(d)}</p><span class="ic-go">${tr("ic_open")} →</span></a>`).join("")}</div>
- ${recent(5).length?`<h2 class="ih2">${tr("newup")}</h2><ul class="ul">${recent(5).map(li).join("")}</ul>`:""}<p class="ic-first">${tr("ic_first")} <a href="#/guide">${tr("ic_first2")} →</a></p></section>`+foot()}
+ <p class="ic-first">${tr("ic_first")} <a href="#/guide">${tr("ic_first2")} →</a></p></section>`+foot()}
 
 /* Lấy bản release mới nhất của app từ GitHub, gắn link tải .exe trực tiếp vào nút; lỗi thì giữ link trang releases */
 let APPREL=null;
